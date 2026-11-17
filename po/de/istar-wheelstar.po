@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: istar-wheelstar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-15 22:40+0100\n"
+"POT-Creation-Date: 2026-11-17 15:38+0100\n"
 "PO-Revision-Date: 2026-11-07 23:52+0100\n"
 "Last-Translator: Pascal Klose <istarlabs_dev@proton.me>\n"
 "Language-Team: none\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/core/inifile.cpp:21 src/hardwaretest/testanalysis.cpp:402
-#: src/ui/controller.cpp:663
+#: src/ui/controller.cpp:661
 #, kde-format
 msgid "Cannot read \"%1\": %2"
 msgstr "„%1“ kann nicht gelesen werden: %2"
@@ -188,7 +188,7 @@ msgstr ""
 "Der Modus wurde gewechselt; für die übrigen Einstellungen den Befehl erneut "
 "ausführen, sobald das Lenkrad wieder da ist."
 
-#: src/main.cpp:218 src/ui/controller.cpp:2028
+#: src/main.cpp:218 src/ui/controller.cpp:2027
 #, kde-format
 msgid ""
 "The supplied command failed:\n"
@@ -729,7 +729,7 @@ msgid "A button without a name shows up as soon as you press it."
 msgstr "Ein Knopf ohne Namen erscheint, sobald du ihn drückst."
 
 #. i18n: %1 the city the job starts in, %2 the one it goes to
-#: src/qml/JobDialog.qml:23 src/qml/JobsPage.qml:377 src/qml/JobsPage.qml:432
+#: src/qml/JobDialog.qml:23 src/qml/JobsPage.qml:384 src/qml/JobsPage.qml:436
 #, kde-format
 msgid "%1 → %2"
 msgstr "%1 → %2"
@@ -814,7 +814,7 @@ msgid "%1 km (planned %2 km)"
 msgstr "%1 km (geplant %2 km)"
 
 #. i18n: %1 a distance in kilometres
-#: src/qml/JobDialog.qml:77 src/qml/JobsPage.qml:150
+#: src/qml/JobDialog.qml:77 src/qml/JobsPage.qml:157
 #: src/qml/StatisticsPage.qml:54
 #, kde-format
 msgid "%1 km"
@@ -950,13 +950,13 @@ msgid "Revenue"
 msgstr "Erlös"
 
 #. i18n: %1 the in-game day, %2 the in-game time
-#: src/qml/JobsPage.qml:160
+#: src/qml/JobsPage.qml:167
 #, kde-format
 msgid "Day %1, %2"
 msgstr "Tag %1, %2"
 
 #. i18n: a bus job; %1 the passengers over all its stops
-#: src/qml/JobsPage.qml:167
+#: src/qml/JobsPage.qml:174
 #, kde-format
 msgid "Bus · %1 passenger"
 msgid_plural "Bus · %1 passengers"
@@ -964,109 +964,109 @@ msgstr[0] "Bus · %1 Fahrgast"
 msgstr[1] "Bus · %1 Fahrgäste"
 
 #. i18n: the stops of a bus job
-#: src/qml/JobsPage.qml:169
+#: src/qml/JobsPage.qml:176
 #, kde-format
 msgid "%1 stop"
 msgid_plural "%1 stops"
 msgstr[0] "%1 Haltestelle"
 msgstr[1] "%1 Haltestellen"
 
-#: src/qml/JobsPage.qml:173 src/qml/JobsPage.qml:248 src/qml/Main.qml:97
+#: src/qml/JobsPage.qml:180 src/qml/JobsPage.qml:255 src/qml/Main.qml:97
 #, kde-format
 msgid "Jobs"
 msgstr "Aufträge"
 
-#: src/qml/JobsPage.qml:177 src/qml/StatisticsPage.qml:61
+#: src/qml/JobsPage.qml:184 src/qml/StatisticsPage.qml:61
 #: src/qml/WheelPage.qml:20
 #, kde-format
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: src/qml/JobsPage.qml:209
+#: src/qml/JobsPage.qml:216
 #, kde-format
 msgid "City, company, cargo or vehicle…"
 msgstr "Stadt, Firma, Fracht oder Fahrzeug …"
 
-#: src/qml/JobsPage.qml:218
+#: src/qml/JobsPage.qml:225
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "All vehicles"
 msgstr "Alle Fahrzeuge"
 
-#: src/qml/JobsPage.qml:219
+#: src/qml/JobsPage.qml:226
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "Trucks"
 msgstr "LKW"
 
-#: src/qml/JobsPage.qml:220
+#: src/qml/JobsPage.qml:227
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "Buses"
 msgstr "Busse"
 
-#: src/qml/JobsPage.qml:230
+#: src/qml/JobsPage.qml:237
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "All time"
 msgstr "Gesamter Zeitraum"
 
-#: src/qml/JobsPage.qml:231
+#: src/qml/JobsPage.qml:238
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "Today"
 msgstr "Heute"
 
-#: src/qml/JobsPage.qml:232
+#: src/qml/JobsPage.qml:239
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "Last 7 days"
 msgstr "Letzte 7 Tage"
 
-#: src/qml/JobsPage.qml:233
+#: src/qml/JobsPage.qml:240
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "Last 30 days"
 msgstr "Letzte 30 Tage"
 
-#: src/qml/JobsPage.qml:234
+#: src/qml/JobsPage.qml:241
 #, kde-format
 msgctxt "@item filter jobs"
 msgid "This year"
 msgstr "Dieses Jahr"
 
-#: src/qml/JobsPage.qml:254
+#: src/qml/JobsPage.qml:261
 #, kde-format
 msgid "Routes"
 msgstr "Routen"
 
-#: src/qml/JobsPage.qml:265
+#: src/qml/JobsPage.qml:272
 #, kde-format
 msgid "Sort by:"
 msgstr "Sortieren nach:"
 
-#: src/qml/JobsPage.qml:288
+#: src/qml/JobsPage.qml:295
 #, kde-format
 msgid "Ascending"
 msgstr "Aufsteigend"
 
-#: src/qml/JobsPage.qml:288
+#: src/qml/JobsPage.qml:295
 #, kde-format
 msgid "Descending"
 msgstr "Absteigend"
 
 #. i18n: %1 the city the route starts in, %2 the one it goes to
-#: src/qml/JobsPage.qml:303
+#: src/qml/JobsPage.qml:310
 #, kde-format
 msgid "Only the route %1 → %2"
 msgstr "Nur die Route %1 → %2"
 
-#: src/qml/JobsPage.qml:306
+#: src/qml/JobsPage.qml:313
 #, kde-format
 msgid "All routes"
 msgstr "Alle Routen"
 
-#: src/qml/JobsPage.qml:317
+#: src/qml/JobsPage.qml:324
 #, kde-format
 msgid ""
 "One job from the save game has no real date and only shows with “All time”."
@@ -1080,24 +1080,24 @@ msgstr[1] ""
 "bei „Gesamter Zeitraum“."
 
 #. i18n: %1 the number of delivered jobs, %2 the kilometres, %3 the money earned with its currency
-#: src/qml/JobsPage.qml:326
+#: src/qml/JobsPage.qml:333
 #, kde-format
 msgid "%1 delivery · %2 · %3"
 msgid_plural "%1 deliveries · %2 · %3"
 msgstr[0] "%1 Lieferung · %2 · %3"
 msgstr[1] "%1 Lieferungen · %2 · %3"
 
-#: src/qml/JobsPage.qml:349
+#: src/qml/JobsPage.qml:356
 #, kde-format
 msgid "No job matches the filter"
 msgstr "Kein Auftrag passt zum Filter"
 
-#: src/qml/JobsPage.qml:349
+#: src/qml/JobsPage.qml:356
 #, kde-format
 msgid "No jobs recorded yet"
 msgstr "Noch keine Aufträge erfasst"
 
-#: src/qml/JobsPage.qml:351
+#: src/qml/JobsPage.qml:358
 #, kde-format
 msgid ""
 "Jobs show up here when you deliver them with the telemetry plugin installed, "
@@ -1107,12 +1107,12 @@ msgstr ""
 "auslieferst oder auf der Seite „Karriere“ aus dem Spielstand importierst."
 
 #. i18n: how often a route was driven; with "Bus" in front for a bus route
-#: src/qml/JobsPage.qml:440
+#: src/qml/JobsPage.qml:444
 #, kde-format
 msgid "Bus"
 msgstr "Bus"
 
-#: src/qml/JobsPage.qml:441
+#: src/qml/JobsPage.qml:445
 #, kde-format
 msgid "driven once"
 msgid_plural "driven %1 times"
@@ -1187,8 +1187,8 @@ msgstr "Neu"
 msgid "New profile"
 msgstr "Neues Profil"
 
-#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:778
-#: src/ui/controller.cpp:782
+#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:776
+#: src/ui/controller.cpp:780
 #, kde-format
 msgid "Import"
 msgstr "Importieren"
@@ -1571,7 +1571,7 @@ msgstr "Starten"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2243
+#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2242
 #, kde-format
 msgid "CSV file to import"
 msgstr "CSV-Datei zum Import"
@@ -1581,7 +1581,7 @@ msgstr "CSV-Datei zum Import"
 msgid "CSV files (*.csv)"
 msgstr "CSV-Dateien (*.csv)"
 
-#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2262
+#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2261
 #, kde-format
 msgid "CSV file to export"
 msgstr "CSV-Datei zum Export"
@@ -1783,7 +1783,42 @@ msgstr "Gaspedal + Kupplung"
 msgid "Inputs"
 msgstr "Eingaben"
 
-#: src/savegame/savegamefile.cpp:282
+#: src/savegame/saveimport.cpp:29
+#, kde-format
+msgid "The save game is cut short."
+msgstr "Der Spielstand ist unvollständig."
+
+#: src/savegame/saveimport.cpp:31
+#, kde-format
+msgid "The save game cannot be decrypted."
+msgstr "Der Spielstand kann nicht entschlüsselt werden."
+
+#: src/savegame/saveimport.cpp:33
+#, kde-format
+msgid "The save game cannot be unpacked."
+msgstr "Der Spielstand kann nicht entpackt werden."
+
+#: src/savegame/saveimport.cpp:35
+#, kde-format
+msgid "The save game is not in the binary format."
+msgstr "Der Spielstand ist nicht im Binärformat."
+
+#: src/savegame/saveimport.cpp:37
+#, kde-format
+msgid "The save game refers to a structure it never defined."
+msgstr "Der Spielstand verweist auf eine Struktur, die er nirgends definiert."
+
+#: src/savegame/saveimport.cpp:39
+#, kde-format
+msgid "The save game ends in the middle of a value."
+msgstr "Der Spielstand endet mitten in einem Wert."
+
+#: src/savegame/saveimport.cpp:41
+#, kde-format
+msgid "The save game is not in the text format."
+msgstr "Der Spielstand ist nicht im Textformat."
+
+#: src/savegame/saveimport.cpp:43
 #, kde-format
 msgid ""
 "The save game has a value of a kind this program does not know (0x%1, "
@@ -1792,42 +1827,7 @@ msgstr ""
 "Der Spielstand enthält einen Wert einer Art, die dieses Programm nicht kennt "
 "(0x%1, „%2“)."
 
-#: src/savegame/savegamefile.cpp:363
-#, kde-format
-msgid "The save game is cut short."
-msgstr "Der Spielstand ist unvollständig."
-
-#: src/savegame/savegamefile.cpp:384
-#, kde-format
-msgid "The save game cannot be decrypted."
-msgstr "Der Spielstand kann nicht entschlüsselt werden."
-
-#: src/savegame/savegamefile.cpp:398
-#, kde-format
-msgid "The save game cannot be unpacked."
-msgstr "Der Spielstand kann nicht entpackt werden."
-
-#: src/savegame/savegamefile.cpp:410
-#, kde-format
-msgid "The save game is not in the binary format."
-msgstr "Der Spielstand ist nicht im Binärformat."
-
-#: src/savegame/savegamefile.cpp:467
-#, kde-format
-msgid "The save game refers to a structure it never defined."
-msgstr "Der Spielstand verweist auf eine Struktur, die er nirgends definiert."
-
-#: src/savegame/savegamefile.cpp:491
-#, kde-format
-msgid "The save game ends in the middle of a value."
-msgstr "Der Spielstand endet mitten in einem Wert."
-
-#: src/savegame/savegamefile.cpp:501
-#, kde-format
-msgid "The save game is not in the text format."
-msgstr "Der Spielstand ist nicht im Textformat."
-
-#: src/savegame/savegamefile.cpp:599
+#: src/savegame/saveimport.cpp:49
 #, kde-format
 msgid ""
 "This is not a save game of Euro Truck Simulator 2 or American Truck "
@@ -1846,200 +1846,200 @@ msgstr "„%1“ kann nicht gelesen werden: %2"
 msgid "\"%1\" is not a valid profile: %2"
 msgstr "„%1“ ist kein gültiges Profil: %2"
 
-#: src/ui/controller.cpp:98
+#: src/ui/controller.cpp:96
 #, kde-format
 msgid "Unknown game"
 msgstr "Unbekanntes Spiel"
 
-#: src/ui/controller.cpp:136
+#: src/ui/controller.cpp:134
 #, kde-format
 msgctxt "@item offence"
 msgid "Crash"
 msgstr "Unfall"
 
-#: src/ui/controller.cpp:137
+#: src/ui/controller.cpp:135
 #, kde-format
 msgctxt "@item offence"
 msgid "No rest when tired"
 msgstr "Keine Pause trotz Müdigkeit"
 
-#: src/ui/controller.cpp:138
+#: src/ui/controller.cpp:136
 #, kde-format
 msgctxt "@item offence"
 msgid "Wrong way"
 msgstr "Falschfahrt"
 
-#: src/ui/controller.cpp:139
+#: src/ui/controller.cpp:137
 #, kde-format
 msgctxt "@item offence"
 msgid "Speed camera"
 msgstr "Blitzer"
 
-#: src/ui/controller.cpp:140
+#: src/ui/controller.cpp:138
 #, kde-format
 msgctxt "@item offence"
 msgid "No lights"
 msgstr "Ohne Licht"
 
-#: src/ui/controller.cpp:141
+#: src/ui/controller.cpp:139
 #, kde-format
 msgctxt "@item offence"
 msgid "Red light"
 msgstr "Rotlicht"
 
-#: src/ui/controller.cpp:142
+#: src/ui/controller.cpp:140
 #, kde-format
 msgctxt "@item offence"
 msgid "Speeding"
 msgstr "Zu schnell"
 
-#: src/ui/controller.cpp:143
+#: src/ui/controller.cpp:141
 #, kde-format
 msgctxt "@item offence"
 msgid "Avoided the weigh station"
 msgstr "Waage umfahren"
 
-#: src/ui/controller.cpp:144
+#: src/ui/controller.cpp:142
 #, kde-format
 msgctxt "@item offence"
 msgid "Illegal trailer"
 msgstr "Unzulässiger Anhänger"
 
-#: src/ui/controller.cpp:145
+#: src/ui/controller.cpp:143
 #, kde-format
 msgctxt "@item offence"
 msgid "Avoided an inspection"
 msgstr "Kontrolle umfahren"
 
-#: src/ui/controller.cpp:146
+#: src/ui/controller.cpp:144
 #, kde-format
 msgctxt "@item offence"
 msgid "Illegal border crossing"
 msgstr "Unerlaubter Grenzübertritt"
 
-#: src/ui/controller.cpp:147
+#: src/ui/controller.cpp:145
 #, kde-format
 msgctxt "@item offence"
 msgid "Driving on the hard shoulder"
 msgstr "Fahren auf dem Standstreifen"
 
-#: src/ui/controller.cpp:148
+#: src/ui/controller.cpp:146
 #, kde-format
 msgctxt "@item offence"
 msgid "Driving a damaged vehicle"
 msgstr "Fahren mit beschädigtem Fahrzeug"
 
-#: src/ui/controller.cpp:149
+#: src/ui/controller.cpp:147
 #, kde-format
 msgctxt "@item offence"
 msgid "Other offence"
 msgstr "Sonstiger Verstoß"
 
-#: src/ui/controller.cpp:161 src/ui/controller.cpp:162
+#: src/ui/controller.cpp:159 src/ui/controller.cpp:160
 #, kde-format
 msgctxt "@item job market"
 msgid "Quick job"
 msgstr "Schnellauftrag"
 
-#: src/ui/controller.cpp:163 src/ui/controller.cpp:164
+#: src/ui/controller.cpp:161 src/ui/controller.cpp:162
 #, kde-format
 msgctxt "@item job market"
 msgid "Freight market"
 msgstr "Frachtmarkt"
 
-#: src/ui/controller.cpp:165 src/ui/controller.cpp:166
+#: src/ui/controller.cpp:163 src/ui/controller.cpp:164
 #, kde-format
 msgctxt "@item job market"
 msgid "Cargo market"
 msgstr "Ladungsmarkt"
 
-#: src/ui/controller.cpp:167 src/ui/controller.cpp:168
+#: src/ui/controller.cpp:165 src/ui/controller.cpp:166
 #, kde-format
 msgctxt "@item job market"
 msgid "External contract"
 msgstr "Externer Auftrag"
 
-#: src/ui/controller.cpp:169
+#: src/ui/controller.cpp:167
 #, kde-format
 msgctxt "@item job market"
 msgid "Special transport"
 msgstr "Spezialtransport"
 
-#: src/ui/controller.cpp:170
+#: src/ui/controller.cpp:168
 #, kde-format
 msgctxt "@item job market"
 msgid "Company job"
 msgstr "Firmenauftrag"
 
 #. i18n: %1 is the offence, "Red light"
-#: src/ui/controller.cpp:262
+#: src/ui/controller.cpp:260
 #, kde-format
 msgid "Fine: %1"
 msgstr "Bußgeld: %1"
 
-#: src/ui/controller.cpp:265
+#: src/ui/controller.cpp:263
 #, kde-format
 msgid "Toll"
 msgstr "Maut"
 
 #. i18n: %1 and %2 are the ports
-#: src/ui/controller.cpp:269
+#: src/ui/controller.cpp:267
 #, kde-format
 msgid "Ferry %1 → %2"
 msgstr "Fähre %1 → %2"
 
 #. i18n: %1 and %2 are the stations
-#: src/ui/controller.cpp:273
+#: src/ui/controller.cpp:271
 #, kde-format
 msgid "Train %1 → %2"
 msgstr "Zug %1 → %2"
 
-#: src/ui/controller.cpp:376
+#: src/ui/controller.cpp:374
 #, kde-format
 msgid "Press button to set 270°"
 msgstr "Knopf um 270° einzustellen"
 
-#: src/ui/controller.cpp:376
+#: src/ui/controller.cpp:374
 #, kde-format
 msgid "Press button to set 360°"
 msgstr "Knopf um 360° einzustellen"
 
-#: src/ui/controller.cpp:376
+#: src/ui/controller.cpp:374
 #, kde-format
 msgid "Press toggle button/s"
 msgstr "Umschalt-Knopf drücken"
 
-#: src/ui/controller.cpp:377
+#: src/ui/controller.cpp:375
 #, kde-format
 msgid "Press button for +10°"
 msgstr "Knopf für +10°"
 
-#: src/ui/controller.cpp:377
+#: src/ui/controller.cpp:375
 #, kde-format
 msgid "Press button to set 540°"
 msgstr "Knopf um 540° einzustellen"
 
-#: src/ui/controller.cpp:377
+#: src/ui/controller.cpp:375
 #, kde-format
 msgid "Press button to set 900°"
 msgstr "Knopf um 900° einzustellen"
 
-#: src/ui/controller.cpp:378
+#: src/ui/controller.cpp:376
 #, kde-format
 msgid "Press button for +90°"
 msgstr "Knopf für +90°"
 
-#: src/ui/controller.cpp:378
+#: src/ui/controller.cpp:376
 #, kde-format
 msgid "Press button for -10°"
 msgstr "Knopf für -10°"
 
-#: src/ui/controller.cpp:378
+#: src/ui/controller.cpp:376
 #, kde-format
 msgid "Press button for -90°"
 msgstr "Knopf für -90°"
 
-#: src/ui/controller.cpp:647
+#: src/ui/controller.cpp:645
 #, kde-format
 msgid ""
 "No save game of Euro Truck Simulator 2 or American Truck Simulator was found."
@@ -2047,150 +2047,150 @@ msgstr ""
 "Es wurde kein Spielstand von Euro Truck Simulator 2 oder American Truck "
 "Simulator gefunden."
 
-#: src/ui/controller.cpp:778
+#: src/ui/controller.cpp:776
 #, kde-format
 msgid "The jobs could not be written to the database."
 msgstr "Die Aufträge konnten nicht in die Datenbank geschrieben werden."
 
-#: src/ui/controller.cpp:782
+#: src/ui/controller.cpp:780
 #, kde-format
 msgid "One job imported."
 msgid_plural "%1 jobs imported."
 msgstr[0] "Ein Auftrag importiert."
 msgstr[1] "%1 Aufträge importiert."
 
-#: src/ui/controller.cpp:1057
+#: src/ui/controller.cpp:1056
 #, kde-format
 msgid "Error saving button names"
 msgstr "Fehler beim Speichern der Knopfnamen"
 
-#: src/ui/controller.cpp:1115
+#: src/ui/controller.cpp:1114
 #, kde-format
 msgid "Wheel connected"
 msgstr "Lenkrad verbunden"
 
-#: src/ui/controller.cpp:1123
+#: src/ui/controller.cpp:1122
 #, kde-format
 msgid "Wheel disconnected"
 msgstr "Lenkrad getrennt"
 
-#: src/ui/controller.cpp:1438
+#: src/ui/controller.cpp:1437
 #, kde-format
 msgid "Error opening profile"
 msgstr "Fehler beim Öffnen des Profils"
 
-#: src/ui/controller.cpp:1438
+#: src/ui/controller.cpp:1437
 #, kde-format
 msgid "The selected profile can't be loaded."
 msgstr "Das ausgewählte Profil kann nicht geladen werden."
 
-#: src/ui/controller.cpp:1461 src/ui/controller.cpp:1481
+#: src/ui/controller.cpp:1460 src/ui/controller.cpp:1480
 #, kde-format
 msgid "Error creating profile"
 msgstr "Fehler beim Anlegen des Profils"
 
-#: src/ui/controller.cpp:1481 src/ui/controller.cpp:1499
+#: src/ui/controller.cpp:1480 src/ui/controller.cpp:1498
 #, kde-format
 msgid "\"%1\" cannot be used as a profile name."
 msgstr "„%1“ kann nicht als Profilname verwendet werden."
 
-#: src/ui/controller.cpp:1499
+#: src/ui/controller.cpp:1498
 #, kde-format
 msgid "Error renaming profile"
 msgstr "Fehler beim Umbenennen des Profils"
 
-#: src/ui/controller.cpp:1519
+#: src/ui/controller.cpp:1518
 #, kde-format
 msgid "Error deleting profile"
 msgstr "Fehler beim Löschen des Profils"
 
-#: src/ui/controller.cpp:1542 src/ui/controller.cpp:1548
-#: src/ui/controller.cpp:1558
+#: src/ui/controller.cpp:1541 src/ui/controller.cpp:1547
+#: src/ui/controller.cpp:1557
 #, kde-format
 msgid "Error importing profile"
 msgstr "Fehler beim Importieren des Profils"
 
-#: src/ui/controller.cpp:1542
+#: src/ui/controller.cpp:1541
 #, kde-format
 msgid "Invalid extension."
 msgstr "Ungültige Dateiendung."
 
-#: src/ui/controller.cpp:1548
+#: src/ui/controller.cpp:1547
 #, kde-format
 msgid "A profile with that name already exists."
 msgstr "Ein Profil mit diesem Namen existiert bereits."
 
-#: src/ui/controller.cpp:1574
+#: src/ui/controller.cpp:1573
 #, kde-format
 msgid "Error exporting profile"
 msgstr "Fehler beim Exportieren des Profils"
 
-#: src/ui/controller.cpp:1860
+#: src/ui/controller.cpp:1859
 #, kde-format
 msgid "System default"
 msgstr "Systemstandard"
 
-#: src/ui/controller.cpp:1861
+#: src/ui/controller.cpp:1860
 #, kde-format
 msgid "English"
 msgstr "Englisch"
 
-#: src/ui/controller.cpp:1862
+#: src/ui/controller.cpp:1861
 #, kde-format
 msgid "Galician"
 msgstr "Galizisch"
 
-#: src/ui/controller.cpp:1863
+#: src/ui/controller.cpp:1862
 #, kde-format
 msgid "Russian"
 msgstr "Russisch"
 
-#: src/ui/controller.cpp:1864
+#: src/ui/controller.cpp:1863
 #, kde-format
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: src/ui/controller.cpp:1865
+#: src/ui/controller.cpp:1864
 #, kde-format
 msgid "Valencian"
 msgstr "Valiencianisch"
 
-#: src/ui/controller.cpp:1866
+#: src/ui/controller.cpp:1865
 #, kde-format
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: src/ui/controller.cpp:1867
+#: src/ui/controller.cpp:1866
 #, kde-format
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: src/ui/controller.cpp:1868
+#: src/ui/controller.cpp:1867
 #, kde-format
 msgid "German"
 msgstr "Deutsch"
 
-#: src/ui/controller.cpp:1869
+#: src/ui/controller.cpp:1868
 #, kde-format
 msgid "Polish"
 msgstr "Polnisch"
 
-#: src/ui/controller.cpp:1870
+#: src/ui/controller.cpp:1869
 #, kde-format
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: src/ui/controller.cpp:1926
+#: src/ui/controller.cpp:1925
 #, kde-format
 msgid "Permissions rules installed."
 msgstr "Berechtigungs-Regeln installiert."
 
-#: src/ui/controller.cpp:1927
+#: src/ui/controller.cpp:1926
 #, kde-format
 msgid "In some cases, a system restart might be needed."
 msgstr "In manchen Fällen kann ein Neustart nötig sein."
 
-#: src/ui/controller.cpp:1933
+#: src/ui/controller.cpp:1932
 #, kde-format
 msgid ""
 "Error installing permissions rules. Please, try again and make sure you use "
@@ -2198,73 +2198,73 @@ msgid ""
 msgstr ""
 "Fehler beim Installieren der Berechtigungs-Regeln. Bitte erneut versuchen."
 
-#: src/ui/controller.cpp:2027
+#: src/ui/controller.cpp:2026
 #, kde-format
 msgid "Command error"
 msgstr "Befehlsfehler"
 
-#: src/ui/controller.cpp:2183 src/ui/controller.cpp:2211
+#: src/ui/controller.cpp:2182 src/ui/controller.cpp:2210
 #, kde-format
 msgid "Steering wheel not responding."
 msgstr "Lenkrad reagiert nicht."
 
-#: src/ui/controller.cpp:2250
+#: src/ui/controller.cpp:2249
 #, kde-format
 msgid "New test data imported from CSV file."
 msgstr "Neue Test-Daten aus CSV-Datei importiert."
 
-#: src/ui/controller.cpp:2250
+#: src/ui/controller.cpp:2249
 #, kde-format
 msgid "Test data imported."
 msgstr "Test-Daten importiert"
 
-#: src/ui/controller.cpp:2266
+#: src/ui/controller.cpp:2265
 #, kde-format
 msgid "Current test data has been exported to a CSV file."
 msgstr "Die aktuellen Test-Daten wurden in eine CSV-Datei exportiert."
 
-#: src/ui/controller.cpp:2266
+#: src/ui/controller.cpp:2265
 #, kde-format
 msgid "Test data exported."
 msgstr "Test-Daten exportiert."
 
-#: src/ui/controller.cpp:2287 src/ui/controller.cpp:2292
-#: src/ui/controller.cpp:2302
+#: src/ui/controller.cpp:2286 src/ui/controller.cpp:2291
+#: src/ui/controller.cpp:2301
 #, kde-format
 msgid "Input force"
 msgstr "Eingabekraft"
 
-#: src/ui/controller.cpp:2288
+#: src/ui/controller.cpp:2287
 #, kde-format
 msgid "Output force"
 msgstr "Ausgabekraft"
 
-#: src/ui/controller.cpp:2293
+#: src/ui/controller.cpp:2292
 #, kde-format
 msgid "Angular displacement (raw)"
 msgstr "Winkelabweichung (roh)"
 
-#: src/ui/controller.cpp:2296
+#: src/ui/controller.cpp:2295
 #, kde-format
 msgid "Angular displacement (smoothed)"
 msgstr "Winkelabweichung (geglättet)"
 
-#: src/ui/controller.cpp:2297
+#: src/ui/controller.cpp:2296
 #, kde-format
 msgid "Angular velocity (raw)"
 msgstr "Winkelgeschwindigkeit (roh)"
 
-#: src/ui/controller.cpp:2300
+#: src/ui/controller.cpp:2299
 #, kde-format
 msgid "Angular velocity (smoothed)"
 msgstr "Winkelgeschwindigkeit (geglättet)"
 
-#: src/ui/controller.cpp:2305
+#: src/ui/controller.cpp:2304
 #, kde-format
 msgid "Angular acceleration (raw)"
 msgstr "Winkelbeschleunigung (roh)"
 
-#: src/ui/controller.cpp:2308
+#: src/ui/controller.cpp:2307
 #, kde-format
 msgid "Angular acceleration (smoothed)"
 msgstr "Winkelbeschleunigung (geglättet)"

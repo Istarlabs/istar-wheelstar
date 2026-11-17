@@ -12,24 +12,12 @@ add_library(wheelstar-core STATIC
     device/wheeldevice.cpp
     device/wheeldevice.h
     device/wheelmodels.h
-    gamedata/cityhash.cpp
-    gamedata/cityhash.h
-    gamedata/gamenames.cpp
-    gamedata/gamenames.h
-    gamedata/hashfsarchive.cpp
-    gamedata/hashfsarchive.h
     hardwaretest/ffbtest.cpp
     hardwaretest/ffbtest.h
     hardwaretest/testanalysis.cpp
     hardwaretest/testanalysis.h
-    savegame/career.cpp
-    savegame/career.h
-    savegame/savegamefile.cpp
-    savegame/savegamefile.h
-    savegame/savegamelocator.cpp
-    savegame/savegamelocator.h
-    savegame/siiunit.cpp
-    savegame/siiunit.h
+    savegame/saveimport.cpp
+    savegame/saveimport.h
     settings/buttonlabelstoml.h
     settings/buttonnames.cpp
     settings/buttonnames.h
@@ -64,7 +52,7 @@ target_link_libraries(wheelstar-core PUBLIC
     KF6::I18n
     PkgConfig::UDEV
     tomlplusplus::tomlplusplus
-    OpenSSL::Crypto
+    IstarTruckData::TruckData
 )
 
 add_executable(istar-wheelstar

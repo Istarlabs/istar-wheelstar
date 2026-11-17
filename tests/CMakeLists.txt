@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Pascal Klose
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-foreach(test gamedatatest jobtrackertest savegametest sessionaccumulatortest sessionstoretest telemetrypackettest testanalysistest wheelsettingstest)
+foreach(test jobtrackertest saveimporttest sessionaccumulatortest sessionstoretest telemetrypackettest testanalysistest wheelsettingstest)
     add_executable(${test} ${test}.cpp)
     target_link_libraries(${test} PRIVATE wheelstar-core Qt6::Test)
     add_test(NAME ${test} COMMAND ${test})

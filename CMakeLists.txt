@@ -47,12 +47,11 @@ find_package(KF6QuickCharts ${KF_MIN_VERSION} REQUIRED)
 # Profiles and preferences are TOML.
 find_package(tomlplusplus 3 REQUIRED)
 
-# The games encrypt their save files with AES; OpenSSL's libcrypto decrypts them.
-find_package(OpenSSL REQUIRED COMPONENTS Crypto)
-
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(UDEV REQUIRED IMPORTED_TARGET libudev)
 
+# Reads the save games and the game archives: https://github.com/Istarlabs/istar-truckdata
+add_subdirectory(external/istar-truckdata)
 add_subdirectory(src)
 add_subdirectory(data)
 

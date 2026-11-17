@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "gamedata/gamenames.h"
+#include "savegame/saveimport.h"
 #include "statistics/gameeventrecord.h"
 #include "statistics/jobrecord.h"
 #include "statistics/sessionsummary.h"

@@ -5,9 +5,7 @@
 #include "core/logging.h"
 #include "device/devicemanager.h"
 #include "device/wheeldevice.h"
-#include "gamedata/gamenames.h"
 #include "hardwaretest/ffbtest.h"
-#include "savegame/savegamefile.h"
 #include "wheelstarsettings.h"
 
 #include <KLocalizedString>
@@ -608,7 +606,7 @@ namespace Wheelstar::Ui
         {
             result.append(QVariantMap{
                 {u"name"_s, profile.name},
-                {u"game"_s, gameName(profile.game)},
+                {u"game"_s, gameName(SaveGame::telemetryGame(profile.game))},
                 {u"savedAt"_s, profile.savedAt},
             });
         }
@@ -668,12 +666,12 @@ namespace Wheelstar::Ui
 
                 if (!document)
                 {
-                    loaded.error = document.error();
+                    loaded.error = SaveGame::errorText(document.error());
                     return loaded;
                 }
 
                 loaded.career = SaveGame::careerFrom(*document);
-                loaded.deliveries = SaveGame::deliveriesFrom(*document, chosen.game);
+                loaded.deliveries = SaveGame::deliveriesFrom(*document, SaveGame::telemetryGame(chosen.game));
                 return loaded;
             }));
         Q_EMIT careerChanged();
@@ -705,7 +703,7 @@ namespace Wheelstar::Ui
             const SaveGame::Career& career = m_career->career;
             QVariantList offences;
 
-            for (qsizetype i = 0; i < SaveGame::Career::Offences.size(); ++i)
+            for (qsizetype i = 0; i < std::ssize(SaveGame::Career::Offences); ++i)
             {
                 const qint64 committed = career.offencesCommitted.value(i);
                 const qint64 fined = career.offencesFined.value(i);
@@ -717,7 +715,7 @@ namespace Wheelstar::Ui
                 }
 
                 offences.append(QVariantMap{
-                    {u"name"_s, offenceName(SaveGame::Career::Offences.at(i))},
+                    {u"name"_s, offenceName(SaveGame::Career::Offences.at(static_cast<std::size_t>(i)))},
                     {u"committed"_s, committed},
                     {u"fined"_s, fined},
                     {u"paid"_s, static_cast<double>(career.finesPaid.value(i))},
@@ -729,9 +727,9 @@ namespace Wheelstar::Ui
 
             m_careerMap = {
                 {u"profile"_s, m_career->profile.name},
-                {u"game"_s, gameName(m_career->profile.game)},
+                {u"game"_s, gameName(SaveGame::telemetryGame(m_career->profile.game))},
                 {u"savedAt"_s, m_career->profile.savedAt},
-                {u"currency"_s, currency(m_career->profile.game)},
+                {u"currency"_s, currency(SaveGame::telemetryGame(m_career->profile.game))},
                 {u"experience"_s, career.experience},
                 {u"money"_s, static_cast<double>(career.money)},
                 {u"gameDays"_s, (career.gameTime / 1440) + 1},
@@ -848,14 +846,15 @@ namespace Wheelstar::Ui
                 {
                     const QString fingerprint = GameData::archivesFingerprint(install.directory);
 
-                    if (store.gameLocaleFingerprint(install.game) == fingerprint)
+                    if (store.gameLocaleFingerprint(SaveGame::telemetryGame(install.game)) == fingerprint)
                     {
                         continue;
                     }
 
                     const QList<GameData::GameName> names = GameData::readGameNames(install.directory);
                     qCDebug(WHEELSTAR) << "Read" << names.size() << "names from" << install.directory;
-                    written = store.writeGameLocale(install.game, fingerprint, names) || written;
+                    written =
+                        store.writeGameLocale(SaveGame::telemetryGame(install.game), fingerprint, names) || written;
                 }
 
                 return written;

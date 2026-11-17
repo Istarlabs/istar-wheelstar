@@ -1,0 +1,3 @@
+[submodule "external/istar-truckdata"]
+	path = external/istar-truckdata
+	url = https://github.com/Istarlabs/istar-truckdata.git
