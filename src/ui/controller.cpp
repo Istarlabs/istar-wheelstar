@@ -112,6 +112,14 @@ namespace Wheelstar::Ui
             return game == Telemetry::Game::AmericanTruckSimulator ? u"$"_s : u"€"_s;
         }
 
+        /// The language the game's names are wanted in, as QLocale names it ("de_DE"): the application's own, chosen
+        /// in the preferences, else the system's.
+        QString gameLanguage()
+        {
+            const QString setting = WheelstarSettings::language();
+            return (setting.isEmpty() ? QLocale::system() : QLocale(setting)).name();
+        }
+
         /// An id of the game as a name, for what the telemetry never named: "smokd_sprats" is "Smokd sprats".
         QString nameFromId(const QString& id)
         {
@@ -124,6 +132,17 @@ namespace Wheelstar::Ui
             }
 
             return name;
+        }
+
+        /// A vehicle's definition as a name: "scania.r_2016" is "Scania R 2016", the brand and the model.
+        QString vehicleName(const QString& model)
+        {
+            if (model.isEmpty())
+            {
+                return {};
+            }
+
+            return nameFromId(model.section(u'.', 0, 0)) + u' ' + nameFromId(model.section(u'.', 1));
         }
 
         /// An offence as the SDK and the save game name it, in words.
@@ -208,8 +227,6 @@ namespace Wheelstar::Ui
 
         QVariantMap jobToVariant(const Statistics::JobRecord& job, const GameNames& names)
         {
-            // The truck or bus as the save game names it, "vehicle.volvo.fh_2024": the brand and the model.
-            const QStringList truck = job.truck.split(u'.');
             // In-game minutes since the first day: 1440 to a day, the first day being day 1.
             const quint32 day = (job.gameTime / 1440) + 1;
 
@@ -231,7 +248,8 @@ namespace Wheelstar::Ui
                 {u"toCompany"_s, GameNames::name(names.companies, job.destinationCompany, job.destinationCompanyId)},
                 {u"cargo"_s, GameNames::name(names.cargoes, job.cargo, job.cargoId)},
                 {u"market"_s, marketName(job.market)},
-                {u"truck"_s, truck.size() >= 3 ? nameFromId(truck.at(1)) + u' ' + nameFromId(truck.at(2)) : QString()},
+                // The truck or bus as the save game names it, "vehicle.volvo.fh_2024".
+                {u"truck"_s, vehicleName(job.truck.section(u'.', 1))},
                 // Kilograms to tonnes.
                 {u"tonnes"_s, job.mass / 1000.0},
                 {u"plannedKilometres"_s, job.plannedKilometres},
@@ -491,6 +509,191 @@ namespace Wheelstar::Ui
 
             return {{u"duration"_s, duration}, {u"left"_s, leftAxis}, {u"right"_s, rightAxis}};
         }
+
+        /// The money a profit log comes to: what came in, and what went out (wages, upkeep, fuel).
+        std::pair<qint64, qint64> moneyOf(const QList<SaveGame::ProfitEntry>& log)
+        {
+            qint64 revenue = 0;
+            qint64 costs = 0;
+
+            for (const SaveGame::ProfitEntry& entry : log)
+            {
+                revenue += entry.revenue;
+                costs += entry.wage + entry.maintenance + entry.fuel;
+            }
+
+            return {revenue, costs};
+        }
+
+        /// The company for QML. The save game knows cities, companies and cargoes by id only; `names` has the game's
+        /// names in the application's language, and an id it does not know is made a name of.
+        QVariantMap companyToVariant(const SaveGame::Company& company,
+                                     const QHash<QString, QHash<QString, QString>>& names)
+        {
+            const auto named = [&names](const QString& kind, const QString& id)
+            { return id.isEmpty() ? QString() : names.value(kind).value(id, nameFromId(id)); };
+            // A save game has no names of drivers, only their numbers.
+            const auto driverName = [&company](const QString& id)
+            {
+                return id == company.playerId ? i18nc("@item the player among the drivers", "You")
+                                              : i18n("Driver %1", id.section(u'.', 1));
+            };
+            QHash<QString, const SaveGame::Truck*> trucks;
+
+            for (const SaveGame::Truck& truck : company.trucks)
+            {
+                trucks.insert(truck.id, &truck);
+            }
+
+            const auto truckName = [&trucks](const QString& id)
+            {
+                const SaveGame::Truck* truck = trucks.value(id);
+                return truck == nullptr ? QString() : vehicleName(truck->model);
+            };
+
+            QVariantList garages;
+            qint64 revenue = 0;
+            qint64 costs = 0;
+
+            for (const TruckData::SaveGame::Garage& garage : company.garages)
+            {
+                const auto [garageRevenue, garageCosts] = moneyOf(garage.log);
+                revenue += garageRevenue;
+                costs += garageCosts;
+                garages.append(QVariantMap{
+                    {u"city"_s, named(u"city"_s, garage.cityId)},
+                    {u"headquarters"_s, garage.cityId == company.headquartersCityId},
+                    {u"slots"_s, garage.slotCount},
+                    {u"trucks"_s, garage.truckIds.size()},
+                    {u"drivers"_s, garage.driverIds.size()},
+                    {u"trailers"_s, garage.trailers},
+                    {u"productivity"_s, garage.productivity},
+                    {u"revenue"_s, static_cast<double>(garageRevenue)},
+                    {u"costs"_s, static_cast<double>(garageCosts)},
+                });
+            }
+
+            // The headquarters first, then by city.
+            std::ranges::sort(garages,
+                              [](const QVariant& left, const QVariant& right)
+                              {
+                                  const QVariantMap a = left.toMap();
+                                  const QVariantMap b = right.toMap();
+
+                                  if (a.value(u"headquarters"_s) != b.value(u"headquarters"_s))
+                                  {
+                                      return a.value(u"headquarters"_s).toBool();
+                                  }
+
+                                  return QString::localeAwareCompare(a.value(u"city"_s).toString(),
+                                                                     b.value(u"city"_s).toString()) < 0;
+                              });
+
+            QVariantList drivers;
+
+            for (const TruckData::SaveGame::Driver& driver : company.drivers)
+            {
+                QVariantMap job;
+
+                if (driver.job)
+                {
+                    job = {
+                        {u"cargo"_s, named(u"cargo"_s, driver.job->cargoId)},
+                        {u"from"_s, named(u"city"_s, driver.job->sourceCityId)},
+                        {u"to"_s, named(u"city"_s, driver.job->destinationCityId)},
+                        {u"kilometres"_s, driver.job->plannedKilometres},
+                    };
+                }
+
+                const auto [driverRevenue, driverCosts] = moneyOf(driver.log);
+                drivers.append(QVariantMap{
+                    {u"name"_s, driverName(driver.id)},
+                    {u"garage"_s, named(u"city"_s, driver.garageCityId)},
+                    {u"hometown"_s, named(u"city"_s, driver.hometownId)},
+                    {u"city"_s, named(u"city"_s, driver.currentCityId)},
+                    {u"experience"_s, driver.experience},
+                    {u"skills"_s,
+                     QVariantList{driver.adr, driver.longDistance, driver.highValue, driver.fragile, driver.justInTime,
+                                  driver.ecoDriving}},
+                    {u"job"_s, job},
+                    {u"truck"_s, truckName(driver.truckId)},
+                    {u"revenue"_s, static_cast<double>(driverRevenue)},
+                    {u"costs"_s, static_cast<double>(driverCosts)},
+                });
+            }
+
+            QVariantList vehicles;
+
+            for (const SaveGame::Truck& truck : company.trucks)
+            {
+                vehicles.append(QVariantMap{
+                    {u"section"_s, i18n("Trucks")},
+                    {u"name"_s, vehicleName(truck.model)},
+                    {u"plate"_s, truck.licensePlate},
+                    {u"kilometres"_s, truck.odometer},
+                    // The worst part is what a repair is about.
+                    {u"wear"_s,
+                     std::max({truck.engineWear, truck.transmissionWear, truck.cabinWear, truck.chassisWear,
+                               truck.wheelsWear})},
+                    {u"fuel"_s, truck.fuel},
+                    {u"garage"_s, named(u"city"_s, truck.garageCityId)},
+                    {u"driver"_s, truck.driverId.isEmpty() ? QString() : driverName(truck.driverId)},
+                });
+            }
+
+            for (const TruckData::SaveGame::Trailer& trailer : company.trailers)
+            {
+                vehicles.append(QVariantMap{
+                    {u"section"_s, i18n("Trailers")},
+                    {u"name"_s, vehicleName(trailer.model)},
+                    {u"plate"_s, nameFromId(trailer.bodyType)},
+                    {u"kilometres"_s, trailer.odometer},
+                    {u"wear"_s, trailer.bodyWear},
+                    {u"garage"_s, named(u"city"_s, trailer.garageCityId)},
+                });
+            }
+
+            // The bills of the player's own log: one with upkeep and no kilometres is a repair. Newest first.
+            QVariantList repairs;
+            qint64 repairsTotal = 0;
+
+            for (const SaveGame::ProfitEntry& entry : company.playerLog | std::views::reverse)
+            {
+                if (entry.maintenance > 0 && entry.kilometres == 0)
+                {
+                    repairsTotal += entry.maintenance;
+                    // The first in-game day is day 1, as on the career page.
+                    repairs.append(
+                        QVariantMap{{u"day"_s, entry.day + 1}, {u"amount"_s, static_cast<double>(entry.maintenance)}});
+                }
+            }
+
+            const auto [ownRevenue, ownCosts] = moneyOf(company.playerLog);
+
+            return {
+                {u"headquarters"_s, named(u"city"_s, company.headquartersCityId)},
+                {u"garages"_s, garages},
+                {u"drivers"_s, drivers},
+                {u"vehicles"_s, vehicles},
+                {u"truckCount"_s, company.trucks.size()},
+                {u"trailerCount"_s, company.trailers.size()},
+                {u"revenue"_s, static_cast<double>(revenue)},
+                {u"costs"_s, static_cast<double>(costs)},
+                {u"ownRevenue"_s, static_cast<double>(ownRevenue)},
+                {u"ownCosts"_s, static_cast<double>(ownCosts)},
+                {u"repairs"_s, repairs},
+                {u"repairsTotal"_s, static_cast<double>(repairsTotal)},
+                {u"bank"_s,
+                 QVariantMap{
+                     {u"money"_s, static_cast<double>(company.bank.money)},
+                     {u"loanLimit"_s, static_cast<double>(company.bank.loanLimit)},
+                     {u"loans"_s, company.bank.loans},
+                     {u"coinsuranceFixed"_s, static_cast<double>(company.bank.coinsuranceFixed)},
+                     {u"coinsuranceRatio"_s, company.bank.coinsuranceRatio},
+                     {u"overdraft"_s, company.bank.overdraft},
+                 }},
+            };
+        }
     } // namespace
 
     Controller::Controller(DeviceManager* devices, StartupOptions options, QObject* parent)
@@ -619,6 +822,11 @@ namespace Wheelstar::Ui
         return m_careerMap;
     }
 
+    QVariantMap Controller::company() const
+    {
+        return m_companyMap;
+    }
+
     bool Controller::careerLoading() const
     {
         return m_careerWatcher.isRunning();
@@ -649,8 +857,11 @@ namespace Wheelstar::Ui
         }
 
         const SaveGame::SaveGameProfile chosen = m_saveGameProfiles.at(profile);
+        // The store opens its own connection for every call, so it can be read from another thread.
+        const Statistics::SessionStore store = m_sessions;
+        const QString language = gameLanguage();
         m_careerWatcher.setFuture(QtConcurrent::run(
-            [chosen]
+            [chosen, store, language]
             {
                 LoadedCareer loaded;
                 loaded.profile = chosen;
@@ -672,6 +883,10 @@ namespace Wheelstar::Ui
 
                 loaded.career = SaveGame::careerFrom(*document);
                 loaded.deliveries = SaveGame::deliveriesFrom(*document, SaveGame::telemetryGame(chosen.game));
+                loaded.company = SaveGame::companyFrom(*document);
+                // Without the database the company is still shown, its places by their ids.
+                loaded.names = store.gameNames(SaveGame::telemetryGame(chosen.game), language)
+                                   .value_or(QHash<QString, QHash<QString, QString>>{});
                 return loaded;
             }));
         Q_EMIT careerChanged();
@@ -697,6 +912,7 @@ namespace Wheelstar::Ui
     void Controller::updateCareer()
     {
         m_careerMap.clear();
+        m_companyMap.clear();
 
         if (m_career)
         {
@@ -755,6 +971,8 @@ namespace Wheelstar::Ui
                 {u"offences"_s, offences},
                 {u"newDeliveries"_s, SaveGame::newDeliveries(m_career->deliveries, m_knownJobs).size()},
             };
+            m_companyMap = companyToVariant(m_career->company, m_career->names);
+            m_companyMap.insert(u"currency"_s, m_careerMap.value(u"currency"_s));
         }
 
         Q_EMIT careerChanged();
@@ -802,8 +1020,7 @@ namespace Wheelstar::Ui
         // The store opens its own connection for every call, so it can be read from another thread.
         const Statistics::SessionStore store = m_sessions;
         // The game's names in the application's language: "de" is the game's "de_de".
-        const QString setting = WheelstarSettings::language();
-        const QString language = (setting.isEmpty() ? QLocale::system() : QLocale(setting)).name();
+        const QString language = gameLanguage();
         m_sessionsWatcher.setFuture(QtConcurrent::run(
             [store, language]
             {

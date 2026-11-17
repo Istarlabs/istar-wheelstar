@@ -265,6 +265,20 @@ private Q_SLOTS:
         QCOMPARE(polish->at(0).destinationCity, QStringLiteral("Wroclaw (telemetry)"));
         QVERIFY(polish->at(1).cargo.isEmpty());
 
+        // The names alone, for what the save game knows by id only: the same choice, by kind and id.
+        const auto germanNames = store.gameNames(Game::EuroTruckSimulator2, QStringLiteral("de_DE"));
+        QVERIFY(germanNames.has_value());
+        QCOMPARE(germanNames->value(QStringLiteral("city")).value(QStringLiteral("wroclaw")),
+                 QStringLiteral("Breslau"));
+        QCOMPARE(germanNames->value(QStringLiteral("city")).value(QStringLiteral("berlin")), QStringLiteral("Berlin"));
+        QCOMPARE(germanNames->value(QStringLiteral("cargo")).value(QStringLiteral("sandwch_pnls")),
+                 QStringLiteral("Sandwichpaneele"));
+        const auto polishNames = store.gameNames(Game::EuroTruckSimulator2, QStringLiteral("pl_PL"));
+        QCOMPARE(polishNames->value(QStringLiteral("city")).value(QStringLiteral("wroclaw")),
+                 QStringLiteral("Wrocław"));
+        QVERIFY(!polishNames->value(QStringLiteral("cargo")).contains(QStringLiteral("sandwch_pnls")));
+        QVERIFY(store.gameNames(Game::AmericanTruckSimulator, QStringLiteral("de_DE"))->isEmpty());
+
         // Written again, the names are replaced, not added to.
         QVERIFY(store.writeGameLocale(Game::EuroTruckSimulator2, QStringLiteral("second"), {names.first()}));
         QCOMPARE(store.gameLocaleFingerprint(Game::EuroTruckSimulator2), QStringLiteral("second"));

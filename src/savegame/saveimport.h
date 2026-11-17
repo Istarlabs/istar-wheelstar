@@ -8,6 +8,7 @@
 
 #include "truckdata/gamedata/gamenames.h"
 #include "truckdata/savegame/career.h"
+#include "truckdata/savegame/company.h"
 #include "truckdata/savegame/savegamefile.h"
 #include "truckdata/savegame/savegamelocator.h"
 
@@ -24,14 +25,18 @@ namespace Wheelstar
     {
         using TruckData::SaveGame::Career;
         using TruckData::SaveGame::careerFrom;
+        using TruckData::SaveGame::Company;
+        using TruckData::SaveGame::companyFrom;
         using TruckData::SaveGame::findGames;
         using TruckData::SaveGame::findProfiles;
         using TruckData::SaveGame::GameInstall;
+        using TruckData::SaveGame::ProfitEntry;
         using TruckData::SaveGame::readSiiFile;
         using TruckData::SaveGame::SaveGameProfile;
         using TruckData::SaveGame::SiiDocument;
         using TruckData::SaveGame::SiiError;
         using TruckData::SaveGame::steamRoots;
+        using TruckData::SaveGame::Truck;
 
         /// The library's game as the telemetry's: the same numbers, which both store.
         Telemetry::Game telemetryGame(TruckData::Game game);

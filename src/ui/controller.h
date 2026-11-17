@@ -152,6 +152,8 @@ namespace Wheelstar::Ui
         Q_PROPERTY(QVariantList saveGameProfiles READ saveGameProfiles NOTIFY careerChanged)
         /// The career of the profile loadCareer() read; empty before.
         Q_PROPERTY(QVariantMap career READ career NOTIFY careerChanged)
+        /// The company in the same save game: {garages, drivers, trucks, trailers, bank, repairs, …}; empty before.
+        Q_PROPERTY(QVariantMap company READ company NOTIFY careerChanged)
         Q_PROPERTY(bool careerLoading READ careerLoading NOTIFY careerChanged)
         Q_PROPERTY(QString careerError READ careerError NOTIFY careerChanged)
 
@@ -229,6 +231,7 @@ namespace Wheelstar::Ui
         [[nodiscard]] QVariantList jobs() const;
         [[nodiscard]] QVariantList saveGameProfiles() const;
         [[nodiscard]] QVariantMap career() const;
+        [[nodiscard]] QVariantMap company() const;
         [[nodiscard]] bool careerLoading() const;
         [[nodiscard]] QString careerError() const;
 
@@ -315,7 +318,10 @@ namespace Wheelstar::Ui
         {
             SaveGame::SaveGameProfile profile;
             SaveGame::Career career;
+            SaveGame::Company company;
             QList<Statistics::JobRecord> deliveries;
+            /// The game's names in the application's language, for what the save game knows by id.
+            QHash<QString, QHash<QString, QString>> names;
             QString error;
         };
 
@@ -411,6 +417,7 @@ namespace Wheelstar::Ui
         QFutureWatcher<LoadedCareer> m_careerWatcher;
         std::optional<LoadedCareer> m_career;
         QVariantMap m_careerMap;
+        QVariantMap m_companyMap;
         QString m_careerError;
         QString m_sessionsError;
         Statistics::JobTracker m_jobTracker;
