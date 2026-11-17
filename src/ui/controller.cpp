@@ -622,29 +622,39 @@ namespace Wheelstar::Ui
                 });
             }
 
-            QVariantList vehicles;
+            // A truck or a bus: the save game keeps both alike.
+            const auto motorVehicle = [&named, &driverName](const SaveGame::Truck& vehicle)
+            {
+                return QVariantMap{
+                    {u"name"_s, vehicleName(vehicle.model)},
+                    {u"plate"_s, vehicle.licensePlate},
+                    {u"kilometres"_s, vehicle.odometer},
+                    // The worst part is what a repair is about.
+                    {u"wear"_s,
+                     std::max({vehicle.engineWear, vehicle.transmissionWear, vehicle.cabinWear, vehicle.chassisWear,
+                               vehicle.wheelsWear})},
+                    {u"fuel"_s, vehicle.fuel},
+                    {u"garage"_s, named(u"city"_s, vehicle.garageCityId)},
+                    {u"driver"_s, vehicle.driverId.isEmpty() ? QString() : driverName(vehicle.driverId)},
+                };
+            };
+            QVariantList truckList;
+            QVariantList busList;
+            QVariantList trailerList;
 
             for (const SaveGame::Truck& truck : company.trucks)
             {
-                vehicles.append(QVariantMap{
-                    {u"section"_s, i18n("Trucks")},
-                    {u"name"_s, vehicleName(truck.model)},
-                    {u"plate"_s, truck.licensePlate},
-                    {u"kilometres"_s, truck.odometer},
-                    // The worst part is what a repair is about.
-                    {u"wear"_s,
-                     std::max({truck.engineWear, truck.transmissionWear, truck.cabinWear, truck.chassisWear,
-                               truck.wheelsWear})},
-                    {u"fuel"_s, truck.fuel},
-                    {u"garage"_s, named(u"city"_s, truck.garageCityId)},
-                    {u"driver"_s, truck.driverId.isEmpty() ? QString() : driverName(truck.driverId)},
-                });
+                truckList.append(motorVehicle(truck));
+            }
+
+            for (const SaveGame::Truck& bus : company.buses)
+            {
+                busList.append(motorVehicle(bus));
             }
 
             for (const TruckData::SaveGame::Trailer& trailer : company.trailers)
             {
-                vehicles.append(QVariantMap{
-                    {u"section"_s, i18n("Trailers")},
+                trailerList.append(QVariantMap{
                     {u"name"_s, vehicleName(trailer.model)},
                     {u"plate"_s, nameFromId(trailer.bodyType)},
                     {u"kilometres"_s, trailer.odometer},
@@ -674,9 +684,9 @@ namespace Wheelstar::Ui
                 {u"headquarters"_s, named(u"city"_s, company.headquartersCityId)},
                 {u"garages"_s, garages},
                 {u"drivers"_s, drivers},
-                {u"vehicles"_s, vehicles},
-                {u"truckCount"_s, company.trucks.size()},
-                {u"trailerCount"_s, company.trailers.size()},
+                {u"trucks"_s, truckList},
+                {u"buses"_s, busList},
+                {u"trailers"_s, trailerList},
                 {u"revenue"_s, static_cast<double>(revenue)},
                 {u"costs"_s, static_cast<double>(costs)},
                 {u"ownRevenue"_s, static_cast<double>(ownRevenue)},

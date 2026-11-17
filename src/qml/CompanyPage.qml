@@ -14,7 +14,8 @@ Kirigami.ScrollablePage {
 
     readonly property var company: Wheelstar.company
     readonly property bool loaded: company.garages !== undefined
-    /// "garages", "drivers", "vehicles" or "finances".
+    /// The tabs, in their order, and the one shown.
+    readonly property var views: ["garages", "drivers", "trucks", "buses", "trailers", "finances"]
     property string view: "garages"
 
     function number(value: real): string {
@@ -67,17 +68,19 @@ Kirigami.ScrollablePage {
 
             QQC2.Label {
                 Layout.fillWidth: true
-                // i18n: %1 garages, %2 drivers, %3 trucks, %4 trailers; the city of the headquarters follows
-                text: i18n("%1 garages · %2 drivers · %3 trucks · %4 trailers", page.company.garages?.length ?? 0,
-                           page.company.drivers?.length ?? 0, page.company.truckCount ?? 0,
-                           page.company.trailerCount ?? 0)
+                // i18n: %1 garages, %2 drivers, %3 trucks, %4 buses, %5 trailers; the city of the headquarters
+                // follows
+                text: i18n("%1 garages · %2 drivers · %3 trucks · %4 buses · %5 trailers",
+                           page.company.garages?.length ?? 0, page.company.drivers?.length ?? 0,
+                           page.company.trucks?.length ?? 0, page.company.buses?.length ?? 0,
+                           page.company.trailers?.length ?? 0)
                       + " · " + i18n("Headquarters in %1", page.company.headquarters ?? "")
                 font.bold: true
                 elide: Text.ElideRight
             }
 
             QQC2.TabBar {
-                currentIndex: ["garages", "drivers", "vehicles", "finances"].indexOf(page.view)
+                currentIndex: page.views.indexOf(page.view)
 
                 QQC2.TabButton {
                     text: i18n("Garages")
@@ -92,9 +95,21 @@ Kirigami.ScrollablePage {
                 }
 
                 QQC2.TabButton {
-                    text: i18n("Vehicles")
+                    text: i18n("Trucks")
                     width: implicitWidth
-                    onClicked: page.view = "vehicles"
+                    onClicked: page.view = "trucks"
+                }
+
+                QQC2.TabButton {
+                    text: i18n("Buses")
+                    width: implicitWidth
+                    onClicked: page.view = "buses"
+                }
+
+                QQC2.TabButton {
+                    text: i18n("Trailers")
+                    width: implicitWidth
+                    onClicked: page.view = "trailers"
                 }
 
                 QQC2.TabButton {
@@ -109,26 +124,27 @@ Kirigami.ScrollablePage {
     ListView {
         id: list
 
-        model: !page.loaded ? []
-             : page.view === "garages" ? page.company.garages
-             : page.view === "drivers" ? page.company.drivers
-             : page.view === "vehicles" ? page.company.vehicles
-             : page.company.repairs
+        // The repairs are the list of the finances tab, under the bank.
+        model: !page.loaded ? [] : page.view === "finances" ? page.company.repairs : page.company[page.view]
         spacing: 0
         delegate: page.view === "garages" ? garageDelegate
                 : page.view === "drivers" ? driverDelegate
-                : page.view === "vehicles" ? vehicleDelegate
-                : repairDelegate
-
-        section.property: page.view === "vehicles" ? "section" : ""
-        section.delegate: Kirigami.ListSectionHeader {
-            required property string section
-
-            width: ListView.view.width
-            text: section
-        }
+                : page.view === "finances" ? repairDelegate
+                : vehicleDelegate
 
         header: page.view === "finances" ? financesHeader : null
+
+        Kirigami.PlaceholderMessage {
+            anchors.centerIn: parent
+            width: parent.width - Kirigami.Units.gridUnit * 4
+            visible: page.loaded && page.view !== "finances" && list.count === 0
+            icon.name: "office-building"
+            text: page.view === "buses" ? i18n("The company has no bus")
+                : page.view === "trailers" ? i18n("The company has no trailer of its own")
+                : page.view === "trucks" ? i18n("The company has no truck")
+                : page.view === "drivers" ? i18n("The company has no hired driver")
+                : i18n("The company has no garage")
+        }
 
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
@@ -252,7 +268,10 @@ Kirigami.ScrollablePage {
             required property var modelData
 
             title: modelData.plate ? i18n("%1 · %2", modelData.name, modelData.plate) : modelData.name
-            subtitle: modelData.driver ? i18n("%1 · %2", modelData.garage, modelData.driver) : modelData.garage
+            // A bus stands in no garage; a trailer has no driver.
+            subtitle: !modelData.garage ? i18n("In no garage")
+                    : modelData.driver ? i18n("%1 · %2", modelData.garage, modelData.driver)
+                    : modelData.garage
             // i18n: %1 a distance in kilometres
             first: i18n("%1 km", page.number(modelData.kilometres))
             // i18n: how worn a vehicle is, its worst part, in percent

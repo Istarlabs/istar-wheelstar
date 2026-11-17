@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: istar-wheelstar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-17 16:24+0100\n"
+"POT-Creation-Date: 2026-11-17 16:43+0100\n"
 "PO-Revision-Date: 2026-11-07 23:52+0100\n"
 "Last-Translator: Hüseyin Fahri Uzun <mail@fahriuzun.com>\n"
 "Language-Team: none\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/core/inifile.cpp:21 src/hardwaretest/testanalysis.cpp:402
-#: src/ui/controller.cpp:867
+#: src/ui/controller.cpp:881
 #, kde-format
 msgid "Cannot read \"%1\": %2"
 msgstr ""
@@ -184,7 +184,7 @@ msgid ""
 "wheel is back."
 msgstr ""
 
-#: src/main.cpp:218 src/ui/controller.cpp:2239
+#: src/main.cpp:218 src/ui/controller.cpp:2253
 #, kde-format
 msgid ""
 "The supplied command failed:\n"
@@ -305,7 +305,7 @@ msgstr "İçe aktar"
 msgid "Add the deliveries of the save game to the jobs"
 msgstr ""
 
-#: src/qml/CareerPage.qml:36 src/qml/CompanyPage.qml:37
+#: src/qml/CareerPage.qml:36 src/qml/CompanyPage.qml:38
 #, kde-format
 msgid "Read Again"
 msgstr ""
@@ -337,13 +337,13 @@ msgstr ""
 msgid "Experience:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:99 src/qml/CompanyPage.qml:243
+#: src/qml/CareerPage.qml:99 src/qml/CompanyPage.qml:259
 #: src/qml/JobDialog.qml:94
 #, kde-format
 msgid "%1 XP"
 msgstr ""
 
-#: src/qml/CareerPage.qml:103 src/qml/CompanyPage.qml:292
+#: src/qml/CareerPage.qml:103 src/qml/CompanyPage.qml:311
 #, kde-format
 msgid "Money:"
 msgstr ""
@@ -395,7 +395,7 @@ msgstr ""
 msgid "Cities visited:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:146 src/qml/CompanyPage.qml:321
+#: src/qml/CareerPage.qml:146 src/qml/CompanyPage.qml:340
 #, kde-format
 msgid "Garages:"
 msgstr ""
@@ -598,67 +598,103 @@ msgid "RPM/s"
 msgstr "RPM/s"
 
 #. i18n: %1 a share in percent
-#: src/qml/CompanyPage.qml:30 src/qml/JobDialog.qml:50
+#: src/qml/CompanyPage.qml:31 src/qml/JobDialog.qml:50
 #: src/qml/JobDialog.qml:100
 #, kde-format
 msgid "%1 %"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:33 src/qml/Main.qml:113
+#: src/qml/CompanyPage.qml:34 src/qml/Main.qml:113
 #, kde-format
 msgid "Company"
 msgstr ""
 
-#. i18n: %1 garages, %2 drivers, %3 trucks, %4 trailers; the city of the headquarters follows
-#: src/qml/CompanyPage.qml:71
+#. i18n: %1 garages, %2 drivers, %3 trucks, %4 buses, %5 trailers; the city of the headquarters
+#. follows
+#: src/qml/CompanyPage.qml:73
 #, kde-format
-msgid "%1 garages · %2 drivers · %3 trucks · %4 trailers"
+msgid "%1 garages · %2 drivers · %3 trucks · %4 buses · %5 trailers"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:74
+#: src/qml/CompanyPage.qml:77
 #, kde-format
 msgid "Headquarters in %1"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:83
+#: src/qml/CompanyPage.qml:86
 #, kde-format
 msgid "Garages"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:89
+#: src/qml/CompanyPage.qml:92
 #, kde-format
 msgid "Drivers"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:95
+#: src/qml/CompanyPage.qml:98
 #, kde-format
-msgid "Vehicles"
+msgid "Trucks"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:101
+#: src/qml/CompanyPage.qml:104
+#, kde-format
+msgid "Buses"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:110
+#, kde-format
+msgid "Trailers"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:116
 #, kde-format
 msgid "Finances"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:138
+#: src/qml/CompanyPage.qml:142
+#, kde-format
+msgid "The company has no bus"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:143
+#, kde-format
+msgid "The company has no trailer of its own"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:144
+#, kde-format
+msgid "The company has no truck"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:145
+#, kde-format
+msgid "The company has no hired driver"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:146
+#, kde-format
+msgid "The company has no garage"
+msgstr ""
+
+#: src/qml/CompanyPage.qml:154
 #, kde-format
 msgid "No save game read yet"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:214
+#: src/qml/CompanyPage.qml:230
 #, kde-format
 msgid "%1 · Headquarters"
 msgstr ""
 
 #. i18n: %1 trucks in the garage, %2 the slots it has, %3 its trailers
-#: src/qml/CompanyPage.qml:216
+#: src/qml/CompanyPage.qml:232
 #, kde-format
 msgid "%2 slots, %1 truck"
 msgid_plural "%2 slots, %1 trucks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/qml/CompanyPage.qml:217
+#: src/qml/CompanyPage.qml:233
 #, kde-format
 msgid "%1 trailer"
 msgid_plural "%1 trailers"
@@ -666,135 +702,140 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. i18n: how busy a garage is, in percent
-#: src/qml/CompanyPage.qml:219
+#: src/qml/CompanyPage.qml:235
 #, kde-format
 msgid "%1 busy"
 msgstr ""
 
 #. i18n: %1 the driver, %2 the city of the garage
-#: src/qml/CompanyPage.qml:231 src/qml/CompanyPage.qml:254
-#: src/qml/CompanyPage.qml:255
+#: src/qml/CompanyPage.qml:247 src/qml/CompanyPage.qml:270
+#: src/qml/CompanyPage.qml:273
 #, kde-format
 msgid "%1 · %2"
 msgstr ""
 
 #. i18n: the job a driver is on: %1 the cargo, %2 and %3 the cities
-#: src/qml/CompanyPage.qml:234
+#: src/qml/CompanyPage.qml:250
 #, kde-format
 msgid "%1, %2 → %3"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:235
+#: src/qml/CompanyPage.qml:251
 #, kde-format
 msgid "No job"
 msgstr ""
 
 #. i18n: %1 the driver's hometown, %2 where the driver is now, %3 the truck
-#: src/qml/CompanyPage.qml:237
+#: src/qml/CompanyPage.qml:253
 #, kde-format
 msgid "From %1 · now in %2 · %3"
 msgstr ""
 
 #. i18n: a driver's skills, 0 to 6 each: ADR classes, long distance, high-value cargo, fragile
 #. cargo, just-in-time delivery, ecodriving
-#: src/qml/CompanyPage.qml:240
+#: src/qml/CompanyPage.qml:256
 #, kde-format
 msgid ""
 "ADR %1, long distance %2, high value %3, fragile %4, just in time %5, "
 "ecodriving %6"
 msgstr ""
 
+#: src/qml/CompanyPage.qml:272
+#, kde-format
+msgid "In no garage"
+msgstr ""
+
 #. i18n: %1 a distance in kilometres
-#: src/qml/CompanyPage.qml:257 src/qml/JobDialog.qml:77
+#: src/qml/CompanyPage.qml:276 src/qml/JobDialog.qml:77
 #: src/qml/JobsPage.qml:157 src/qml/StatisticsPage.qml:54
 #, kde-format
 msgid "%1 km"
 msgstr ""
 
 #. i18n: how worn a vehicle is, its worst part, in percent
-#: src/qml/CompanyPage.qml:259
+#: src/qml/CompanyPage.qml:278
 #, kde-format
 msgid "%1 worn"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:269
+#: src/qml/CompanyPage.qml:288
 #, kde-format
 msgid "Repair"
 msgstr ""
 
 #. i18n: %1 the in-game day
-#: src/qml/CompanyPage.qml:271
+#: src/qml/CompanyPage.qml:290
 #, kde-format
 msgid "Day %1"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:288
+#: src/qml/CompanyPage.qml:307
 #, kde-format
 msgid "Bank"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:297
+#: src/qml/CompanyPage.qml:316
 #, kde-format
 msgid "Loans:"
 msgstr ""
 
 #. i18n: %1 the loans that run, %2 how much the bank would lend
-#: src/qml/CompanyPage.qml:299
+#: src/qml/CompanyPage.qml:318
 #, kde-format
 msgid "%1 loan, up to %2"
 msgid_plural "%1 loans, up to %2"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/qml/CompanyPage.qml:304
+#: src/qml/CompanyPage.qml:323
 #, kde-format
 msgid "Insurance:"
 msgstr ""
 
 #. i18n: what the player pays of an accident: %1 a fixed sum, %2 a share of the rest
-#: src/qml/CompanyPage.qml:306
+#: src/qml/CompanyPage.qml:325
 #, kde-format
 msgid "%1 and %2 of each accident"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:311
+#: src/qml/CompanyPage.qml:330
 #, kde-format
 msgid "Overdraft:"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:312
+#: src/qml/CompanyPage.qml:331
 #, fuzzy, kde-format
 #| msgid "None"
 msgid "No"
 msgstr "Hiçbiri"
 
-#: src/qml/CompanyPage.qml:312
+#: src/qml/CompanyPage.qml:331
 #, kde-format
 msgid "Yes"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:317
+#: src/qml/CompanyPage.qml:336
 #, kde-format
 msgid "The last days"
 msgstr ""
 
 #. i18n: %1 what came in, %2 what went out (wages, upkeep, fuel)
-#: src/qml/CompanyPage.qml:323 src/qml/CompanyPage.qml:328
+#: src/qml/CompanyPage.qml:342 src/qml/CompanyPage.qml:347
 #, kde-format
 msgid "%1 in, %2 out"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:327
+#: src/qml/CompanyPage.qml:346
 #, kde-format
 msgid "Your own driving:"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:332
+#: src/qml/CompanyPage.qml:351
 #, kde-format
 msgid "Repairs:"
 msgstr ""
 
-#: src/qml/CompanyPage.qml:343
+#: src/qml/CompanyPage.qml:362
 #, kde-format
 msgid ""
 "The game keeps only the last few in-game days of these figures; the repairs "
@@ -1381,8 +1422,8 @@ msgstr "Yeni"
 msgid "New profile"
 msgstr ""
 
-#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:989
-#: src/ui/controller.cpp:993
+#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:1003
+#: src/ui/controller.cpp:1007
 #, kde-format
 msgid "Import"
 msgstr "İçe aktar"
@@ -1763,7 +1804,7 @@ msgstr "Çalıştır"
 msgid "Results"
 msgstr ""
 
-#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2454
+#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2468
 #, kde-format
 msgid "CSV file to import"
 msgstr "İçeri aktarmak için CSV dosyası"
@@ -1773,7 +1814,7 @@ msgstr "İçeri aktarmak için CSV dosyası"
 msgid "CSV files (*.csv)"
 msgstr ""
 
-#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2473
+#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2487
 #, kde-format
 msgid "CSV file to export"
 msgstr "Dışa aktarım için CSV dosyası"
@@ -2227,39 +2268,29 @@ msgstr "-10° için tuşa bas"
 msgid "Press button for -90°"
 msgstr "-90° için tuşa bas"
 
-#: src/ui/controller.cpp:537
-#, kde-format
-msgid "Driver %1"
-msgstr ""
-
-#: src/ui/controller.cpp:537
+#: src/ui/controller.cpp:538
 #, kde-format
 msgctxt "@item the player among the drivers"
 msgid "You"
 msgstr ""
 
-#: src/ui/controller.cpp:626
+#: src/ui/controller.cpp:539
 #, kde-format
-msgid "Trucks"
+msgid "Driver %1"
 msgstr ""
 
-#: src/ui/controller.cpp:642
-#, kde-format
-msgid "Trailers"
-msgstr ""
-
-#: src/ui/controller.cpp:848
+#: src/ui/controller.cpp:862
 #, kde-format
 msgid ""
 "No save game of Euro Truck Simulator 2 or American Truck Simulator was found."
 msgstr ""
 
-#: src/ui/controller.cpp:989
+#: src/ui/controller.cpp:1003
 #, kde-format
 msgid "The jobs could not be written to the database."
 msgstr ""
 
-#: src/ui/controller.cpp:993
+#: src/ui/controller.cpp:1007
 #, fuzzy, kde-format
 #| msgid "Test data imported."
 msgid "One job imported."
@@ -2267,139 +2298,139 @@ msgid_plural "%1 jobs imported."
 msgstr[0] "Test verisi içeri aktarıldı."
 msgstr[1] "Test verisi içeri aktarıldı."
 
-#: src/ui/controller.cpp:1268
+#: src/ui/controller.cpp:1282
 #, kde-format
 msgid "Error saving button names"
 msgstr ""
 
-#: src/ui/controller.cpp:1326
+#: src/ui/controller.cpp:1340
 #, kde-format
 msgid "Wheel connected"
 msgstr ""
 
-#: src/ui/controller.cpp:1334
+#: src/ui/controller.cpp:1348
 #, fuzzy, kde-format
 #| msgid "list connected devices"
 msgid "Wheel disconnected"
 msgstr "bağlı cihazları listele"
 
-#: src/ui/controller.cpp:1649
+#: src/ui/controller.cpp:1663
 #, kde-format
 msgid "Error opening profile"
 msgstr "Profili açarken hata"
 
-#: src/ui/controller.cpp:1649
+#: src/ui/controller.cpp:1663
 #, kde-format
 msgid "The selected profile can't be loaded."
 msgstr "Seçilen bu profil yüklenemiyor."
 
-#: src/ui/controller.cpp:1672 src/ui/controller.cpp:1692
+#: src/ui/controller.cpp:1686 src/ui/controller.cpp:1706
 #, kde-format
 msgid "Error creating profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1692 src/ui/controller.cpp:1710
+#: src/ui/controller.cpp:1706 src/ui/controller.cpp:1724
 #, kde-format
 msgid "\"%1\" cannot be used as a profile name."
 msgstr ""
 
-#: src/ui/controller.cpp:1710
+#: src/ui/controller.cpp:1724
 #, kde-format
 msgid "Error renaming profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1730
+#: src/ui/controller.cpp:1744
 #, kde-format
 msgid "Error deleting profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1753 src/ui/controller.cpp:1759
-#: src/ui/controller.cpp:1769
+#: src/ui/controller.cpp:1767 src/ui/controller.cpp:1773
+#: src/ui/controller.cpp:1783
 #, kde-format
 msgid "Error importing profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1753
+#: src/ui/controller.cpp:1767
 #, kde-format
 msgid "Invalid extension."
 msgstr "Geçersiz uzantı."
 
-#: src/ui/controller.cpp:1759
+#: src/ui/controller.cpp:1773
 #, kde-format
 msgid "A profile with that name already exists."
 msgstr "Bu isimde bir profil zaten var."
 
-#: src/ui/controller.cpp:1785
+#: src/ui/controller.cpp:1799
 #, kde-format
 msgid "Error exporting profile"
 msgstr ""
 
-#: src/ui/controller.cpp:2071
+#: src/ui/controller.cpp:2085
 #, kde-format
 msgid "System default"
 msgstr "Sistem varsayılanı"
 
-#: src/ui/controller.cpp:2072
+#: src/ui/controller.cpp:2086
 #, kde-format
 msgid "English"
 msgstr "İngilizce"
 
-#: src/ui/controller.cpp:2073
+#: src/ui/controller.cpp:2087
 #, kde-format
 msgid "Galician"
 msgstr "Galiçyaca"
 
-#: src/ui/controller.cpp:2074
+#: src/ui/controller.cpp:2088
 #, kde-format
 msgid "Russian"
 msgstr "Rusça"
 
-#: src/ui/controller.cpp:2075
+#: src/ui/controller.cpp:2089
 #, kde-format
 msgid "Spanish"
 msgstr "İspanyolca"
 
-#: src/ui/controller.cpp:2076
+#: src/ui/controller.cpp:2090
 #, kde-format
 msgid "Valencian"
 msgstr "Valencian"
 
-#: src/ui/controller.cpp:2077
+#: src/ui/controller.cpp:2091
 #, kde-format
 msgid "Finnish"
 msgstr ""
 
-#: src/ui/controller.cpp:2078
+#: src/ui/controller.cpp:2092
 #, kde-format
 msgid "Turkish"
 msgstr ""
 
-#: src/ui/controller.cpp:2079
+#: src/ui/controller.cpp:2093
 #, kde-format
 msgid "German"
 msgstr ""
 
-#: src/ui/controller.cpp:2080
+#: src/ui/controller.cpp:2094
 #, kde-format
 msgid "Polish"
 msgstr ""
 
-#: src/ui/controller.cpp:2081
+#: src/ui/controller.cpp:2095
 #, kde-format
 msgid "Hungarian"
 msgstr ""
 
-#: src/ui/controller.cpp:2137
+#: src/ui/controller.cpp:2151
 #, kde-format
 msgid "Permissions rules installed."
 msgstr "İzin ayarları yüklendi."
 
-#: src/ui/controller.cpp:2138
+#: src/ui/controller.cpp:2152
 #, kde-format
 msgid "In some cases, a system restart might be needed."
 msgstr "Bazı durumlarda sistemin yeniden başlaması gerekebilir."
 
-#: src/ui/controller.cpp:2144
+#: src/ui/controller.cpp:2158
 #, kde-format
 msgid ""
 "Error installing permissions rules. Please, try again and make sure you use "
@@ -2408,73 +2439,73 @@ msgstr ""
 "İzin ayarları yüklenirken hata. Lütfen yönetici şifresinin doğru olduğunu "
 "kontrol ederek yeniden deneyiniz."
 
-#: src/ui/controller.cpp:2238
+#: src/ui/controller.cpp:2252
 #, kde-format
 msgid "Command error"
 msgstr "Komut hatası"
 
-#: src/ui/controller.cpp:2394 src/ui/controller.cpp:2422
+#: src/ui/controller.cpp:2408 src/ui/controller.cpp:2436
 #, kde-format
 msgid "Steering wheel not responding."
 msgstr "Direksiyon cevap vermiyor."
 
-#: src/ui/controller.cpp:2461
+#: src/ui/controller.cpp:2475
 #, kde-format
 msgid "New test data imported from CSV file."
 msgstr "Yeni test verisi CSV dosyasından aktarıldı."
 
-#: src/ui/controller.cpp:2461
+#: src/ui/controller.cpp:2475
 #, kde-format
 msgid "Test data imported."
 msgstr "Test verisi içeri aktarıldı."
 
-#: src/ui/controller.cpp:2477
+#: src/ui/controller.cpp:2491
 #, kde-format
 msgid "Current test data has been exported to a CSV file."
 msgstr "Geçerli test verisi CSV dosyasına aktarıldı."
 
-#: src/ui/controller.cpp:2477
+#: src/ui/controller.cpp:2491
 #, kde-format
 msgid "Test data exported."
 msgstr "Test verisi dışarı aktarıldı."
 
-#: src/ui/controller.cpp:2498 src/ui/controller.cpp:2503
-#: src/ui/controller.cpp:2513
+#: src/ui/controller.cpp:2512 src/ui/controller.cpp:2517
+#: src/ui/controller.cpp:2527
 #, kde-format
 msgid "Input force"
 msgstr "Girdi gücü"
 
-#: src/ui/controller.cpp:2499
+#: src/ui/controller.cpp:2513
 #, kde-format
 msgid "Output force"
 msgstr "Çıktı gücü"
 
-#: src/ui/controller.cpp:2504
+#: src/ui/controller.cpp:2518
 #, kde-format
 msgid "Angular displacement (raw)"
 msgstr "Açısal kayma (ham)"
 
-#: src/ui/controller.cpp:2507
+#: src/ui/controller.cpp:2521
 #, kde-format
 msgid "Angular displacement (smoothed)"
 msgstr "Açısal kayma (yumuşatılmış)"
 
-#: src/ui/controller.cpp:2508
+#: src/ui/controller.cpp:2522
 #, kde-format
 msgid "Angular velocity (raw)"
 msgstr "Açısal hız (ham)"
 
-#: src/ui/controller.cpp:2511
+#: src/ui/controller.cpp:2525
 #, kde-format
 msgid "Angular velocity (smoothed)"
 msgstr "Açısal hız (yumuşatılmış)"
 
-#: src/ui/controller.cpp:2516
+#: src/ui/controller.cpp:2530
 #, kde-format
 msgid "Angular acceleration (raw)"
 msgstr "Açısal hızlanma (ham)"
 
-#: src/ui/controller.cpp:2519
+#: src/ui/controller.cpp:2533
 #, kde-format
 msgid "Angular acceleration (smoothed)"
 msgstr "Açısal hızlanma (yumuşatılmış)"
