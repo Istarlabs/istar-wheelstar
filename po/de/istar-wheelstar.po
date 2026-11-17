@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: istar-wheelstar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-17 16:43+0100\n"
+"POT-Creation-Date: 2026-11-17 17:25+0100\n"
 "PO-Revision-Date: 2026-11-07 23:52+0100\n"
 "Last-Translator: Pascal Klose <istarlabs_dev@proton.me>\n"
 "Language-Team: none\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/core/inifile.cpp:21 src/hardwaretest/testanalysis.cpp:402
-#: src/ui/controller.cpp:881
+#: src/ui/controller.cpp:883
 #, kde-format
 msgid "Cannot read \"%1\": %2"
 msgstr "„%1“ kann nicht gelesen werden: %2"
@@ -188,7 +188,7 @@ msgstr ""
 "Der Modus wurde gewechselt; für die übrigen Einstellungen den Befehl erneut "
 "ausführen, sobald das Lenkrad wieder da ist."
 
-#: src/main.cpp:218 src/ui/controller.cpp:2253
+#: src/main.cpp:218 src/ui/controller.cpp:2276
 #, kde-format
 msgid ""
 "The supplied command failed:\n"
@@ -739,8 +739,6 @@ msgstr "Aus %1 · jetzt in %2 · %3"
 msgid ""
 "ADR %1, long distance %2, high value %3, fragile %4, just in time %5, "
 "ecodriving %6"
-"ADR %1, Langstrecke %2, wertvolle Fracht %3, zerbrechliche Fracht %4, "
-"Termintreue %5, Spritsparen %6"
 msgstr "ADR %1, Langstrecke %2, wertvolle Fracht %3, zerbrechliche Fracht %4, Termintreue %5, Spritsparen %6"
 
 #: src/qml/CompanyPage.qml:272
@@ -837,13 +835,24 @@ msgstr "Eigene Fahrten:"
 msgid "Repairs:"
 msgstr "Reparaturen:"
 
-#: src/qml/CompanyPage.qml:362
+#: src/qml/CompanyPage.qml:354
+#, kde-format
+msgid "%1 since day %2"
+msgstr "%1 seit Tag %2"
+
+#: src/qml/CompanyPage.qml:366
+#, kde-format
+msgid ""
+"The game keeps only the last few in-game days of these figures. Wheelstar "
+"keeps every repair it finds whenever it reads the save game, so the repairs "
+"below add up over time."
+msgstr "Das Spiel behält diese Zahlen nur für die letzten Spieltage. Wheelstar behält jede Reparatur, die es beim Lesen des Spielstands findet, so summieren sich die Reparaturen unten mit der Zeit."
+
+#: src/qml/CompanyPage.qml:367
 #, kde-format
 msgid ""
 "The game keeps only the last few in-game days of these figures; the repairs "
 "below are those it still remembers."
-"Das Spiel behält diese Zahlen nur für die letzten Spieltage; unten stehen "
-"die Reparaturen, an die es sich noch erinnert."
 msgstr "Das Spiel behält diese Zahlen nur für die letzten Spieltage; unten stehen die Reparaturen, an die es sich noch erinnert."
 
 #: src/qml/ForceFeedbackPage.qml:10 src/qml/ForceFeedbackPage.qml:13
@@ -1424,8 +1433,8 @@ msgstr "Neu"
 msgid "New profile"
 msgstr "Neues Profil"
 
-#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:1003
-#: src/ui/controller.cpp:1007
+#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:1026
+#: src/ui/controller.cpp:1030
 #, kde-format
 msgid "Import"
 msgstr "Importieren"
@@ -1808,7 +1817,7 @@ msgstr "Starten"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2468
+#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2491
 #, kde-format
 msgid "CSV file to import"
 msgstr "CSV-Datei zum Import"
@@ -1818,7 +1827,7 @@ msgstr "CSV-Datei zum Import"
 msgid "CSV files (*.csv)"
 msgstr "CSV-Dateien (*.csv)"
 
-#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2487
+#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2510
 #, kde-format
 msgid "CSV file to export"
 msgstr "CSV-Datei zum Export"
@@ -2276,18 +2285,18 @@ msgstr "Knopf für -10°"
 msgid "Press button for -90°"
 msgstr "Knopf für -90°"
 
-#: src/ui/controller.cpp:538
+#: src/ui/controller.cpp:540
 #, kde-format
 msgctxt "@item the player among the drivers"
 msgid "You"
 msgstr "Du"
 
-#: src/ui/controller.cpp:539
+#: src/ui/controller.cpp:541
 #, kde-format
 msgid "Driver %1"
 msgstr "Fahrer %1"
 
-#: src/ui/controller.cpp:862
+#: src/ui/controller.cpp:864
 #, kde-format
 msgid ""
 "No save game of Euro Truck Simulator 2 or American Truck Simulator was found."
@@ -2295,150 +2304,150 @@ msgstr ""
 "Es wurde kein Spielstand von Euro Truck Simulator 2 oder American Truck "
 "Simulator gefunden."
 
-#: src/ui/controller.cpp:1003
+#: src/ui/controller.cpp:1026
 #, kde-format
 msgid "The jobs could not be written to the database."
 msgstr "Die Aufträge konnten nicht in die Datenbank geschrieben werden."
 
-#: src/ui/controller.cpp:1007
+#: src/ui/controller.cpp:1030
 #, kde-format
 msgid "One job imported."
 msgid_plural "%1 jobs imported."
 msgstr[0] "Ein Auftrag importiert."
 msgstr[1] "%1 Aufträge importiert."
 
-#: src/ui/controller.cpp:1282
+#: src/ui/controller.cpp:1305
 #, kde-format
 msgid "Error saving button names"
 msgstr "Fehler beim Speichern der Knopfnamen"
 
-#: src/ui/controller.cpp:1340
+#: src/ui/controller.cpp:1363
 #, kde-format
 msgid "Wheel connected"
 msgstr "Lenkrad verbunden"
 
-#: src/ui/controller.cpp:1348
+#: src/ui/controller.cpp:1371
 #, kde-format
 msgid "Wheel disconnected"
 msgstr "Lenkrad getrennt"
 
-#: src/ui/controller.cpp:1663
+#: src/ui/controller.cpp:1686
 #, kde-format
 msgid "Error opening profile"
 msgstr "Fehler beim Öffnen des Profils"
 
-#: src/ui/controller.cpp:1663
+#: src/ui/controller.cpp:1686
 #, kde-format
 msgid "The selected profile can't be loaded."
 msgstr "Das ausgewählte Profil kann nicht geladen werden."
 
-#: src/ui/controller.cpp:1686 src/ui/controller.cpp:1706
+#: src/ui/controller.cpp:1709 src/ui/controller.cpp:1729
 #, kde-format
 msgid "Error creating profile"
 msgstr "Fehler beim Anlegen des Profils"
 
-#: src/ui/controller.cpp:1706 src/ui/controller.cpp:1724
+#: src/ui/controller.cpp:1729 src/ui/controller.cpp:1747
 #, kde-format
 msgid "\"%1\" cannot be used as a profile name."
 msgstr "„%1“ kann nicht als Profilname verwendet werden."
 
-#: src/ui/controller.cpp:1724
+#: src/ui/controller.cpp:1747
 #, kde-format
 msgid "Error renaming profile"
 msgstr "Fehler beim Umbenennen des Profils"
 
-#: src/ui/controller.cpp:1744
+#: src/ui/controller.cpp:1767
 #, kde-format
 msgid "Error deleting profile"
 msgstr "Fehler beim Löschen des Profils"
 
-#: src/ui/controller.cpp:1767 src/ui/controller.cpp:1773
-#: src/ui/controller.cpp:1783
+#: src/ui/controller.cpp:1790 src/ui/controller.cpp:1796
+#: src/ui/controller.cpp:1806
 #, kde-format
 msgid "Error importing profile"
 msgstr "Fehler beim Importieren des Profils"
 
-#: src/ui/controller.cpp:1767
+#: src/ui/controller.cpp:1790
 #, kde-format
 msgid "Invalid extension."
 msgstr "Ungültige Dateiendung."
 
-#: src/ui/controller.cpp:1773
+#: src/ui/controller.cpp:1796
 #, kde-format
 msgid "A profile with that name already exists."
 msgstr "Ein Profil mit diesem Namen existiert bereits."
 
-#: src/ui/controller.cpp:1799
+#: src/ui/controller.cpp:1822
 #, kde-format
 msgid "Error exporting profile"
 msgstr "Fehler beim Exportieren des Profils"
 
-#: src/ui/controller.cpp:2085
+#: src/ui/controller.cpp:2108
 #, kde-format
 msgid "System default"
 msgstr "Systemstandard"
 
-#: src/ui/controller.cpp:2086
+#: src/ui/controller.cpp:2109
 #, kde-format
 msgid "English"
 msgstr "Englisch"
 
-#: src/ui/controller.cpp:2087
+#: src/ui/controller.cpp:2110
 #, kde-format
 msgid "Galician"
 msgstr "Galizisch"
 
-#: src/ui/controller.cpp:2088
+#: src/ui/controller.cpp:2111
 #, kde-format
 msgid "Russian"
 msgstr "Russisch"
 
-#: src/ui/controller.cpp:2089
+#: src/ui/controller.cpp:2112
 #, kde-format
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: src/ui/controller.cpp:2090
+#: src/ui/controller.cpp:2113
 #, kde-format
 msgid "Valencian"
 msgstr "Valiencianisch"
 
-#: src/ui/controller.cpp:2091
+#: src/ui/controller.cpp:2114
 #, kde-format
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: src/ui/controller.cpp:2092
+#: src/ui/controller.cpp:2115
 #, kde-format
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: src/ui/controller.cpp:2093
+#: src/ui/controller.cpp:2116
 #, kde-format
 msgid "German"
 msgstr "Deutsch"
 
-#: src/ui/controller.cpp:2094
+#: src/ui/controller.cpp:2117
 #, kde-format
 msgid "Polish"
 msgstr "Polnisch"
 
-#: src/ui/controller.cpp:2095
+#: src/ui/controller.cpp:2118
 #, kde-format
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: src/ui/controller.cpp:2151
+#: src/ui/controller.cpp:2174
 #, kde-format
 msgid "Permissions rules installed."
 msgstr "Berechtigungs-Regeln installiert."
 
-#: src/ui/controller.cpp:2152
+#: src/ui/controller.cpp:2175
 #, kde-format
 msgid "In some cases, a system restart might be needed."
 msgstr "In manchen Fällen kann ein Neustart nötig sein."
 
-#: src/ui/controller.cpp:2158
+#: src/ui/controller.cpp:2181
 #, kde-format
 msgid ""
 "Error installing permissions rules. Please, try again and make sure you use "
@@ -2446,73 +2455,73 @@ msgid ""
 msgstr ""
 "Fehler beim Installieren der Berechtigungs-Regeln. Bitte erneut versuchen."
 
-#: src/ui/controller.cpp:2252
+#: src/ui/controller.cpp:2275
 #, kde-format
 msgid "Command error"
 msgstr "Befehlsfehler"
 
-#: src/ui/controller.cpp:2408 src/ui/controller.cpp:2436
+#: src/ui/controller.cpp:2431 src/ui/controller.cpp:2459
 #, kde-format
 msgid "Steering wheel not responding."
 msgstr "Lenkrad reagiert nicht."
 
-#: src/ui/controller.cpp:2475
+#: src/ui/controller.cpp:2498
 #, kde-format
 msgid "New test data imported from CSV file."
 msgstr "Neue Test-Daten aus CSV-Datei importiert."
 
-#: src/ui/controller.cpp:2475
+#: src/ui/controller.cpp:2498
 #, kde-format
 msgid "Test data imported."
 msgstr "Test-Daten importiert"
 
-#: src/ui/controller.cpp:2491
+#: src/ui/controller.cpp:2514
 #, kde-format
 msgid "Current test data has been exported to a CSV file."
 msgstr "Die aktuellen Test-Daten wurden in eine CSV-Datei exportiert."
 
-#: src/ui/controller.cpp:2491
+#: src/ui/controller.cpp:2514
 #, kde-format
 msgid "Test data exported."
 msgstr "Test-Daten exportiert."
 
-#: src/ui/controller.cpp:2512 src/ui/controller.cpp:2517
-#: src/ui/controller.cpp:2527
+#: src/ui/controller.cpp:2535 src/ui/controller.cpp:2540
+#: src/ui/controller.cpp:2550
 #, kde-format
 msgid "Input force"
 msgstr "Eingabekraft"
 
-#: src/ui/controller.cpp:2513
+#: src/ui/controller.cpp:2536
 #, kde-format
 msgid "Output force"
 msgstr "Ausgabekraft"
 
-#: src/ui/controller.cpp:2518
+#: src/ui/controller.cpp:2541
 #, kde-format
 msgid "Angular displacement (raw)"
 msgstr "Winkelabweichung (roh)"
 
-#: src/ui/controller.cpp:2521
+#: src/ui/controller.cpp:2544
 #, kde-format
 msgid "Angular displacement (smoothed)"
 msgstr "Winkelabweichung (geglättet)"
 
-#: src/ui/controller.cpp:2522
+#: src/ui/controller.cpp:2545
 #, kde-format
 msgid "Angular velocity (raw)"
 msgstr "Winkelgeschwindigkeit (roh)"
 
-#: src/ui/controller.cpp:2525
+#: src/ui/controller.cpp:2548
 #, kde-format
 msgid "Angular velocity (smoothed)"
 msgstr "Winkelgeschwindigkeit (geglättet)"
 
-#: src/ui/controller.cpp:2530
+#: src/ui/controller.cpp:2553
 #, kde-format
 msgid "Angular acceleration (raw)"
 msgstr "Winkelbeschleunigung (roh)"
 
-#: src/ui/controller.cpp:2533
+#: src/ui/controller.cpp:2556
 #, kde-format
 msgid "Angular acceleration (smoothed)"
 msgstr "Winkelbeschleunigung (geglättet)"

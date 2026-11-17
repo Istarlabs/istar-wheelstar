@@ -526,9 +526,11 @@ namespace Wheelstar::Ui
         }
 
         /// The company for QML. The save game knows cities, companies and cargoes by id only; `names` has the game's
-        /// names in the application's language, and an id it does not know is made a name of.
+        /// names in the application's language, and an id it does not know is made a name of. `repairs` are those the
+        /// database keeps (`repairsKept`), else the save game's own last days; the latest first either way.
         QVariantMap companyToVariant(const SaveGame::Company& company,
-                                     const QHash<QString, QHash<QString, QString>>& names)
+                                     const QHash<QString, QHash<QString, QString>>& names,
+                                     const QList<Statistics::RepairRecord>& repairs, bool repairsKept)
         {
             const auto named = [&names](const QString& kind, const QString& id)
             { return id.isEmpty() ? QString() : names.value(kind).value(id, nameFromId(id)); };
@@ -663,19 +665,16 @@ namespace Wheelstar::Ui
                 });
             }
 
-            // The bills of the player's own log: one with upkeep and no kilometres is a repair. Newest first.
-            QVariantList repairs;
+            QVariantList repairList;
             qint64 repairsTotal = 0;
+            // The first day one was kept on: the latest first, so the last of the list.
+            const qint64 repairsSince = repairs.isEmpty() ? 0 : repairs.last().day;
 
-            for (const SaveGame::ProfitEntry& entry : company.playerLog | std::views::reverse)
+            for (const Statistics::RepairRecord& repair : repairs)
             {
-                if (entry.maintenance > 0 && entry.kilometres == 0)
-                {
-                    repairsTotal += entry.maintenance;
-                    // The first in-game day is day 1, as on the career page.
-                    repairs.append(
-                        QVariantMap{{u"day"_s, entry.day + 1}, {u"amount"_s, static_cast<double>(entry.maintenance)}});
-                }
+                repairsTotal += repair.amount;
+                repairList.append(
+                    QVariantMap{{u"day"_s, repair.day}, {u"amount"_s, static_cast<double>(repair.amount)}});
             }
 
             const auto [ownRevenue, ownCosts] = moneyOf(company.playerLog);
@@ -691,8 +690,10 @@ namespace Wheelstar::Ui
                 {u"costs"_s, static_cast<double>(costs)},
                 {u"ownRevenue"_s, static_cast<double>(ownRevenue)},
                 {u"ownCosts"_s, static_cast<double>(ownCosts)},
-                {u"repairs"_s, repairs},
+                {u"repairs"_s, repairList},
                 {u"repairsTotal"_s, static_cast<double>(repairsTotal)},
+                {u"repairsSince"_s, repairsSince},
+                {u"repairsKept"_s, repairsKept},
                 {u"bank"_s,
                  QVariantMap{
                      {u"money"_s, static_cast<double>(company.bank.money)},
@@ -897,6 +898,26 @@ namespace Wheelstar::Ui
                 // Without the database the company is still shown, its places by their ids.
                 loaded.names = store.gameNames(SaveGame::telemetryGame(chosen.game), language)
                                    .value_or(QHash<QString, QHash<QString, QString>>{});
+
+                // The save game remembers the repairs of a few in-game days; the database keeps them. Without it, the
+                // save game's last days are all there is.
+                const Telemetry::Game game = SaveGame::telemetryGame(chosen.game);
+                const QList<Statistics::RepairRecord> seen = SaveGame::repairsFrom(loaded.company, game);
+
+                if (store.writeRepairs(seen) >= 0)
+                {
+                    if (auto kept = store.repairs(game))
+                    {
+                        loaded.repairs = std::move(*kept);
+                        loaded.repairsKept = true;
+                    }
+                }
+
+                if (!loaded.repairsKept)
+                {
+                    loaded.repairs = seen;
+                    std::ranges::reverse(loaded.repairs);
+                }
                 return loaded;
             }));
         Q_EMIT careerChanged();
@@ -981,7 +1002,8 @@ namespace Wheelstar::Ui
                 {u"offences"_s, offences},
                 {u"newDeliveries"_s, SaveGame::newDeliveries(m_career->deliveries, m_knownJobs).size()},
             };
-            m_companyMap = companyToVariant(m_career->company, m_career->names);
+            m_companyMap =
+                companyToVariant(m_career->company, m_career->names, m_career->repairs, m_career->repairsKept);
             m_companyMap.insert(u"currency"_s, m_careerMap.value(u"currency"_s));
         }
 

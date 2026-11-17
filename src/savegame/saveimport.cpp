@@ -84,6 +84,28 @@ namespace Wheelstar::SaveGame
         return records;
     }
 
+    QList<Statistics::RepairRecord> repairsFrom(const Company& company, Telemetry::Game game)
+    {
+        QList<Statistics::RepairRecord> repairs;
+
+        for (const ProfitEntry& entry : company.playerLog)
+        {
+            if (entry.maintenance <= 0 || entry.kilometres != 0)
+            {
+                continue;
+            }
+
+            Statistics::RepairRecord repair{.game = game, .day = entry.day + 1, .amount = entry.maintenance};
+            // The equal bills of the same day before this one.
+            repair.occurrence = static_cast<int>(
+                std::ranges::count_if(repairs, [&repair](const Statistics::RepairRecord& seen)
+                                      { return seen.day == repair.day && seen.amount == repair.amount; }));
+            repairs.append(repair);
+        }
+
+        return repairs;
+    }
+
     QList<Statistics::JobRecord> newDeliveries(const QList<Statistics::JobRecord>& deliveries,
                                                const QList<Statistics::JobRecord>& known)
     {

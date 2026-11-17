@@ -5,6 +5,7 @@
 
 #include "plugin/telemetry_packet.h"
 #include "statistics/jobrecord.h"
+#include "statistics/repairrecord.h"
 
 #include "truckdata/gamedata/gamenames.h"
 #include "truckdata/savegame/career.h"
@@ -46,6 +47,10 @@ namespace Wheelstar
 
         /// The save game's delivery log and bus job log as job records of this game, oldest first.
         QList<Statistics::JobRecord> deliveriesFrom(const SiiDocument& document, Telemetry::Game game);
+
+        /// The repairs of the player's own profit log, oldest first: the bills with upkeep and no kilometres. The
+        /// first in-game day is day 1, as on the career page.
+        QList<Statistics::RepairRecord> repairsFrom(const Company& company, Telemetry::Game game);
 
         /// The deliveries not among the jobs already known. The database already refuses a job with the same end
         /// in game time, companies and cargo; this also catches the telemetry's record of a delivery whose game time

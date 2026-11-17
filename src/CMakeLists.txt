@@ -27,6 +27,7 @@ add_library(wheelstar-core STATIC
     statistics/gameeventrecord.h
     statistics/jobrecord.cpp
     statistics/jobrecord.h
+    statistics/repairrecord.h
     statistics/jobtracker.cpp
     statistics/jobtracker.h
     statistics/sessionaccumulator.cpp

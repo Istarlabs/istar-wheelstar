@@ -349,7 +349,10 @@ Kirigami.ScrollablePage {
 
                 QQC2.Label {
                     Kirigami.FormData.label: i18n("Repairs:")
-                    text: page.money(page.company.repairsTotal)
+                    // i18n: %1 the money all repairs kept cost, %2 the in-game day of the first
+                    text: page.company.repairsKept && page.company.repairs.length > 0
+                          ? i18n("%1 since day %2", page.money(page.company.repairsTotal), page.company.repairsSince)
+                          : page.money(page.company.repairsTotal)
                 }
             }
 
@@ -359,7 +362,9 @@ Kirigami.ScrollablePage {
                 Layout.rightMargin: Kirigami.Units.largeSpacing
                 wrapMode: Text.WordWrap
                 color: Kirigami.Theme.disabledTextColor
-                text: i18n("The game keeps only the last few in-game days of these figures; the repairs below are those it still remembers.")
+                text: page.company.repairsKept
+                      ? i18n("The game keeps only the last few in-game days of these figures. Wheelstar keeps every repair it finds whenever it reads the save game, so the repairs below add up over time.")
+                      : i18n("The game keeps only the last few in-game days of these figures; the repairs below are those it still remembers.")
             }
         }
     }
