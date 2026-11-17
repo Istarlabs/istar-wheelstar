@@ -4,8 +4,7 @@
 #pragma once
 
 #include "hardwaretest/testanalysis.h"
-#include "savegame/career.h"
-#include "savegame/savegamelocator.h"
+#include "savegame/saveimport.h"
 #include "settings/wheelsettings.h"
 #include "statistics/jobtracker.h"
 #include "statistics/sessionrecorder.h"

@@ -118,13 +118,22 @@ Found while porting, and handled differently here:
 
 ## Building
 
+The save games and the game archives are read by [istar-truckdata](https://github.com/Istarlabs/istar-truckdata), a
+git submodule in `external/`. Clone with it:
+
+```bash
+git clone --recurse-submodules https://github.com/Istarlabs/istar-wheelstar.git
+# or, in a clone made without it:
+git submodule update --init
+```
+
 Fedora:
 
 ```bash
 sudo dnf install cmake extra-cmake-modules gcc-c++ qt6-qtbase-devel qt6-qtdeclarative-devel \
     kf6-ki18n-devel kf6-kcoreaddons-devel kf6-kconfig-devel kf6-kcrash-devel kf6-kdbusaddons-devel \
     kf6-knotifications-devel kf6-kwindowsystem-devel kf6-kirigami-devel kf6-kirigami-addons-devel \
-    kf6-kquickcharts-devel kf6-qqc2-desktop-style tomlplusplus-devel systemd-devel
+    kf6-kquickcharts-devel kf6-qqc2-desktop-style tomlplusplus-devel systemd-devel openssl-devel
 ```
 
 A compiler with C++26 support is needed (GCC 15 or newer).
@@ -230,16 +239,15 @@ translations are welcome. `python3 Scripts/i18n.py status` shows the state.
 
 ## Sources
 
-SCS Software documents the telemetry SDK, but not its save games or archives. What this program knows about them
-comes from the community's work, checked against real files of ETS2 1.5x. `docs/save-game-format.md` and
-`docs/game-archives.md` describe the result.
+SCS Software documents the telemetry SDK, but not its save games or archives. Reading them is
+[istar-truckdata](https://github.com/Istarlabs/istar-truckdata)'s job, a library of its own (LGPL-3.0-or-later) that
+other programs can use too; its README names the community's work it builds on (SII_Decrypt, the
+ETS2-ATS-Trip-Exporter, Archive::SCS::HashFS2, CityHash), and its docs describe the formats. `docs/` here holds what
+Wheelstar does with the result.
 
 | What | Where from | Used as |
 |---|---|---|
-| The save game's encryption (`ScsC`: AES-256-CBC, the shared key, zlib) and the binary format `BSII` | [SII_Decrypt](https://github.com/TheLazyTomcat/SII_Decrypt) by František Milt (MPL-2.0) | Documentation; `src/savegame/savegamefile.cpp` is our own code |
-| What the positions of a `delivery_log_entry`'s `params` mean | [ETS2-ATS-Trip-Exporter](https://github.com/ChristianVassallo/ETS2-ATS-Trip-Exporter) (GPL-3.0) | Documentation; `src/savegame/career.cpp` is our own code |
-| The archive format HashFS version 2 (`.scs`) | [Archive::SCS::HashFS2](https://metacpan.org/pod/Archive::SCS::HashFS2) (Perl, CPAN) | Documentation; `src/gamedata/hashfsarchive.cpp` is our own code |
-| CityHash64, version 1.0.3, which the archives look their files up by | [CityHash](https://github.com/google/cityhash) by Geoff Pike and Jyrki Alakuijala, Google (MIT) | **Ported code**: `src/gamedata/cityhash.cpp` carries its MIT notice |
+| Save games and game archives | [istar-truckdata](https://github.com/Istarlabs/istar-truckdata) (LGPL-3.0-or-later) | **Library**, a git submodule in `external/` |
 | The telemetry plugin's interface | The SCS Telemetry SDK, `third_party/scs-sdk/` | **Included**, under SCS Software's licence (`LICENSE.txt` there) |
 | The wheel's settings and the hardware tests | [Oversteer](https://github.com/berarma/oversteer) by Bernat Arlandis (GPL-3.0) | **Ported**, see the top of this file |
 
@@ -248,5 +256,5 @@ installation of the game.
 
 ## Licence
 
-GPL-3.0-or-later, as Oversteer. The udev rule in `data/udev/` is upstream's file, unchanged.
-`src/gamedata/cityhash.cpp` and `cityhash.h` are MIT, as Google's CityHash they are ported from.
+GPL-3.0-or-later, as Oversteer. The udev rule in `data/udev/` is upstream's file, unchanged. istar-truckdata in
+`external/` has its own licence, LGPL-3.0-or-later.
