@@ -145,6 +145,39 @@ delivery_log_entry : _nameless.6 {
             QCOMPARE(SaveGame::newDeliveries(jobs, {seen}).size(), 2);
         }
 
+        void theRepairsOfThePlayersLog()
+        {
+            const auto entry = [](qint64 day, qint64 revenue, qint64 maintenance, qint64 fuel, qint64 kilometres)
+            {
+                SaveGame::ProfitEntry result;
+                result.day = day;
+                result.revenue = revenue;
+                result.maintenance = maintenance;
+                result.fuel = fuel;
+                result.kilometres = kilometres;
+                return result;
+            };
+            SaveGame::Company company;
+            // A delivery, a repair, an equal repair on the same day, fuel alone, a repair the next day.
+            company.playerLog = {
+                entry(275, 53230, 0, 0, 1086), entry(275, 0, 53457, 0, 0), entry(275, 0, 53457, 0, 0),
+                entry(275, 0, 0, 955, 0),      entry(276, 0, 3799, 0, 0),
+            };
+
+            const QList<Statistics::RepairRecord> repairs =
+                SaveGame::repairsFrom(company, Telemetry::Game::EuroTruckSimulator2);
+
+            QCOMPARE(repairs.size(), 3);
+            // Day 1 is the first day, as on the career page.
+            QCOMPARE(repairs.at(0).day, 276);
+            QCOMPARE(repairs.at(0).amount, 53457);
+            QCOMPARE(repairs.at(0).occurrence, 0);
+            QCOMPARE(repairs.at(1).occurrence, 1);
+            QCOMPARE(repairs.at(2).day, 277);
+            QCOMPARE(repairs.at(2).occurrence, 0);
+            QCOMPARE(repairs.at(2).game, Telemetry::Game::EuroTruckSimulator2);
+        }
+
         void theGamesKeepTheirNumbers()
         {
             QCOMPARE(SaveGame::telemetryGame(TruckData::Game::AmericanTruckSimulator),

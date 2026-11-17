@@ -925,9 +925,9 @@ namespace Wheelstar::Statistics
             if (const auto found = ranks.constFind(key); found == ranks.cend() || rank < *found)
             {
                 ranks.insert(key, rank);
-                names[kind].insert(
-                    id,
-                    query.value(2).toString()); // NOLINT(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
+                // The kind's table is made by its first name.
+                // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
+                names[kind].insert(id, query.value(2).toString());
             }
         }
 

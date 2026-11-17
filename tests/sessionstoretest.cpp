@@ -285,6 +285,29 @@ private Q_SLOTS:
         QVERIFY(store.jobs(2000, QStringLiteral("de_DE"))->at(1).sourceCompany.isEmpty());
     }
 
+    void theRepairsAreKeptOnce()
+    {
+        const SessionStore store(
+            connection(QStringLiteral("QSQLITE"), m_directory.filePath(QStringLiteral("repairs.sqlite"))), pending());
+        const RepairRecord first{.game = Game::EuroTruckSimulator2, .day = 276, .amount = 53457, .occurrence = 0};
+        // An equal bill on the same day: a second repair.
+        const RepairRecord equal{.game = Game::EuroTruckSimulator2, .day = 276, .amount = 53457, .occurrence = 1};
+        const RepairRecord later{.game = Game::EuroTruckSimulator2, .day = 277, .amount = 3799, .occurrence = 0};
+
+        QCOMPARE(store.writeRepairs({first, equal}), 2);
+        // The next save game still remembers the first two, and brings one more.
+        QCOMPARE(store.writeRepairs({first, equal, later}), 1);
+
+        const auto kept = store.repairs(Game::EuroTruckSimulator2);
+        QVERIFY(kept.has_value());
+        QCOMPARE(kept->size(), 3);
+        // The latest first.
+        QCOMPARE(kept->first(), later);
+        QCOMPARE(kept->last().day, 276);
+        // Another game's are its own.
+        QVERIFY(store.repairs(Game::AmericanTruckSimulator)->isEmpty());
+    }
+
     void aJobsTableFromBeforeTheBusesGetsTheColumns()
     {
         const QString path = m_directory.filePath(QStringLiteral("old-jobs.sqlite"));
