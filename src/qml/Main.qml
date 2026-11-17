@@ -110,6 +110,14 @@ Kirigami.ApplicationWindow {
                 onTriggered: root.showPage("career", careerPage)
             },
             Kirigami.Action {
+                text: i18n("Company")
+                icon.name: "office-building"
+                visible: Wheelstar.telemetryPluginInstalled
+                checkable: true
+                checked: root.currentPage === "company"
+                onTriggered: root.showPage("company", companyPage)
+            },
+            Kirigami.Action {
                 separator: true
             },
             Kirigami.Action {
@@ -210,6 +218,11 @@ Kirigami.ApplicationWindow {
     Component {
         id: careerPage
         CareerPage {}
+    }
+
+    Component {
+        id: companyPage
+        CompanyPage {}
     }
 
     Component {

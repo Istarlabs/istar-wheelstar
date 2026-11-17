@@ -777,6 +777,65 @@ namespace Wheelstar::Statistics
         return query.exec() && query.next() ? query.value(0).toString() : QString();
     }
 
+    std::expected<QHash<QString, QHash<QString, QString>>, QString>
+    SessionStore::gameNames(Telemetry::Game game, const QString& language) const
+    {
+        const ScopedConnection connection(m_connection);
+
+        if (!connection.isOpen())
+        {
+            return std::unexpected(connection.error());
+        }
+
+        if (const QString error = createSchema(connection.database()); !error.isEmpty())
+        {
+            return std::unexpected(error);
+        }
+
+        // The same choice as the jobs' names make: the language exactly, else a region of it, else the definition's.
+        QSqlQuery query(connection.database());
+        query.prepare(uR"(
+            WITH wanted(language, prefix) AS (SELECT CAST(:language AS TEXT), CAST(:prefix AS TEXT))
+            SELECT n.kind, n.locale_id, n.name,
+                   CASE WHEN n.language = w.language THEN 0 WHEN n.language = 'native' THEN 2 ELSE 1 END
+            FROM game_names n, wanted w
+            WHERE n.game = :game
+              AND (n.language = w.language OR n.language = 'native'
+                   OR substr(n.language, 1, length(w.prefix) + 1) = w.prefix || '_')
+        )"_s);
+        query.bindValue(u":language"_s, language.toLower());
+        query.bindValue(u":prefix"_s, language.section(u'_', 0, 0).toLower());
+        query.bindValue(u":game"_s, gameKey(game));
+
+        if (!query.exec())
+        {
+            qCWarning(WHEELSTAR) << "Cannot read the game's names:" << query.lastError().text();
+            return std::unexpected(query.lastError().text());
+        }
+
+        QHash<QString, QHash<QString, QString>> names;
+        // The rank each name was chosen at, to let a better one replace it.
+        QHash<std::pair<QString, QString>, int> ranks;
+
+        while (query.next())
+        {
+            const QString kind = query.value(0).toString();
+            const QString id = query.value(1).toString();
+            const int rank = query.value(3).toInt();
+            const auto key = std::pair(kind, id);
+
+            if (const auto found = ranks.constFind(key); found == ranks.cend() || rank < *found)
+            {
+                ranks.insert(key, rank);
+                names[kind].insert(
+                    id,
+                    query.value(2).toString()); // NOLINT(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
+            }
+        }
+
+        return names;
+    }
+
     bool SessionStore::writeGameLocale(Telemetry::Game game, const QString& fingerprint,
                                        const QList<GameData::GameName>& names) const
     {

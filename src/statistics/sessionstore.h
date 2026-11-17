@@ -8,6 +8,7 @@
 #include "statistics/jobrecord.h"
 #include "statistics/sessionsummary.h"
 
+#include <QHash>
 #include <QList>
 #include <QString>
 
@@ -66,6 +67,11 @@ namespace Wheelstar::Statistics
         /// Replaces a game's names, in one transaction, and keeps the fingerprint they were read at.
         [[nodiscard]] bool writeGameLocale(Telemetry::Game game, const QString& fingerprint,
                                            const QList<GameData::GameName>& names) const;
+        /// The game's names of cities, countries, companies and cargoes by kind ("city", …), then id: in this
+        /// language ("de_de", else any "de_…" the game has), else the definition's own. What the save game only knows
+        /// by id - a driver's hometown, a garage's city - is named from here.
+        [[nodiscard]] std::expected<QHash<QString, QHash<QString, QString>>, QString>
+        gameNames(Telemetry::Game game, const QString& language) const;
         /// The latest fines, tolls and crossings first.
         [[nodiscard]] std::expected<QList<GameEventRecord>, QString> events(int limit = 2000) const;
 

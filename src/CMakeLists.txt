@@ -78,6 +78,7 @@ qt_add_qml_module(istar-wheelstar
         qml/JobsPage.qml
         qml/JobDialog.qml
         qml/CareerPage.qml
+        qml/CompanyPage.qml
         qml/SettingsPage.qml
         qml/InputPanel.qml
         qml/SteeringWheel.qml
