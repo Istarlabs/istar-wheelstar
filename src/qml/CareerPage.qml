@@ -239,9 +239,10 @@ Kirigami.ScrollablePage {
             }
 
             Repeater {
-                // Four cells per offence, row by row, as the grid fills them.
-                model: (page.career.offences ?? []).flatMap(offence => [offence.name, page.number(offence.committed),
-                                                                         page.number(offence.fined), page.money(offence.paid)])
+                // Four cells per offence, row by row, as the grid fills them. Not flatMap: Qt's JavaScript engine has
+                // no Array.prototype.flatMap, and the model would silently be undefined.
+                model: (page.career.offences ?? []).reduce((cells, offence) => cells.concat([offence.name,
+                    page.number(offence.committed), page.number(offence.fined), page.money(offence.paid)]), [])
 
                 delegate: QQC2.Label {
                     required property var modelData

@@ -64,6 +64,13 @@ Kirigami.ScrollablePage {
     readonly property int hiddenWithoutDate: periodFilter.currentValue === "all"
         ? 0 : Wheelstar.jobs.filter(job => !job.finishedAt).length
 
+    /// The jobs of one route. A function of the page, not the route delegate's own lines: either assignment changes
+    /// the list's model and destroys the delegate that was clicked, and its handler could not reach `page` after that.
+    function showRoute(from: string, to: string) {
+        page.route = { from: from, to: to };
+        page.view = "jobs";
+    }
+
     /// The first moment of a period, or null for all time.
     function periodStart(period: string): var {
         const now = new Date();
@@ -415,10 +422,7 @@ Kirigami.ScrollablePage {
             required property var modelData
 
             width: ListView.view.width
-            onClicked: {
-                page.route = { from: modelData.from, to: modelData.to };
-                page.view = "jobs";
-            }
+            onClicked: page.showRoute(routeItem.modelData.from, routeItem.modelData.to)
 
             contentItem: RowLayout {
                 spacing: Kirigami.Units.largeSpacing
