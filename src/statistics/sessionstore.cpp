@@ -338,7 +338,7 @@ namespace Wheelstar::Statistics
                 }
             }
 
-            return run(query, uR"(
+            error = run(query, uR"(
                 CREATE TABLE IF NOT EXISTS game_events (
                     id %1 PRIMARY KEY,
                     game TEXT NOT NULL,
@@ -352,6 +352,24 @@ namespace Wheelstar::Statistics
                     UNIQUE (game, kind, occurred_at)
                 )
             )"_s.arg(identity, timestamp));
+
+            if (!error.isEmpty())
+            {
+                return error;
+            }
+
+            // The repairs of the save game's own profit log, which forgets them after a few in-game days. A bill is
+            // known by its day and amount; `occurrence` tells equal bills of one day apart.
+            return run(query, uR"(
+                CREATE TABLE IF NOT EXISTS repairs (
+                    id %1 PRIMARY KEY,
+                    game TEXT NOT NULL,
+                    game_day BIGINT NOT NULL,
+                    amount BIGINT NOT NULL,
+                    occurrence INTEGER NOT NULL,
+                    UNIQUE (game, game_day, amount, occurrence)
+                )
+            )"_s.arg(identity));
         }
 
         // The positions of the columns in the SELECTs below, in the order they list them. "GameKey" because
@@ -726,6 +744,86 @@ namespace Wheelstar::Statistics
 
         database.commit();
         return written;
+    }
+
+    int SessionStore::writeRepairs(const QList<RepairRecord>& repairs) const
+    {
+        const ScopedConnection connection(m_connection);
+
+        if (!connection.isOpen() || !createSchema(connection.database()).isEmpty())
+        {
+            return -1;
+        }
+
+        QSqlDatabase database = connection.database();
+        database.transaction();
+
+        QSqlQuery query(database);
+        query.prepare(uR"(
+            INSERT INTO repairs (game, game_day, amount, occurrence) VALUES (:game, :day, :amount, :occurrence)
+            ON CONFLICT (game, game_day, amount, occurrence) DO NOTHING
+        )"_s);
+        int written = 0;
+
+        for (const RepairRecord& repair : repairs)
+        {
+            query.bindValue(u":game"_s, gameKey(repair.game));
+            query.bindValue(u":day"_s, repair.day);
+            query.bindValue(u":amount"_s, repair.amount);
+            query.bindValue(u":occurrence"_s, repair.occurrence);
+
+            if (!query.exec())
+            {
+                qCWarning(WHEELSTAR) << "Cannot write the repair:" << query.lastError().text();
+                database.rollback();
+                return -1;
+            }
+
+            written += query.numRowsAffected() > 0 ? 1 : 0;
+        }
+
+        database.commit();
+        return written;
+    }
+
+    std::expected<QList<RepairRecord>, QString> SessionStore::repairs(Telemetry::Game game) const
+    {
+        const ScopedConnection connection(m_connection);
+
+        if (!connection.isOpen())
+        {
+            return std::unexpected(connection.error());
+        }
+
+        if (const QString error = createSchema(connection.database()); !error.isEmpty())
+        {
+            return std::unexpected(error);
+        }
+
+        QSqlQuery query(connection.database());
+        query.prepare(uR"(
+            SELECT game_day, amount, occurrence FROM repairs WHERE game = :game
+            ORDER BY game_day DESC, occurrence DESC, amount DESC
+        )"_s);
+        query.bindValue(u":game"_s, gameKey(game));
+
+        if (!query.exec())
+        {
+            qCWarning(WHEELSTAR) << "Cannot read the repairs:" << query.lastError().text();
+            return std::unexpected(query.lastError().text());
+        }
+
+        QList<RepairRecord> result;
+
+        while (query.next())
+        {
+            result.append({.game = game,
+                           .day = query.value(0).toLongLong(),
+                           .amount = query.value(1).toLongLong(),
+                           .occurrence = query.value(2).toInt()});
+        }
+
+        return result;
     }
 
     bool SessionStore::writeEvent(const GameEventRecord& event) const

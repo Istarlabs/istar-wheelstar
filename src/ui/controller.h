@@ -322,6 +322,9 @@ namespace Wheelstar::Ui
             QList<Statistics::JobRecord> deliveries;
             /// The game's names in the application's language, for what the save game knows by id.
             QHash<QString, QHash<QString, QString>> names;
+            /// The repairs the database keeps, the latest first; or, without it (repairsKept false), the save game's.
+            QList<Statistics::RepairRecord> repairs;
+            bool repairsKept = false;
             QString error;
         };
 

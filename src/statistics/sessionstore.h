@@ -6,6 +6,7 @@
 #include "savegame/saveimport.h"
 #include "statistics/gameeventrecord.h"
 #include "statistics/jobrecord.h"
+#include "statistics/repairrecord.h"
 #include "statistics/sessionsummary.h"
 
 #include <QHash>
@@ -72,6 +73,13 @@ namespace Wheelstar::Statistics
         /// by id - a driver's hometown, a garage's city - is named from here.
         [[nodiscard]] std::expected<QHash<QString, QHash<QString, QString>>, QString>
         gameNames(Telemetry::Game game, const QString& language) const;
+        /// Writes the repairs, those already there left out. How many were new, or -1 when the database could not be
+        /// written; nothing is kept for later - the next save game read brings them again, as long as the game
+        /// remembers them.
+        [[nodiscard]] int writeRepairs(const QList<RepairRecord>& repairs) const;
+        /// The repairs of a game kept so far, the latest first.
+        [[nodiscard]] std::expected<QList<RepairRecord>, QString> repairs(Telemetry::Game game) const;
+
         /// The latest fines, tolls and crossings first.
         [[nodiscard]] std::expected<QList<GameEventRecord>, QString> events(int limit = 2000) const;
 
