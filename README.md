@@ -67,7 +67,8 @@ its preferences.
   </tr>
   <tr>
     <td><a href="docs/images/career.png"><img src="docs/images/career.png" alt="Career page"></a><br>
-      <b>Career</b>, read from the save game: experience, money, distances, records</td>
+      <b>Career</b>, read from the save game: experience, money, distances, records, and every offence the game
+      noticed, fined and was paid for</td>
     <td><a href="docs/images/statistics.png"><img src="docs/images/statistics.png" alt="Statistics page with the summary of one drive"></a><br>
       <b>Driving statistics</b> from the telemetry plugin: one summary per drive, with steering position and time per gear</td>
   </tr>
