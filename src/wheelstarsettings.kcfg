@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-FileCopyrightText: 2026 Pascal Klose
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <!-- The application's own preferences. Wheel settings live in the TOML profiles, not here. -->
+    <kcfgfile name="istar-wheelstarrc"/>
+    <group name="General">
+        <entry name="Language" type="String">
+            <label>Interface language; empty for the system language</label>
+            <default></default>
+        </entry>
+        <entry name="CheckPermissions" type="Bool">
+            <label>Offer to install the udev rule when the wheel's settings are not writable</label>
+            <default>true</default>
+        </entry>
+        <entry name="ShowUnusedButtons" type="Bool">
+            <label>Show the wheel buttons that have no name and have not been pressed on the Controls page</label>
+            <default>true</default>
+        </entry>
+    </group>
+    <group name="Database">
+        <!-- Where the driving statistics are kept. For PostgreSQL the password is not stored here: libpq finds it
+             in ~/.pgpass. -->
+        <entry name="DatabaseDriver" type="String">
+            <label>Database driver: QSQLITE (a local file) or QPSQL (PostgreSQL)</label>
+            <default>QSQLITE</default>
+        </entry>
+        <entry name="DatabaseHost" type="String">
+            <label>PostgreSQL host</label>
+            <default></default>
+        </entry>
+        <entry name="DatabasePort" type="Int">
+            <label>PostgreSQL port</label>
+            <default>5432</default>
+        </entry>
+        <entry name="DatabaseName" type="String">
+            <label>PostgreSQL database</label>
+            <default>wheelstar</default>
+        </entry>
+        <entry name="DatabaseUser" type="String">
+            <label>PostgreSQL user</label>
+            <default></default>
+        </entry>
+    </group>
+    <group name="WheelButtons">
+        <entry name="ToggleButtons" type="IntList">
+            <label>The buttons held together to grab and release the wheel</label>
+            <default></default>
+        </entry>
+        <entry name="RangeButtons" type="IntList">
+            <label>Buttons for 270°, 360°, 540°, 900°, +10°, -10°, +90° and -90°; -1 for none</label>
+            <default>-1,-1,-1,-1,-1,-1,-1,-1</default>
+        </entry>
+    </group>
+</kcfg>

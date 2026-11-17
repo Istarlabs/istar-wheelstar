@@ -1,0 +1,34 @@
+[Global]
+IconName=net.kurokyuu.wheelstar
+Name=Wheelstar
+Comment=Steering Wheel Manager
+Comment[de]=Lenkradverwaltung
+
+[Event/wheelConnected]
+Name=Wheel connected
+Name[de]=Lenkrad verbunden
+Comment=A steering wheel was plugged in
+Comment[de]=Ein Lenkrad wurde angeschlossen
+Action=Popup
+
+[Event/wheelDisconnected]
+Name=Wheel disconnected
+Name[de]=Lenkrad getrennt
+Comment=A steering wheel was unplugged
+Comment[de]=Ein Lenkrad wurde getrennt
+Action=Popup
+
+[Event/shortcutUsed]
+Name=Shortcut used
+Name[de]=Tastenkürzel benutzt
+Comment=A global shortcut loaded a profile or applied the settings
+Comment[de]=Ein globales Tastenkürzel hat ein Profil geladen oder die Einstellungen angewendet
+Action=Popup
+
+[Event/commandFailed]
+Name=Command failed
+Name[de]=Befehl fehlgeschlagen
+Comment=The companion command ended with an error
+Comment[de]=Der Begleitbefehl wurde mit einem Fehler beendet
+Action=Popup
+Urgency=High

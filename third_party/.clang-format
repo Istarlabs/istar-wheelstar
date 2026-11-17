@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Pascal Klose
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# Other people's code stays as they wrote it.
+---
+DisableFormat: true
+SortIncludes: Never
+...

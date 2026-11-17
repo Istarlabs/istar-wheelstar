@@ -1,0 +1,36 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${DEVSCRIPTS:-$HOME/dev/tools/devscripts}/hooks/no-cd-into-repo-root.sh\"",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${DEVSCRIPTS:-$HOME/dev/tools/devscripts}/hooks/prefer-repo-scripts.sh\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${DEVSCRIPTS:-$HOME/dev/tools/devscripts}/hooks/no-decorative-comments.sh\"",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash \"${DEVSCRIPTS:-$HOME/dev/tools/devscripts}/hooks/load-the-skill.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

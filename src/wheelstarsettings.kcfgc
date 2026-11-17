@@ -1,0 +1,4 @@
+File=wheelstarsettings.kcfg
+ClassName=WheelstarSettings
+Singleton=true
+Mutators=true

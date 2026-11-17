@@ -1,0 +1,74 @@
+# What this project differs by. Everything else lives in the shared devscripts checkout.
+name = "istar-wheelstar"
+env_prefix = "WHEELSTAR"
+
+[cpp]
+binary = "istar-wheelstar"
+build_dir = "build"
+build_type = "RelWithDebInfo"
+install_root = "~/.local"
+
+# A KDE program translates through gettext; the English text is the i18n() argument itself. The
+# translations were carried over from the Python Oversteer's po/ directory.
+[i18n]
+domain = "istar-wheelstar"
+languages = ["ca", "de", "es", "fi", "gl", "hu", "pl", "ru", "tr"]
+
+# A port of Oversteer by Bernat Arlandis, which is GPL-3.0-or-later; the port has to stay under it.
+[spdx]
+holder = "Pascal Klose"
+licence = "GPL-3.0-or-later"
+# Taken over unchanged from upstream Oversteer, with its own header.
+exclude = ["data/udev/", "third_party/"]
+
+[repo]
+main_branch = "master"
+ci = false
+
+# Steam's default library; a game in another library is WHEELSTAR_GAME_DIR.
+[plugin]
+game_directory = "~/.local/share/Steam/steamapps/common/Euro Truck Simulator 2"
+
+# python3 Scripts/rpm.py build|publish: two packages (see rpm.py's docstring).
+[rpm]
+license = "GPL-3.0-or-later"
+url = "https://github.com/Istarlabs/istar-wheelstar"
+version_file = "CMakeLists.txt"
+
+# Its own build directory, so the development build (prefix ~/.local) is left alone. The udev rule goes where
+# udev reads it, so a packaged install needs no pkexec; the copy under /usr/share stays for that path.
+[rpm.packages.istar-wheelstar]
+summary = "Steering wheel manager for Linux (Logitech, new-lg4ff): a Qt/Kirigami port of Oversteer"
+build = [
+    "cmake -S . -B build/rpm -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF",
+    "cmake --build build/rpm",
+    "DESTDIR={stage} cmake --install build/rpm",
+]
+files = { "data/udev/99-logitech-wheel-perms.rules" = "/usr/lib/udev/rules.d/99-logitech-wheel-perms.rules" }
+# The QML modules the window imports at run time: rpmbuild sees linked libraries, not `import org.kde.kirigami`.
+# A new QML import needs its package here (rpm -qf /usr/lib64/qt6/qml/<module>/qmldir).
+requires = ["kf6-kirigami", "kf6-kirigami-addons", "kf6-kquickcharts", "kf6-qqc2-desktop-style", "kf6-kconfig"]
+# Only for statistics in PostgreSQL; SQLite is in qt6-qtbase.
+recommends = ["qt6-qtbase-postgresql"]
+post = """
+udevadm control --reload-rules >/dev/null 2>&1 || :
+udevadm trigger --subsystem-match=hid --action=change >/dev/null 2>&1 || :
+"""
+postun = "udevadm control --reload-rules >/dev/null 2>&1 || :"
+
+# The telemetry plugin is a Windows DLL (the games run through Proton), so the package is noarch. Its helper links
+# it into every copy of the games: as each user, from %post, and again by hand for a game installed later.
+[rpm.packages.istar-wheelstar-ets2-plugin]
+summary = "Telemetry plugin for Euro Truck Simulator 2 and American Truck Simulator, feeding Wheelstar's statistics"
+arch = "noarch"
+build = ["python3 Scripts/plugin.py build"]
+files = { "build-plugin/wheelstar_telemetry.dll" = "/usr/share/istar-wheelstar-ets2-plugin/wheelstar_telemetry.dll", "data/ets2-plugin/istar-wheelstar-ets2-plugin" = "/usr/bin/istar-wheelstar-ets2-plugin" }
+requires = ["istar-wheelstar"]
+post = "/usr/bin/istar-wheelstar-ets2-plugin link --all-users || :"
+preun = "if [ $1 -eq 0 ]; then /usr/bin/istar-wheelstar-ets2-plugin unlink --all-users || :; fi"
+
+# For Scripts/db.py, when the statistics go to PostgreSQL. The server and the user are each machine's own:
+# WHEELSTAR_DB_HOST, WHEELSTAR_DB_USER (and WHEELSTAR_DB_NAME); the password comes from ~/.pgpass.
+[database]
+port = "5432"
+name = "wheelstar"

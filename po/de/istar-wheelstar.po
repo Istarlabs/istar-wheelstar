@@ -1,0 +1,2270 @@
+# German translations for istar-wheelstar.
+# This file is distributed under the same license as the istar-wheelstar package.
+#
+# Translated for Oversteer (https://github.com/berarma/oversteer), taken over unchanged:
+# Matthias Müller <matmue@gmx.de>, 2021.
+#
+# Strings new in Wheelstar:
+# Pascal Klose <istarlabs_dev@proton.me>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: istar-wheelstar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-15 22:40+0100\n"
+"PO-Revision-Date: 2026-11-07 23:52+0100\n"
+"Last-Translator: Pascal Klose <istarlabs_dev@proton.me>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/core/inifile.cpp:21 src/hardwaretest/testanalysis.cpp:402
+#: src/ui/controller.cpp:663
+#, kde-format
+msgid "Cannot read \"%1\": %2"
+msgstr "„%1“ kann nicht gelesen werden: %2"
+
+#: src/hardwaretest/ffbtest.cpp:266 src/hardwaretest/ffbtest.cpp:301
+#: src/hardwaretest/ffbtest.cpp:340
+#, kde-format
+msgid "The force feedback effects could not be played."
+msgstr "Die Force-Feedback-Effekte konnten nicht abgespielt werden."
+
+#: src/hardwaretest/testanalysis.cpp:126
+#, kde-format
+msgid "The linearity test data is incomplete."
+msgstr "Die Daten des Linearitätstests sind unvollständig."
+
+#: src/hardwaretest/testanalysis.cpp:178
+#, kde-format
+msgid "The step test data is incomplete."
+msgstr "Die Daten des Sprungtests sind unvollständig."
+
+#: src/hardwaretest/testanalysis.cpp:190
+#, kde-format
+msgid "No wheel movement could be registered."
+msgstr "Es konnte keine Bewegung des Lenkrads festgestellt werden."
+
+#: src/hardwaretest/testanalysis.cpp:434
+#, kde-format
+msgid "\"%1\" is not a test report."
+msgstr "„%1“ ist kein Testbericht."
+
+#: src/hardwaretest/testanalysis.cpp:447 src/hardwaretest/testanalysis.cpp:468
+#: src/settings/buttonnames.cpp:73 src/settings/wheelsettings.cpp:358
+#, kde-format
+msgid "Cannot write \"%1\": %2"
+msgstr "„%1“ kann nicht geschrieben werden: %2"
+
+#: src/main.cpp:67
+#, kde-format
+msgid "--%1 takes a number"
+msgstr "--%1 erwartet eine Zahl"
+
+#: src/main.cpp:91
+#, kde-format
+msgid "Wheelstar - Steering Wheel Manager"
+msgstr "Wheelstar - Lenkrad Manager"
+
+#: src/main.cpp:98
+#, kde-format
+msgid "Run as command's companion"
+msgstr "Starte als Befehls-Companion-App"
+
+#: src/main.cpp:101
+#, kde-format
+msgid "Device path"
+msgstr "Geräte Pfad"
+
+#: src/main.cpp:102
+#, kde-format
+msgid "list connected devices"
+msgstr "Verbundene Geräte auflisten"
+
+#: src/main.cpp:103
+#, kde-format
+msgid "set the compatibility mode"
+msgstr "Kompatibilitätsmodus einstellen"
+
+#: src/main.cpp:104
+#, kde-format
+msgid "set the rotation range [40-900]"
+msgstr "Rotationsbereich einstellen [40-900]"
+
+#: src/main.cpp:105
+#, kde-format
+msgid "combine pedals [0-2]"
+msgstr "Pedale kombinieren [0-2]"
+
+#: src/main.cpp:106
+#, kde-format
+msgid "set the autocenter strength [0-100]"
+msgstr "Zentrierungsstärke einstellen [0-100]"
+
+#: src/main.cpp:107
+#, kde-format
+msgid "set the FF gain [0-100]"
+msgstr "ForceFeedback-Gain einstellen [0-100]"
+
+#: src/main.cpp:108
+#, kde-format
+msgid "set the spring level [0-100]"
+msgstr "Federrate einstellen [0-100]"
+
+#: src/main.cpp:109
+#, kde-format
+msgid "set the damper level [0-100]"
+msgstr "Dämpferrate einstellen [0-100]"
+
+#: src/main.cpp:110
+#, kde-format
+msgid "set the friction level [0-100]"
+msgstr "Reibungsstärke einstellen [0-100]"
+
+#: src/main.cpp:111
+#, kde-format
+msgid "enable FFBmeter leds"
+msgstr "FFBmeter LEDs aktivieren"
+
+#: src/main.cpp:112
+#, kde-format
+msgid "disable FFBmeter leds"
+msgstr "FFBmeter LEDs deaktivieren"
+
+#: src/main.cpp:113
+#, kde-format
+msgid "center wheel"
+msgstr "Lenkrad zentrieren"
+
+#: src/main.cpp:114
+#, kde-format
+msgid "don't center wheel"
+msgstr "Lenkrad nicht zentrieren"
+
+#: src/main.cpp:115
+#, kde-format
+msgid "run command manually"
+msgstr "Befehl manuell ausführen"
+
+#: src/main.cpp:116
+#, kde-format
+msgid "don't run command manually"
+msgstr "Befehl nicht manuell ausführen"
+
+#: src/main.cpp:117
+#, kde-format
+msgid "load settings from a profile"
+msgstr "Einstellungen aus Profil laden"
+
+#: src/main.cpp:118
+#, kde-format
+msgid "start the GUI"
+msgstr "GUI starten"
+
+#: src/main.cpp:119
+#, kde-format
+msgid "enable debug output"
+msgstr "Debug-Output aktivieren"
+
+#: src/main.cpp:165 src/qml/Main.qml:140
+#, kde-format
+msgid "No device available."
+msgstr "Kein Gerät verfügbar."
+
+#: src/main.cpp:171 src/qml/Main.qml:148 src/qml/Main.qml:245
+#, kde-format
+msgid "You don't have the required permissions to change your wheel settings."
+msgstr "Keine Berechtigung, die Einstellungen des Lenkrads zu ändern."
+
+#: src/main.cpp:196
+#, kde-format
+msgid ""
+"The mode was changed; run the command again for the other settings once the "
+"wheel is back."
+msgstr ""
+"Der Modus wurde gewechselt; für die übrigen Einstellungen den Befehl erneut "
+"ausführen, sobald das Lenkrad wieder da ist."
+
+#: src/main.cpp:218 src/ui/controller.cpp:2028
+#, kde-format
+msgid ""
+"The supplied command failed:\n"
+"%1"
+msgstr ""
+"Der bereitgestellte Befehl schlug fehl:\n"
+"%1"
+
+#: src/main.cpp:240 src/qml/Main.qml:70 src/qml/ProfilesPage.qml:14
+#, kde-format
+msgid "Profiles"
+msgstr "Profile"
+
+#: src/main.cpp:255 src/main.cpp:374 src/qml/Main.qml:15
+#: src/qml/OverlayWindow.qml:17
+#, kde-format
+msgid "Wheelstar"
+msgstr "Wheelstar"
+
+#: src/main.cpp:298
+#, kde-format
+msgid "Profile loaded"
+msgstr "Profil geladen"
+
+#: src/main.cpp:302
+#, kde-format
+msgid "Apply the settings to the wheel again"
+msgstr "Einstellungen erneut auf das Lenkrad anwenden"
+
+#: src/main.cpp:306
+#, kde-format
+msgid "Settings applied"
+msgstr "Einstellungen angewendet"
+
+#: src/main.cpp:309
+#, kde-format
+msgid "Next profile"
+msgstr "Nächstes Profil"
+
+#: src/main.cpp:310
+#, kde-format
+msgid "Previous profile"
+msgstr "Vorheriges Profil"
+
+#: src/main.cpp:375
+#, kde-format
+msgid "Steering Wheel Manager"
+msgstr "Lenkradmanager"
+
+#: src/main.cpp:376
+#, kde-format
+msgid "© 2019 Bernat Arlandis, © 2026 Pascal Klose"
+msgstr "© 2019 Bernat Arlandis, © 2026 Pascal Klose"
+
+#: src/main.cpp:377
+#, kde-format
+msgid "A Qt and Kirigami port of Oversteer by Bernat Arlandis."
+msgstr "Eine Portierung von Oversteer von Bernat Arlandis auf Qt und Kirigami."
+
+#: src/main.cpp:378
+#, kde-format
+msgid "Bernat Arlandis"
+msgstr "Bernat Arlandis"
+
+#: src/main.cpp:378
+#, kde-format
+msgid "Oversteer"
+msgstr "Oversteer"
+
+#: src/main.cpp:380
+#, kde-format
+msgid "Pascal Klose"
+msgstr "Pascal Klose"
+
+#: src/main.cpp:380
+#, kde-format
+msgid "Qt and Kirigami port"
+msgstr "Portierung nach Qt und Kirigami"
+
+#: src/main.cpp:392
+#, kde-format
+msgid "Truck Simulator telemetry plugin"
+msgstr "Telemetrie-Plugin für Truck Simulator"
+
+#: src/main.cpp:393
+#, kde-format
+msgid ""
+"Sends the telemetry of Euro Truck Simulator 2 and American Truck Simulator "
+"to Wheelstar (istar-wheelstar-ets2-plugin)"
+msgstr ""
+"Sendet die Telemetrie von Euro Truck Simulator 2 und American Truck "
+"Simulator an Wheelstar (istar-wheelstar-ets2-plugin)"
+
+#: src/main.cpp:431
+#, kde-format
+msgid "Devices found:"
+msgstr "Geräte gefunden:"
+
+#: src/main.cpp:445
+#, kde-format
+msgid "This profile doesn't exist."
+msgstr "Dieses Profil existiert nicht."
+
+#: src/qml/CareerPage.qml:25 src/qml/Main.qml:105
+#, kde-format
+msgid "Career"
+msgstr "Karriere"
+
+#: src/qml/CareerPage.qml:29
+#, kde-format
+msgid "Import Jobs"
+msgstr "Aufträge importieren"
+
+#: src/qml/CareerPage.qml:31
+#, kde-format
+msgid "Add the deliveries of the save game to the jobs"
+msgstr "Die Lieferungen aus dem Spielstand zu den Aufträgen hinzufügen"
+
+#: src/qml/CareerPage.qml:36
+#, kde-format
+msgid "Read Again"
+msgstr "Neu einlesen"
+
+#: src/qml/CareerPage.qml:57
+#, kde-format
+msgid "Profile:"
+msgstr "Profil:"
+
+#: src/qml/CareerPage.qml:64
+#, kde-format
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#. i18n: %1 the profile, %2 the game
+#: src/qml/CareerPage.qml:89
+#, kde-format
+msgid "%1 in %2"
+msgstr "%1 in %2"
+
+#: src/qml/CareerPage.qml:93
+#, kde-format
+msgid "Saved:"
+msgstr "Gespeichert:"
+
+#: src/qml/CareerPage.qml:98 src/qml/JobDialog.qml:93
+#, kde-format
+msgid "Experience:"
+msgstr "Erfahrung:"
+
+#: src/qml/CareerPage.qml:99 src/qml/JobDialog.qml:94
+#, kde-format
+msgid "%1 XP"
+msgstr "%1 EP"
+
+#: src/qml/CareerPage.qml:103
+#, kde-format
+msgid "Money:"
+msgstr "Kontostand:"
+
+#: src/qml/CareerPage.qml:108
+#, kde-format
+msgid "Game days:"
+msgstr "Spieltage:"
+
+#: src/qml/CareerPage.qml:114
+#, kde-format
+msgid "Driving"
+msgstr "Unterwegs"
+
+#: src/qml/CareerPage.qml:118
+#, kde-format
+msgid "By truck:"
+msgstr "Mit dem LKW:"
+
+#. i18n: %1 kilometres, %2 hours of real time
+#: src/qml/CareerPage.qml:120 src/qml/CareerPage.qml:126
+#, kde-format
+msgid "%1 km in %2 h"
+msgstr "%1 km in %2 h"
+
+#: src/qml/CareerPage.qml:125
+#, kde-format
+msgid "By bus:"
+msgstr "Mit dem Bus:"
+
+#: src/qml/CareerPage.qml:130
+#, kde-format
+msgid "Deliveries:"
+msgstr "Lieferungen:"
+
+#. i18n: %1 jobs delivered, %2 jobs given up
+#: src/qml/CareerPage.qml:132
+#, kde-format
+msgid "%1 (%2 cancelled)"
+msgstr "%1 (%2 abgebrochen)"
+
+#: src/qml/CareerPage.qml:136
+#, kde-format
+msgid "Bus jobs:"
+msgstr "Busfahrten:"
+
+#: src/qml/CareerPage.qml:141
+#, kde-format
+msgid "Cities visited:"
+msgstr "Besuchte Städte:"
+
+#: src/qml/CareerPage.qml:146
+#, kde-format
+msgid "Garages:"
+msgstr "Garagen:"
+
+#: src/qml/CareerPage.qml:151
+#, kde-format
+msgid "Ferry crossings:"
+msgstr "Fährüberfahrten:"
+
+#: src/qml/CareerPage.qml:156
+#, kde-format
+msgid "Fuel bought:"
+msgstr "Getankt:"
+
+#. i18n: %1 litres, %2 the money paid for them
+#: src/qml/CareerPage.qml:158
+#, kde-format
+msgid "%1 l for %2"
+msgstr "%1 l für %2"
+
+#: src/qml/CareerPage.qml:162
+#, kde-format
+msgid "Visits:"
+msgstr "Besuche:"
+
+#. i18n: %1 stops at fuel stations, %2 at service garages
+#: src/qml/CareerPage.qml:164
+#, kde-format
+msgid "%1 at fuel stations, %2 at the service"
+msgstr "%1 an Tankstellen, %2 in der Werkstatt"
+
+#: src/qml/CareerPage.qml:170
+#, kde-format
+msgid "Records"
+msgstr "Rekorde"
+
+#: src/qml/CareerPage.qml:174
+#, kde-format
+msgid "Without an offence:"
+msgstr "Ohne Verstoß:"
+
+#. i18n: %1 the current stretch in km, %2 the longest
+#: src/qml/CareerPage.qml:176 src/qml/CareerPage.qml:182
+#, kde-format
+msgid "%1 km now, %2 km at most"
+msgstr "%1 km aktuell, höchstens %2 km"
+
+#: src/qml/CareerPage.qml:181
+#, kde-format
+msgid "Without damage:"
+msgstr "Ohne Schaden:"
+
+#: src/qml/CareerPage.qml:187
+#, kde-format
+msgid "Without cargo damage:"
+msgstr "Ohne Frachtschaden:"
+
+#: src/qml/CareerPage.qml:188
+#, kde-format
+msgid "%1 km at most"
+msgstr "höchstens %1 km"
+
+#: src/qml/CareerPage.qml:192
+#, kde-format
+msgid "Jobs to import:"
+msgstr "Neue Aufträge zum Import:"
+
+#: src/qml/CareerPage.qml:200
+#, kde-format
+msgid "Offences"
+msgstr "Verstöße"
+
+#: src/qml/CareerPage.qml:208
+#, kde-format
+msgid ""
+"The game counts every offence it notices, also with fines turned off; only "
+"some of them were fined."
+msgstr ""
+"Das Spiel zählt jeden Verstoß, den es bemerkt, auch bei abgeschalteten "
+"Bußgeldern; nur ein Teil davon wurde bestraft."
+
+#: src/qml/CareerPage.qml:219
+#, kde-format
+msgid "Offence"
+msgstr "Verstoß"
+
+#: src/qml/CareerPage.qml:225
+#, kde-format
+msgid "Noticed"
+msgstr "Bemerkt"
+
+#: src/qml/CareerPage.qml:231
+#, kde-format
+msgid "Fined"
+msgstr "Bestraft"
+
+#: src/qml/CareerPage.qml:237
+#, kde-format
+msgid "Paid"
+msgstr "Bezahlt"
+
+#: src/qml/ChartWindow.qml:20 src/qml/Main.qml:63 src/qml/TestsPage.qml:23
+#, kde-format
+msgid "Tests"
+msgstr "Tests"
+
+#: src/qml/ChartWindow.qml:49
+#, kde-format
+msgid "Linear response test"
+msgstr "Test des Ansprechverhaltens"
+
+#: src/qml/ChartWindow.qml:50
+#, kde-format
+msgid "Force level"
+msgstr "Kraft-Level"
+
+#: src/qml/ChartWindow.qml:60 src/qml/TestsPage.qml:143
+#, kde-format
+msgid "Latency (ms):"
+msgstr "Latenz (ms):"
+
+#: src/qml/ChartWindow.qml:61 src/qml/TestsPage.qml:144
+#, kde-format
+msgid "Max. angular velocity (RPM):"
+msgstr "Max. Rotationsgeschwindigkeit (RPM):"
+
+#: src/qml/ChartWindow.qml:62 src/qml/TestsPage.qml:147
+#, kde-format
+msgid "Mean angular acceleration (RPM/s):"
+msgstr "Mittlere Winkelbeschleunigung (RPM/s):"
+
+#: src/qml/ChartWindow.qml:63 src/qml/TestsPage.qml:150
+#, kde-format
+msgid "Mean angular deceleration (RPM/s):"
+msgstr "Mittlere Winkelverzögerung (RPM/s):"
+
+#: src/qml/ChartWindow.qml:64 src/qml/TestsPage.qml:145
+#, kde-format
+msgid "Max. angular acceleration (RPM/s):"
+msgstr "Max. Winkelbeschleunigung (RPM/s):"
+
+#: src/qml/ChartWindow.qml:65 src/qml/TestsPage.qml:146
+#, kde-format
+msgid "Time to max. angular acceleration (ms):"
+msgstr "Zeit zur max. Winkelbeschleunigung (ms):"
+
+#: src/qml/ChartWindow.qml:66 src/qml/TestsPage.qml:148
+#, kde-format
+msgid "Max. angular deceleration (RPM/s):"
+msgstr "Max. Winkelverzögerung (RPM/s):"
+
+#: src/qml/ChartWindow.qml:67 src/qml/TestsPage.qml:149
+#, kde-format
+msgid "Time to max. angular deceleration (ms):"
+msgstr "Zeit zur max. Winkelverzögerung (ms):"
+
+#: src/qml/ChartWindow.qml:68 src/qml/TestsPage.qml:151
+#, kde-format
+msgid "Residual angular deceleration (RPM/s):"
+msgstr "Rest-Winkelverzögerung (RPM/s):"
+
+#: src/qml/ChartWindow.qml:69 src/qml/TestsPage.qml:152
+#, kde-format
+msgid "Estimated SNR (dB):"
+msgstr "Geschätzter Rauschabstand (dB):"
+
+#: src/qml/ChartWindow.qml:70 src/qml/TestsPage.qml:153
+#, kde-format
+msgid "Min. force level (%):"
+msgstr "Min. Kraft-Level (%):"
+
+#: src/qml/ChartWindow.qml:88
+#, kde-format
+msgid "Step test (angular velocity + position)"
+msgstr "Schritt-Test (Winkelgeschwindigkeit + Position)"
+
+#: src/qml/ChartWindow.qml:89 src/qml/ChartWindow.qml:101
+#, kde-format
+msgid "Time (s)"
+msgstr "Zeit (s)"
+
+#: src/qml/ChartWindow.qml:90
+#, kde-format
+msgid "Position"
+msgstr "Position"
+
+#: src/qml/ChartWindow.qml:91
+#, kde-format
+msgid "RPM"
+msgstr "RPM"
+
+#: src/qml/ChartWindow.qml:100
+#, kde-format
+msgid "Step test (angular acceleration)"
+msgstr "Schritt-Test (Winkelbeschleunigung)"
+
+#: src/qml/ChartWindow.qml:102
+#, kde-format
+msgid "RPM/s"
+msgstr "RPM/s"
+
+#: src/qml/ForceFeedbackPage.qml:10 src/qml/ForceFeedbackPage.qml:13
+#: src/qml/Main.qml:49
+#, kde-format
+msgid "Force Feedback"
+msgstr "Force Feedback"
+
+#: src/qml/ForceFeedbackPage.qml:19
+#, kde-format
+msgid "Global feedback gain"
+msgstr "Globaler Feedback-Level"
+
+#: src/qml/ForceFeedbackPage.qml:20
+#, kde-format
+msgid "Global strength for all force feedback effects."
+msgstr "Globale Stärke aller Force-Feedback-Effekte."
+
+#: src/qml/ForceFeedbackPage.qml:21
+#, kde-format
+msgid "Spring effect gain"
+msgstr "Feder-Effekt-Level"
+
+#: src/qml/ForceFeedbackPage.qml:22
+#, kde-format
+msgid ""
+"Gain applied to spring effects. Higher values may produce more clipping."
+msgstr ""
+"Stärke aller Feder-Effekte. Höhere Werte können mehr Clipping verursachen."
+
+#: src/qml/ForceFeedbackPage.qml:23
+#, kde-format
+msgid "Damper effect gain"
+msgstr "Dämpfer-Effekt-Level"
+
+#: src/qml/ForceFeedbackPage.qml:24
+#, kde-format
+msgid ""
+"Gain applied to damper effects. Higher values may produce more clipping."
+msgstr ""
+"Stärke aller Dämpfer-Effekte. Höhere Werte können mehr Clipping verursachen."
+
+#: src/qml/ForceFeedbackPage.qml:25
+#, kde-format
+msgid "Friction effect gain"
+msgstr "Reibungs-Effekt-Level"
+
+#: src/qml/ForceFeedbackPage.qml:26
+#, kde-format
+msgid ""
+"Gain applied to friction effects. Higher values may produce more clipping."
+msgstr ""
+"Stärke aller Reibungs-Effekte. Höhere Werte können mehr Clipping "
+"verursachen. "
+
+#: src/qml/ForceFeedbackPage.qml:27
+#, kde-format
+msgid "Autocenter strength"
+msgstr "Zentrierungs-Stärke"
+
+#: src/qml/ForceFeedbackPage.qml:28
+#, kde-format
+msgid "Continuous autocenter force strength."
+msgstr "Stärke der automatischen Zentrierung."
+
+#. i18n: %1 is how far the wheel is turned from the centre, in turns with one decimal, like 1.2
+#: src/qml/InputPanel.qml:126
+#, kde-format
+msgid "%1 turns"
+msgstr "%1 Umdrehungen"
+
+#: src/qml/InputPanel.qml:137
+#, kde-format
+msgid "Clutch"
+msgstr "Kupplung"
+
+#: src/qml/InputPanel.qml:143
+#, kde-format
+msgid "Brakes"
+msgstr "Bremse"
+
+#: src/qml/InputPanel.qml:149
+#, kde-format
+msgid "Accel."
+msgstr "Gas"
+
+#: src/qml/InputPanel.qml:173 src/qml/SessionDialog.qml:142
+#: src/qml/SessionDialog.qml:147 src/qml/StatisticsPage.qml:153
+#, kde-format
+msgid "%1 km/h"
+msgstr "%1 km/h"
+
+#. i18n: %1 is the gear the truck is in: a number, R for reverse or N for neutral
+#: src/qml/InputPanel.qml:181
+#, kde-format
+msgid "Gear %1"
+msgstr "Gang %1"
+
+#: src/qml/InputPanel.qml:192
+#, kde-format
+msgid "Hat"
+msgstr "Cooliehat"
+
+#: src/qml/InputPanel.qml:222
+#, kde-format
+msgid "Buttons"
+msgstr "Knöpfe"
+
+#: src/qml/InputPanel.qml:235 src/qml/InputPanel.qml:339
+#, kde-format
+msgid "Button %1"
+msgstr "Knopf %1"
+
+#: src/qml/InputPanel.qml:257
+#, kde-format
+msgid "Name on the wheel, like X or Left paddle"
+msgstr "Name am Lenkrad, z. B. X oder Linkes Paddel"
+
+#: src/qml/InputPanel.qml:286
+#, kde-format
+msgid "What it does in this profile, like Horn"
+msgstr "Was er in diesem Profil macht, z. B. Hupe"
+
+#: src/qml/InputPanel.qml:358
+#, kde-format
+msgid "Show unused buttons"
+msgstr "Unbenutzte Knöpfe anzeigen"
+
+#: src/qml/InputPanel.qml:364
+#, kde-format
+msgid "A button without a name shows up as soon as you press it."
+msgstr "Ein Knopf ohne Namen erscheint, sobald du ihn drückst."
+
+#. i18n: %1 the city the job starts in, %2 the one it goes to
+#: src/qml/JobDialog.qml:23 src/qml/JobsPage.qml:377 src/qml/JobsPage.qml:432
+#, kde-format
+msgid "%1 → %2"
+msgstr "%1 → %2"
+
+#: src/qml/JobDialog.qml:30
+#, kde-format
+msgid "From:"
+msgstr "Von:"
+
+#. i18n: %1 the company, %2 the city
+#: src/qml/JobDialog.qml:32 src/qml/JobDialog.qml:37
+#, kde-format
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: src/qml/JobDialog.qml:36
+#, kde-format
+msgid "To:"
+msgstr "Nach:"
+
+#: src/qml/JobDialog.qml:42
+#, kde-format
+msgid "Passengers:"
+msgstr "Fahrgäste:"
+
+#. i18n: %1 the passengers over all stops, %2 the stops
+#: src/qml/JobDialog.qml:44
+#, kde-format
+msgid "%1 at %2 stops"
+msgstr "%1 an %2 Haltestellen"
+
+#: src/qml/JobDialog.qml:49
+#, kde-format
+msgid "Satisfaction:"
+msgstr "Zufriedenheit:"
+
+#: src/qml/JobDialog.qml:50 src/qml/JobDialog.qml:100
+#, kde-format
+msgid "%1 %"
+msgstr "%1 %"
+
+#: src/qml/JobDialog.qml:55
+#, kde-format
+msgid "Cargo:"
+msgstr "Fracht:"
+
+#. i18n: %1 the cargo, %2 its mass in tonnes
+#: src/qml/JobDialog.qml:58
+#, kde-format
+msgid "%1, %2 t"
+msgstr "%1, %2 t"
+
+#: src/qml/JobDialog.qml:63
+#, kde-format
+msgid "Finished:"
+msgstr "Beendet:"
+
+#: src/qml/JobDialog.qml:68
+#, kde-format
+msgid "Status:"
+msgstr "Status:"
+
+#: src/qml/JobDialog.qml:69
+#, kde-format
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+#: src/qml/JobDialog.qml:69
+#, kde-format
+msgid "Delivered"
+msgstr "Geliefert"
+
+#: src/qml/JobDialog.qml:73 src/qml/SessionDialog.qml:136
+#, kde-format
+msgid "Distance:"
+msgstr "Strecke:"
+
+#. i18n: %1 the kilometres driven, %2 the kilometres the job was planned for
+#: src/qml/JobDialog.qml:76
+#, kde-format
+msgid "%1 km (planned %2 km)"
+msgstr "%1 km (geplant %2 km)"
+
+#. i18n: %1 a distance in kilometres
+#: src/qml/JobDialog.qml:77 src/qml/JobsPage.qml:150
+#: src/qml/StatisticsPage.qml:54
+#, kde-format
+msgid "%1 km"
+msgstr "%1 km"
+
+#: src/qml/JobDialog.qml:81
+#, kde-format
+msgid "Penalty:"
+msgstr "Strafe:"
+
+#: src/qml/JobDialog.qml:81
+#, kde-format
+msgid "Revenue:"
+msgstr "Einnahmen:"
+
+#: src/qml/JobDialog.qml:87
+#, kde-format
+msgid "Fines:"
+msgstr "Bußgelder:"
+
+#: src/qml/JobDialog.qml:99
+#, kde-format
+msgid "Cargo damage:"
+msgstr "Frachtschaden:"
+
+#: src/qml/JobDialog.qml:105
+#, kde-format
+msgid "Time in the game:"
+msgstr "Zeit im Spiel:"
+
+#. i18n: in-game hours and minutes the job took
+#: src/qml/JobDialog.qml:107 src/qml/StatisticsPage.qml:41
+#, kde-format
+msgid "%1 h %2 min"
+msgstr "%1 h %2 min"
+
+#: src/qml/JobDialog.qml:112
+#, kde-format
+msgid "Job market:"
+msgstr "Auftragsmarkt:"
+
+#: src/qml/JobDialog.qml:118
+#, kde-format
+msgid "Bus:"
+msgstr "Bus:"
+
+#: src/qml/JobDialog.qml:118
+#, kde-format
+msgid "Truck:"
+msgstr "LKW:"
+
+#: src/qml/JobDialog.qml:124
+#, kde-format
+msgid "Notes:"
+msgstr "Hinweise:"
+
+#: src/qml/JobDialog.qml:125
+#, kde-format
+msgid "special transport"
+msgstr "Spezialtransport"
+
+#: src/qml/JobDialog.qml:126
+#, kde-format
+msgid "parked automatically"
+msgstr "automatisch geparkt"
+
+#: src/qml/JobDialog.qml:127
+#, kde-format
+msgid "loaded automatically"
+msgstr "automatisch beladen"
+
+#: src/qml/JobDialog.qml:131
+#, kde-format
+msgid "Recorded from:"
+msgstr "Erfasst aus:"
+
+#: src/qml/JobDialog.qml:132
+#, kde-format
+msgid "the save game"
+msgstr "dem Spielstand"
+
+#: src/qml/JobDialog.qml:132
+#, kde-format
+msgid "the telemetry"
+msgstr "der Telemetrie"
+
+#: src/qml/JobsPage.qml:25
+#, kde-format
+msgctxt "@item sort jobs by"
+msgid "Date"
+msgstr "Datum"
+
+#: src/qml/JobsPage.qml:26
+#, kde-format
+msgctxt "@item sort jobs by"
+msgid "Distance"
+msgstr "Strecke"
+
+#: src/qml/JobsPage.qml:27
+#, kde-format
+msgctxt "@item sort jobs by"
+msgid "Revenue"
+msgstr "Erlös"
+
+#: src/qml/JobsPage.qml:28
+#, kde-format
+msgctxt "@item sort jobs by"
+msgid "Experience"
+msgstr "Erfahrung"
+
+#: src/qml/JobsPage.qml:31
+#, kde-format
+msgctxt "@item sort routes by"
+msgid "Times driven"
+msgstr "Anzahl Fahrten"
+
+#: src/qml/JobsPage.qml:32
+#, kde-format
+msgctxt "@item sort routes by"
+msgid "Last driven"
+msgstr "Zuletzt gefahren"
+
+#: src/qml/JobsPage.qml:33
+#, kde-format
+msgctxt "@item sort routes by"
+msgid "Distance"
+msgstr "Strecke"
+
+#: src/qml/JobsPage.qml:34
+#, kde-format
+msgctxt "@item sort routes by"
+msgid "Revenue"
+msgstr "Erlös"
+
+#. i18n: %1 the in-game day, %2 the in-game time
+#: src/qml/JobsPage.qml:160
+#, kde-format
+msgid "Day %1, %2"
+msgstr "Tag %1, %2"
+
+#. i18n: a bus job; %1 the passengers over all its stops
+#: src/qml/JobsPage.qml:167
+#, kde-format
+msgid "Bus · %1 passenger"
+msgid_plural "Bus · %1 passengers"
+msgstr[0] "Bus · %1 Fahrgast"
+msgstr[1] "Bus · %1 Fahrgäste"
+
+#. i18n: the stops of a bus job
+#: src/qml/JobsPage.qml:169
+#, kde-format
+msgid "%1 stop"
+msgid_plural "%1 stops"
+msgstr[0] "%1 Haltestelle"
+msgstr[1] "%1 Haltestellen"
+
+#: src/qml/JobsPage.qml:173 src/qml/JobsPage.qml:248 src/qml/Main.qml:97
+#, kde-format
+msgid "Jobs"
+msgstr "Aufträge"
+
+#: src/qml/JobsPage.qml:177 src/qml/StatisticsPage.qml:61
+#: src/qml/WheelPage.qml:20
+#, kde-format
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: src/qml/JobsPage.qml:209
+#, kde-format
+msgid "City, company, cargo or vehicle…"
+msgstr "Stadt, Firma, Fracht oder Fahrzeug …"
+
+#: src/qml/JobsPage.qml:218
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "All vehicles"
+msgstr "Alle Fahrzeuge"
+
+#: src/qml/JobsPage.qml:219
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "Trucks"
+msgstr "LKW"
+
+#: src/qml/JobsPage.qml:220
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "Buses"
+msgstr "Busse"
+
+#: src/qml/JobsPage.qml:230
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "All time"
+msgstr "Gesamter Zeitraum"
+
+#: src/qml/JobsPage.qml:231
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "Today"
+msgstr "Heute"
+
+#: src/qml/JobsPage.qml:232
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "Last 7 days"
+msgstr "Letzte 7 Tage"
+
+#: src/qml/JobsPage.qml:233
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "Last 30 days"
+msgstr "Letzte 30 Tage"
+
+#: src/qml/JobsPage.qml:234
+#, kde-format
+msgctxt "@item filter jobs"
+msgid "This year"
+msgstr "Dieses Jahr"
+
+#: src/qml/JobsPage.qml:254
+#, kde-format
+msgid "Routes"
+msgstr "Routen"
+
+#: src/qml/JobsPage.qml:265
+#, kde-format
+msgid "Sort by:"
+msgstr "Sortieren nach:"
+
+#: src/qml/JobsPage.qml:288
+#, kde-format
+msgid "Ascending"
+msgstr "Aufsteigend"
+
+#: src/qml/JobsPage.qml:288
+#, kde-format
+msgid "Descending"
+msgstr "Absteigend"
+
+#. i18n: %1 the city the route starts in, %2 the one it goes to
+#: src/qml/JobsPage.qml:303
+#, kde-format
+msgid "Only the route %1 → %2"
+msgstr "Nur die Route %1 → %2"
+
+#: src/qml/JobsPage.qml:306
+#, kde-format
+msgid "All routes"
+msgstr "Alle Routen"
+
+#: src/qml/JobsPage.qml:317
+#, kde-format
+msgid ""
+"One job from the save game has no real date and only shows with “All time”."
+msgid_plural ""
+"%1 jobs from the save game have no real date and only show with “All time”."
+msgstr[0] ""
+"Ein Auftrag aus dem Spielstand hat kein echtes Datum und erscheint nur bei "
+"„Gesamter Zeitraum“."
+msgstr[1] ""
+"%1 Aufträge aus dem Spielstand haben kein echtes Datum und erscheinen nur "
+"bei „Gesamter Zeitraum“."
+
+#. i18n: %1 the number of delivered jobs, %2 the kilometres, %3 the money earned with its currency
+#: src/qml/JobsPage.qml:326
+#, kde-format
+msgid "%1 delivery · %2 · %3"
+msgid_plural "%1 deliveries · %2 · %3"
+msgstr[0] "%1 Lieferung · %2 · %3"
+msgstr[1] "%1 Lieferungen · %2 · %3"
+
+#: src/qml/JobsPage.qml:349
+#, kde-format
+msgid "No job matches the filter"
+msgstr "Kein Auftrag passt zum Filter"
+
+#: src/qml/JobsPage.qml:349
+#, kde-format
+msgid "No jobs recorded yet"
+msgstr "Noch keine Aufträge erfasst"
+
+#: src/qml/JobsPage.qml:351
+#, kde-format
+msgid ""
+"Jobs show up here when you deliver them with the telemetry plugin installed, "
+"or when you import them from the save game on the Career page."
+msgstr ""
+"Aufträge erscheinen hier, wenn du sie mit installiertem Telemetrie-Plugin "
+"auslieferst oder auf der Seite „Karriere“ aus dem Spielstand importierst."
+
+#. i18n: how often a route was driven; with "Bus" in front for a bus route
+#: src/qml/JobsPage.qml:440
+#, kde-format
+msgid "Bus"
+msgstr "Bus"
+
+#: src/qml/JobsPage.qml:441
+#, kde-format
+msgid "driven once"
+msgid_plural "driven %1 times"
+msgstr[0] "einmal gefahren"
+msgstr[1] "%1-mal gefahren"
+
+#: src/qml/Main.qml:42 src/qml/WheelPage.qml:17
+#, kde-format
+msgid "Controls"
+msgstr "Kontrollen"
+
+#: src/qml/Main.qml:56 src/qml/ToolsPage.qml:10 src/qml/ToolsPage.qml:13
+#, kde-format
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: src/qml/Main.qml:83
+#, kde-format
+msgctxt "@title the section of the pages about the games"
+msgid "Truck Simulator"
+msgstr "Truck Simulator"
+
+#: src/qml/Main.qml:89 src/qml/StatisticsPage.qml:57
+#, kde-format
+msgid "Statistics"
+msgstr "Statistik"
+
+#: src/qml/Main.qml:116 src/qml/SettingsPage.qml:16
+#, kde-format
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: src/qml/Main.qml:123
+#, kde-format
+msgid "About Wheelstar"
+msgstr "Über Wheelstar"
+
+#: src/qml/Main.qml:150
+#, kde-format
+msgid "Install permission rules"
+msgstr "Berechtigungsregeln installieren"
+
+#: src/qml/Main.qml:161
+#, kde-format
+msgid "The companion application is ready to start."
+msgstr "Die Begleitanwendung ist startbereit."
+
+#: src/qml/Main.qml:163
+#, kde-format
+msgid "Start Application"
+msgstr "Anwendung starten"
+
+#: src/qml/Main.qml:246
+#, kde-format
+msgid ""
+"You can fix it yourself by copying the files in %1 to the %2 directory and "
+"rebooting."
+msgstr "Zum Beheben bitte die Dateien aus %1 nach %2 kopieren und neu starten."
+
+#: src/qml/Main.qml:247
+#, kde-format
+msgid "Do you want us to make this change for you?"
+msgstr "Soll Oversteer diese Änderung vornehmen?"
+
+#: src/qml/ProfilesPage.qml:18
+#, kde-format
+msgid "New"
+msgstr "Neu"
+
+#: src/qml/ProfilesPage.qml:21 src/qml/WheelPage.qml:158
+#, kde-format
+msgid "New profile"
+msgstr "Neues Profil"
+
+#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:778
+#: src/ui/controller.cpp:782
+#, kde-format
+msgid "Import"
+msgstr "Importieren"
+
+#: src/qml/ProfilesPage.qml:59 src/qml/ProfilesPage.qml:61
+#, kde-format
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: src/qml/ProfilesPage.qml:68
+#, kde-format
+msgid "Export"
+msgstr "Exportieren"
+
+#: src/qml/ProfilesPage.qml:81
+#, kde-format
+msgid "Delete"
+msgstr "Löschen"
+
+#: src/qml/ProfilesPage.qml:98
+#, kde-format
+msgid "No profiles yet"
+msgstr "Noch keine Profile"
+
+#: src/qml/ProfilesPage.qml:132 src/qml/WheelPage.qml:176
+#, kde-format
+msgid "Profile name"
+msgstr "Profilname"
+
+#: src/qml/ProfilesPage.qml:142 src/qml/WheelPage.qml:186
+#, kde-format
+msgid "This profile already exists. Are you sure?"
+msgstr "Dieses Profil existiert bereit. Fortfahren?"
+
+#: src/qml/ProfilesPage.qml:153
+#, kde-format
+msgid "This profile will be deleted, are you sure?"
+msgstr "Dieses Profil wird gelöscht. Fortfahren?"
+
+#: src/qml/ProfilesPage.qml:162
+#, kde-format
+msgid "Choose profile file to import"
+msgstr "Zu importierende Profildatei wählen"
+
+#: src/qml/ProfilesPage.qml:163
+#, kde-format
+msgid "Profiles (*.toml *.ini)"
+msgstr "Profile (*.toml *.ini)"
+
+#: src/qml/ProfilesPage.qml:172
+#, kde-format
+msgid "Export profile to"
+msgstr "Profil exportieren nach"
+
+#: src/qml/ProfilesPage.qml:175
+#, kde-format
+msgid "Profiles (*.toml)"
+msgstr "Profile (*.toml)"
+
+#: src/qml/SessionDialog.qml:126
+#, kde-format
+msgid "Driving time:"
+msgstr "Fahrzeit:"
+
+#: src/qml/SessionDialog.qml:131
+#, kde-format
+msgid "Moving:"
+msgstr "In Bewegung:"
+
+#: src/qml/SessionDialog.qml:141
+#, kde-format
+msgid "Average speed:"
+msgstr "Durchschnittstempo:"
+
+#: src/qml/SessionDialog.qml:146
+#, kde-format
+msgid "Top speed:"
+msgstr "Höchsttempo:"
+
+#: src/qml/SessionDialog.qml:151
+#, kde-format
+msgid "Steering corrections:"
+msgstr "Lenkkorrekturen:"
+
+#: src/qml/SessionDialog.qml:152
+#, kde-format
+msgid "%1 (%2 per minute)"
+msgstr "%1 (%2 pro Minute)"
+
+#: src/qml/SessionDialog.qml:156
+#, kde-format
+msgid "Hard brakes:"
+msgstr "Harte Bremsungen:"
+
+#: src/qml/SessionDialog.qml:161
+#, kde-format
+msgid "Throttle released:"
+msgstr "Gas losgelassen:"
+
+#: src/qml/SessionDialog.qml:162 src/qml/SessionDialog.qml:167
+#: src/qml/SessionDialog.qml:172 src/qml/SessionDialog.qml:192
+#: src/qml/SessionDialog.qml:198 src/qml/SessionDialog.qml:204
+#, kde-format
+msgid "%1 % of the time moving"
+msgstr "%1 % der Zeit in Bewegung"
+
+#: src/qml/SessionDialog.qml:166
+#, kde-format
+msgid "Throttle floored:"
+msgstr "Vollgas:"
+
+#: src/qml/SessionDialog.qml:171
+#, kde-format
+msgid "Brake pressed:"
+msgstr "Bremse getreten:"
+
+#: src/qml/SessionDialog.qml:183
+#, kde-format
+msgid "Over the speed limit:"
+msgstr "Über dem Tempolimit:"
+
+#. i18n: %1 the share of the distance driven more than 5 km/h over the limit, %2 the largest excess
+#: src/qml/SessionDialog.qml:185
+#, kde-format
+msgid "%1 % of the distance, at most %2 km/h over"
+msgstr "%1 % der Strecke, höchstens %2 km/h darüber"
+
+#: src/qml/SessionDialog.qml:191
+#, kde-format
+msgid "Cruise control:"
+msgstr "Tempomat:"
+
+#: src/qml/SessionDialog.qml:197
+#, kde-format
+msgid "Retarder:"
+msgstr "Retarder:"
+
+#: src/qml/SessionDialog.qml:203
+#, kde-format
+msgid "Engine brake:"
+msgstr "Motorbremse:"
+
+#: src/qml/SessionDialog.qml:209
+#, kde-format
+msgid "Fuel:"
+msgstr "Kraftstoff:"
+
+#: src/qml/SessionDialog.qml:212
+#, kde-format
+msgid "%1 l"
+msgstr "%1 l"
+
+#. i18n: %1 litres burnt, %2 litres per 100 km of the game's distance
+#: src/qml/SessionDialog.qml:214
+#, kde-format
+msgid "%1 l (%2 l/100 km)"
+msgstr "%1 l (%2 l/100 km)"
+
+#: src/qml/SessionDialog.qml:220
+#, kde-format
+msgid "Damage:"
+msgstr "Schaden:"
+
+#. i18n: how much the truck's wear and the cargo's damage rose during the drive, in percent
+#: src/qml/SessionDialog.qml:222
+#, kde-format
+msgid "truck +%1 %, cargo +%2 %"
+msgstr "LKW +%1 %, Ladung +%2 %"
+
+#: src/qml/SessionDialog.qml:230
+#, kde-format
+msgid "Fines, tolls and crossings"
+msgstr "Bußgelder, Maut und Überfahrten"
+
+#: src/qml/SessionDialog.qml:264
+#, kde-format
+msgid "Steering position"
+msgstr "Lenkposition"
+
+#: src/qml/SessionDialog.qml:276
+#, kde-format
+msgid "Left"
+msgstr "Links"
+
+#: src/qml/SessionDialog.qml:285
+#, kde-format
+msgid "Right"
+msgstr "Rechts"
+
+#: src/qml/SessionDialog.qml:292
+#, kde-format
+msgid "Time in each gear"
+msgstr "Zeit pro Gang"
+
+#: src/qml/SettingsPage.qml:10
+#, kde-format
+msgid "Wheelstar preferences"
+msgstr "Wheelstar Einstellungen"
+
+#: src/qml/SettingsPage.qml:21
+#, kde-format
+msgid "Check permissions"
+msgstr "Berechtigungen prüfen"
+
+#: src/qml/SettingsPage.qml:22
+#, kde-format
+msgid ""
+"Check permissions to read/write device settings and propose changes to make "
+"them available to normal users."
+msgstr ""
+"Berechtigungen zum Lesen/Schreiben von Geräteeinstellungen prüfen und "
+"Anpassungen vorschlagen um dies normalen Nutzern zu ermöglichen."
+
+#: src/qml/SettingsPage.qml:30
+#, kde-format
+msgid "Language"
+msgstr "Sprache"
+
+#: src/qml/SettingsPage.qml:31
+#, kde-format
+msgid ""
+"Change the interface language. You'll need to restart the application to "
+"apply."
+msgstr ""
+"Sprache der Benutzeroberfläche ändern. Die Anwendung muss neu gestartet "
+"werden."
+
+#: src/qml/SettingsPage.qml:41
+#, kde-format
+msgid "Define buttons"
+msgstr "Knöpfe definieren"
+
+#: src/qml/SettingsPage.qml:46
+#, kde-format
+msgid ""
+"Pressing start will begin configuration of wheel buttons. Just press the "
+"button in the wheel that you want to use for every displayed action."
+msgstr ""
+"\"Start\" beginnt die Konfiguration der Lenkradknöpfe. Zur Zuweisung der "
+"gezeigten Aktion den gewünschten Knopf drücken."
+
+#: src/qml/SettingsPage.qml:50
+#, kde-format
+msgid "Start"
+msgstr "Start"
+
+#: src/qml/StatisticsPage.qml:38
+#, kde-format
+msgid "%1 min"
+msgstr "%1 min"
+
+#: src/qml/StatisticsPage.qml:87
+#, kde-format
+msgid "%1 drive · %2 · %3 km"
+msgid_plural "%1 drives · %2 · %3 km"
+msgstr[0] "%1 Fahrt · %2 · %3 km"
+msgstr[1] "%1 Fahrten · %2 · %3 km"
+
+#: src/qml/StatisticsPage.qml:96
+#, kde-format
+msgid "All games"
+msgstr "Alle Spiele"
+
+#: src/qml/StatisticsPage.qml:170
+#, kde-format
+msgid "No drives recorded yet"
+msgstr "Noch keine Fahrten aufgezeichnet"
+
+#: src/qml/StatisticsPage.qml:170
+#, kde-format
+msgid "The statistics cannot be read"
+msgstr "Die Statistik kann nicht gelesen werden"
+
+#: src/qml/StatisticsPage.qml:173
+#, kde-format
+msgid ""
+"Install the telemetry plugin for Euro Truck Simulator 2 or American Truck "
+"Simulator, then drive: every drive of 30 seconds or more shows up here."
+msgstr ""
+"Installiere das Telemetrie-Plugin für Euro Truck Simulator 2 oder American "
+"Truck Simulator und fahre los: Jede Fahrt ab 30 Sekunden erscheint hier."
+
+#: src/qml/TestsPage.qml:27
+#, kde-format
+msgid "Start new"
+msgstr "Neu starten"
+
+#: src/qml/TestsPage.qml:33
+#, kde-format
+msgid "Import CSV"
+msgstr "Importiere CSV"
+
+#: src/qml/TestsPage.qml:39
+#, kde-format
+msgid "Export CSV"
+msgstr "Exportiere CSV"
+
+#: src/qml/TestsPage.qml:48
+#, kde-format
+msgid "Open chart"
+msgstr "Diagramm öffnen"
+
+#: src/qml/TestsPage.qml:60
+#, kde-format
+msgid "No test data available. Please, import test data or start a new test."
+msgstr ""
+"Keine Testdaten vorhanden. Bitte Testdaten importieren oder einen neuen Test "
+"starten."
+
+#: src/qml/TestsPage.qml:65
+#, kde-format
+msgid ""
+"The lowest torque test measures the minimum force level that the wheel can "
+"deliver. Your help is required for this test."
+msgstr ""
+"Der Test des Minimalmoments misst die geringste Kraft, die das Lenkrad "
+"übermitteln kann. Benutzer-Eingriff ist für diesen Test erforderlich."
+
+#: src/qml/TestsPage.qml:70
+#, kde-format
+msgid ""
+"For the duration of this test you have to hold your steering wheel firmly in "
+"your hands and move it slowly around its middle position. When you notice a "
+"slight resistance or pulsation press any button in the wheel."
+msgstr ""
+"Für die Dauer dieses Tests das Lenkrad fest greifen und langsam um die "
+"Mittellage herum bewegen. Sobald ein leichter Widerstand oder ein Pulsieren "
+"bemerkbar ist einen beliebigen Knopf am Lenkrad drücken."
+
+#: src/qml/TestsPage.qml:75
+#, kde-format
+msgid "Press any wheel button when ready to start the test."
+msgstr "Beliebigen Knopf am Lenkrad drücken um Test zu starten."
+
+#: src/qml/TestsPage.qml:81
+#, kde-format
+msgid "Now running the test."
+msgstr "Test läuft."
+
+#: src/qml/TestsPage.qml:87
+#, kde-format
+msgid "The linearity test measures the linear force response."
+msgstr "Der Linearitätstest misst, wie linear das Ansprechverhalten ist."
+
+#: src/qml/TestsPage.qml:92
+#, kde-format
+msgid ""
+"The step test measures several performance parameters at the highest force "
+"levels."
+msgstr ""
+"Der Schritt-Test misst einige Leistungsparameter bei höchsten "
+"Krafteinstellungen."
+
+#: src/qml/TestsPage.qml:97
+#, kde-format
+msgid "The test is running, please, don't touch the wheel and wait."
+msgstr "Test läuft. Bitte Lenkrad nicht berühren und warten."
+
+#: src/qml/TestsPage.qml:111
+#, kde-format
+msgid ""
+"WARNING: Don't touch the wheel and leave a clear space around it to avoid "
+"accidents or unreliable results."
+msgstr ""
+"WARNUNG: Lenkrad nicht berühren und Bereich um das Lenkrad freihalten um "
+"Unfälle oder verfälschte Ergebnisse zu vermeiden."
+
+#: src/qml/TestsPage.qml:120
+#, kde-format
+msgid "Back"
+msgstr "Zurück"
+
+#: src/qml/TestsPage.qml:126
+#, kde-format
+msgid "Run"
+msgstr "Starten"
+
+#: src/qml/TestsPage.qml:135
+#, kde-format
+msgid "Results"
+msgstr "Ergebnisse"
+
+#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2243
+#, kde-format
+msgid "CSV file to import"
+msgstr "CSV-Datei zum Import"
+
+#: src/qml/TestsPage.qml:172 src/qml/TestsPage.qml:182
+#, kde-format
+msgid "CSV files (*.csv)"
+msgstr "CSV-Dateien (*.csv)"
+
+#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2262
+#, kde-format
+msgid "CSV file to export"
+msgstr "CSV-Datei zum Export"
+
+#: src/qml/ToolsPage.qml:18
+#, kde-format
+msgid "Center wheel"
+msgstr "Lenkrad zentrieren"
+
+#: src/qml/ToolsPage.qml:19
+#, kde-format
+msgid ""
+"Center the wheel immediately after this option is enabled. Works also when "
+"setting it from a profile."
+msgstr ""
+"Lenkrad wird sofort zentriert, nachdem diese Option aktiviert "
+"wird.Funktioniert auch, wenn aus einem Profil ausgewählt."
+
+#: src/qml/ToolsPage.qml:28
+#, kde-format
+msgid "Start application manually"
+msgstr "App manuell starten"
+
+#: src/qml/ToolsPage.qml:29
+#, kde-format
+msgid "Start the companion application manually from the GUI."
+msgstr "Die Begleit-App manuell über die grafische Oberfläche starten."
+
+#: src/qml/ToolsPage.qml:38
+#, kde-format
+msgid "Enable wheel buttons"
+msgstr "Aktiviere Lenkrad-Knöpfe"
+
+#: src/qml/ToolsPage.qml:39
+#, kde-format
+msgid ""
+"Use wheel buttons to control some wheel settings. The buttons must be "
+"defined in the preferences window."
+msgstr ""
+"Lenkradeinstellungen über Lenkrad-Knöpfe steuern. Die Knöpfe müssen in den "
+"Einstellungen definiert werden."
+
+#: src/qml/ToolsPage.qml:47
+#, kde-format
+msgid "Wheel range display"
+msgstr "Rotationsbereichsanzeige"
+
+#: src/qml/ToolsPage.qml:52
+#, kde-format
+msgid ""
+"Enable wheel range settings in the window overlay. When set to auto, it will "
+"be displayed only when being set using the wheel buttons."
+msgstr ""
+"Aktiviere Anzeige des Rotationsbereichs im Overlay. \"Auto\" aktiviert die "
+"Anzeige nur, wenn die Einstellung über Knöpfe vorgenommen wird."
+
+#: src/qml/ToolsPage.qml:57
+#, kde-format
+msgid "Never"
+msgstr "Nie"
+
+#: src/qml/ToolsPage.qml:58
+#, kde-format
+msgid "Always"
+msgstr "Immer"
+
+#: src/qml/ToolsPage.qml:59
+#, kde-format
+msgid "Auto"
+msgstr "Auto"
+
+#: src/qml/ToolsPage.qml:74
+#, kde-format
+msgid "FFBmeter"
+msgstr "FFBmeter"
+
+#: src/qml/ToolsPage.qml:79
+#, kde-format
+msgid "Enable FFBmeter using the leds in the wheel or the window overlay."
+msgstr ""
+"FFBmeter als Anzeige über die LEDs im Lenkrad oder über Overlay aktivieren."
+
+#: src/qml/ToolsPage.qml:83
+#, kde-format
+msgid "Leds"
+msgstr "LEDs"
+
+#: src/qml/ToolsPage.qml:90
+#, kde-format
+msgid "Overlay"
+msgstr "Overlay"
+
+#: src/qml/WheelPage.qml:21
+#, kde-format
+msgid "Re-scan wheel devices and update window."
+msgstr "Lenkräder neu scannen und Fenster updaten."
+
+#: src/qml/WheelPage.qml:27 src/qml/WheelPage.qml:35
+#, kde-format
+msgid "Device"
+msgstr "Gerät"
+
+#: src/qml/WheelPage.qml:36
+#, kde-format
+msgid "Select the wheel controller you want to configure."
+msgstr "Wähle Lenkrad zum Konfigurieren."
+
+#: src/qml/WheelPage.qml:50
+#, kde-format
+msgid "Profile"
+msgstr "Profil"
+
+#: src/qml/WheelPage.qml:51
+#, kde-format
+msgid "Select a profile to load the saved settings."
+msgstr "Wähle Profil um gespeicherte Einstellungen zu laden."
+
+#: src/qml/WheelPage.qml:54 src/qml/WheelPage.qml:128
+#, kde-format
+msgid "None"
+msgstr "Keine"
+
+#: src/qml/WheelPage.qml:62
+#, kde-format
+msgid "Save profile"
+msgstr "Profil speichern"
+
+#: src/qml/WheelPage.qml:71
+#, kde-format
+msgid "New profile…"
+msgstr "Neues Profil …"
+
+#: src/qml/WheelPage.qml:79
+#, kde-format
+msgid "Wheel"
+msgstr "Lenkrad"
+
+#: src/qml/WheelPage.qml:89
+#, kde-format
+msgid "Compatibility mode"
+msgstr "Kompatibilitätsmodus"
+
+#: src/qml/WheelPage.qml:90
+#, kde-format
+msgid "Select an emulation mode from the ones supported."
+msgstr "Wähle einen Emulationsmodus aus den unterstützten Modi aus."
+
+#: src/qml/WheelPage.qml:99
+#, kde-format
+msgid "Apply"
+msgstr "Anwenden"
+
+#: src/qml/WheelPage.qml:100
+#, kde-format
+msgid "Apply changes (the wheel may move when changing the emulation mode)."
+msgstr ""
+"Änderungen annehmen (das Lenkrad bewegt sich eventuell bei Änderung des "
+"Emulationsmodus)."
+
+#: src/qml/WheelPage.qml:110
+#, kde-format
+msgid "Rotation range"
+msgstr "Rotationsbereich"
+
+#: src/qml/WheelPage.qml:111
+#, kde-format
+msgid ""
+"Range in degrees that the wheel will be able to rotate both ways. It will "
+"affect the sensitivity."
+msgstr ""
+"Winkel, um den sich das Lenkrad in beide Richtungen drehen kann. Das hat "
+"Auswirkung auf die Empfindlichkeit."
+
+#: src/qml/WheelPage.qml:124
+#, kde-format
+msgid "Combine pedals"
+msgstr "Pedale kombinieren"
+
+#: src/qml/WheelPage.qml:124
+#, kde-format
+msgid ""
+"Combine two pedals into one axe. Useful for old games and flight simulators."
+msgstr ""
+"Zwei Pedale in eine Achse kombinieren. Nützlich für ältere Spiele oder "
+"Flugsimulatoren."
+
+#: src/qml/WheelPage.qml:128
+#, kde-format
+msgid "Accelerator + Brakes"
+msgstr "Gaspedal + Bremse"
+
+#: src/qml/WheelPage.qml:128
+#, kde-format
+msgid "Accelerator + Clutch"
+msgstr "Gaspedal + Kupplung"
+
+#: src/qml/WheelPage.qml:143
+#, kde-format
+msgid "Inputs"
+msgstr "Eingaben"
+
+#: src/savegame/savegamefile.cpp:282
+#, kde-format
+msgid ""
+"The save game has a value of a kind this program does not know (0x%1, "
+"\"%2\")."
+msgstr ""
+"Der Spielstand enthält einen Wert einer Art, die dieses Programm nicht kennt "
+"(0x%1, „%2“)."
+
+#: src/savegame/savegamefile.cpp:363
+#, kde-format
+msgid "The save game is cut short."
+msgstr "Der Spielstand ist unvollständig."
+
+#: src/savegame/savegamefile.cpp:384
+#, kde-format
+msgid "The save game cannot be decrypted."
+msgstr "Der Spielstand kann nicht entschlüsselt werden."
+
+#: src/savegame/savegamefile.cpp:398
+#, kde-format
+msgid "The save game cannot be unpacked."
+msgstr "Der Spielstand kann nicht entpackt werden."
+
+#: src/savegame/savegamefile.cpp:410
+#, kde-format
+msgid "The save game is not in the binary format."
+msgstr "Der Spielstand ist nicht im Binärformat."
+
+#: src/savegame/savegamefile.cpp:467
+#, kde-format
+msgid "The save game refers to a structure it never defined."
+msgstr "Der Spielstand verweist auf eine Struktur, die er nirgends definiert."
+
+#: src/savegame/savegamefile.cpp:491
+#, kde-format
+msgid "The save game ends in the middle of a value."
+msgstr "Der Spielstand endet mitten in einem Wert."
+
+#: src/savegame/savegamefile.cpp:501
+#, kde-format
+msgid "The save game is not in the text format."
+msgstr "Der Spielstand ist nicht im Textformat."
+
+#: src/savegame/savegamefile.cpp:599
+#, kde-format
+msgid ""
+"This is not a save game of Euro Truck Simulator 2 or American Truck "
+"Simulator."
+msgstr ""
+"Das ist kein Spielstand von Euro Truck Simulator 2 oder American Truck "
+"Simulator."
+
+#: src/settings/buttonnames.cpp:52
+#, kde-format
+msgid "\"%1\" cannot be read: %2"
+msgstr "„%1“ kann nicht gelesen werden: %2"
+
+#: src/settings/wheelsettings.cpp:71
+#, kde-format
+msgid "\"%1\" is not a valid profile: %2"
+msgstr "„%1“ ist kein gültiges Profil: %2"
+
+#: src/ui/controller.cpp:98
+#, kde-format
+msgid "Unknown game"
+msgstr "Unbekanntes Spiel"
+
+#: src/ui/controller.cpp:136
+#, kde-format
+msgctxt "@item offence"
+msgid "Crash"
+msgstr "Unfall"
+
+#: src/ui/controller.cpp:137
+#, kde-format
+msgctxt "@item offence"
+msgid "No rest when tired"
+msgstr "Keine Pause trotz Müdigkeit"
+
+#: src/ui/controller.cpp:138
+#, kde-format
+msgctxt "@item offence"
+msgid "Wrong way"
+msgstr "Falschfahrt"
+
+#: src/ui/controller.cpp:139
+#, kde-format
+msgctxt "@item offence"
+msgid "Speed camera"
+msgstr "Blitzer"
+
+#: src/ui/controller.cpp:140
+#, kde-format
+msgctxt "@item offence"
+msgid "No lights"
+msgstr "Ohne Licht"
+
+#: src/ui/controller.cpp:141
+#, kde-format
+msgctxt "@item offence"
+msgid "Red light"
+msgstr "Rotlicht"
+
+#: src/ui/controller.cpp:142
+#, kde-format
+msgctxt "@item offence"
+msgid "Speeding"
+msgstr "Zu schnell"
+
+#: src/ui/controller.cpp:143
+#, kde-format
+msgctxt "@item offence"
+msgid "Avoided the weigh station"
+msgstr "Waage umfahren"
+
+#: src/ui/controller.cpp:144
+#, kde-format
+msgctxt "@item offence"
+msgid "Illegal trailer"
+msgstr "Unzulässiger Anhänger"
+
+#: src/ui/controller.cpp:145
+#, kde-format
+msgctxt "@item offence"
+msgid "Avoided an inspection"
+msgstr "Kontrolle umfahren"
+
+#: src/ui/controller.cpp:146
+#, kde-format
+msgctxt "@item offence"
+msgid "Illegal border crossing"
+msgstr "Unerlaubter Grenzübertritt"
+
+#: src/ui/controller.cpp:147
+#, kde-format
+msgctxt "@item offence"
+msgid "Driving on the hard shoulder"
+msgstr "Fahren auf dem Standstreifen"
+
+#: src/ui/controller.cpp:148
+#, kde-format
+msgctxt "@item offence"
+msgid "Driving a damaged vehicle"
+msgstr "Fahren mit beschädigtem Fahrzeug"
+
+#: src/ui/controller.cpp:149
+#, kde-format
+msgctxt "@item offence"
+msgid "Other offence"
+msgstr "Sonstiger Verstoß"
+
+#: src/ui/controller.cpp:161 src/ui/controller.cpp:162
+#, kde-format
+msgctxt "@item job market"
+msgid "Quick job"
+msgstr "Schnellauftrag"
+
+#: src/ui/controller.cpp:163 src/ui/controller.cpp:164
+#, kde-format
+msgctxt "@item job market"
+msgid "Freight market"
+msgstr "Frachtmarkt"
+
+#: src/ui/controller.cpp:165 src/ui/controller.cpp:166
+#, kde-format
+msgctxt "@item job market"
+msgid "Cargo market"
+msgstr "Ladungsmarkt"
+
+#: src/ui/controller.cpp:167 src/ui/controller.cpp:168
+#, kde-format
+msgctxt "@item job market"
+msgid "External contract"
+msgstr "Externer Auftrag"
+
+#: src/ui/controller.cpp:169
+#, kde-format
+msgctxt "@item job market"
+msgid "Special transport"
+msgstr "Spezialtransport"
+
+#: src/ui/controller.cpp:170
+#, kde-format
+msgctxt "@item job market"
+msgid "Company job"
+msgstr "Firmenauftrag"
+
+#. i18n: %1 is the offence, "Red light"
+#: src/ui/controller.cpp:262
+#, kde-format
+msgid "Fine: %1"
+msgstr "Bußgeld: %1"
+
+#: src/ui/controller.cpp:265
+#, kde-format
+msgid "Toll"
+msgstr "Maut"
+
+#. i18n: %1 and %2 are the ports
+#: src/ui/controller.cpp:269
+#, kde-format
+msgid "Ferry %1 → %2"
+msgstr "Fähre %1 → %2"
+
+#. i18n: %1 and %2 are the stations
+#: src/ui/controller.cpp:273
+#, kde-format
+msgid "Train %1 → %2"
+msgstr "Zug %1 → %2"
+
+#: src/ui/controller.cpp:376
+#, kde-format
+msgid "Press button to set 270°"
+msgstr "Knopf um 270° einzustellen"
+
+#: src/ui/controller.cpp:376
+#, kde-format
+msgid "Press button to set 360°"
+msgstr "Knopf um 360° einzustellen"
+
+#: src/ui/controller.cpp:376
+#, kde-format
+msgid "Press toggle button/s"
+msgstr "Umschalt-Knopf drücken"
+
+#: src/ui/controller.cpp:377
+#, kde-format
+msgid "Press button for +10°"
+msgstr "Knopf für +10°"
+
+#: src/ui/controller.cpp:377
+#, kde-format
+msgid "Press button to set 540°"
+msgstr "Knopf um 540° einzustellen"
+
+#: src/ui/controller.cpp:377
+#, kde-format
+msgid "Press button to set 900°"
+msgstr "Knopf um 900° einzustellen"
+
+#: src/ui/controller.cpp:378
+#, kde-format
+msgid "Press button for +90°"
+msgstr "Knopf für +90°"
+
+#: src/ui/controller.cpp:378
+#, kde-format
+msgid "Press button for -10°"
+msgstr "Knopf für -10°"
+
+#: src/ui/controller.cpp:378
+#, kde-format
+msgid "Press button for -90°"
+msgstr "Knopf für -90°"
+
+#: src/ui/controller.cpp:647
+#, kde-format
+msgid ""
+"No save game of Euro Truck Simulator 2 or American Truck Simulator was found."
+msgstr ""
+"Es wurde kein Spielstand von Euro Truck Simulator 2 oder American Truck "
+"Simulator gefunden."
+
+#: src/ui/controller.cpp:778
+#, kde-format
+msgid "The jobs could not be written to the database."
+msgstr "Die Aufträge konnten nicht in die Datenbank geschrieben werden."
+
+#: src/ui/controller.cpp:782
+#, kde-format
+msgid "One job imported."
+msgid_plural "%1 jobs imported."
+msgstr[0] "Ein Auftrag importiert."
+msgstr[1] "%1 Aufträge importiert."
+
+#: src/ui/controller.cpp:1057
+#, kde-format
+msgid "Error saving button names"
+msgstr "Fehler beim Speichern der Knopfnamen"
+
+#: src/ui/controller.cpp:1115
+#, kde-format
+msgid "Wheel connected"
+msgstr "Lenkrad verbunden"
+
+#: src/ui/controller.cpp:1123
+#, kde-format
+msgid "Wheel disconnected"
+msgstr "Lenkrad getrennt"
+
+#: src/ui/controller.cpp:1438
+#, kde-format
+msgid "Error opening profile"
+msgstr "Fehler beim Öffnen des Profils"
+
+#: src/ui/controller.cpp:1438
+#, kde-format
+msgid "The selected profile can't be loaded."
+msgstr "Das ausgewählte Profil kann nicht geladen werden."
+
+#: src/ui/controller.cpp:1461 src/ui/controller.cpp:1481
+#, kde-format
+msgid "Error creating profile"
+msgstr "Fehler beim Anlegen des Profils"
+
+#: src/ui/controller.cpp:1481 src/ui/controller.cpp:1499
+#, kde-format
+msgid "\"%1\" cannot be used as a profile name."
+msgstr "„%1“ kann nicht als Profilname verwendet werden."
+
+#: src/ui/controller.cpp:1499
+#, kde-format
+msgid "Error renaming profile"
+msgstr "Fehler beim Umbenennen des Profils"
+
+#: src/ui/controller.cpp:1519
+#, kde-format
+msgid "Error deleting profile"
+msgstr "Fehler beim Löschen des Profils"
+
+#: src/ui/controller.cpp:1542 src/ui/controller.cpp:1548
+#: src/ui/controller.cpp:1558
+#, kde-format
+msgid "Error importing profile"
+msgstr "Fehler beim Importieren des Profils"
+
+#: src/ui/controller.cpp:1542
+#, kde-format
+msgid "Invalid extension."
+msgstr "Ungültige Dateiendung."
+
+#: src/ui/controller.cpp:1548
+#, kde-format
+msgid "A profile with that name already exists."
+msgstr "Ein Profil mit diesem Namen existiert bereits."
+
+#: src/ui/controller.cpp:1574
+#, kde-format
+msgid "Error exporting profile"
+msgstr "Fehler beim Exportieren des Profils"
+
+#: src/ui/controller.cpp:1860
+#, kde-format
+msgid "System default"
+msgstr "Systemstandard"
+
+#: src/ui/controller.cpp:1861
+#, kde-format
+msgid "English"
+msgstr "Englisch"
+
+#: src/ui/controller.cpp:1862
+#, kde-format
+msgid "Galician"
+msgstr "Galizisch"
+
+#: src/ui/controller.cpp:1863
+#, kde-format
+msgid "Russian"
+msgstr "Russisch"
+
+#: src/ui/controller.cpp:1864
+#, kde-format
+msgid "Spanish"
+msgstr "Spanisch"
+
+#: src/ui/controller.cpp:1865
+#, kde-format
+msgid "Valencian"
+msgstr "Valiencianisch"
+
+#: src/ui/controller.cpp:1866
+#, kde-format
+msgid "Finnish"
+msgstr "Finnisch"
+
+#: src/ui/controller.cpp:1867
+#, kde-format
+msgid "Turkish"
+msgstr "Türkisch"
+
+#: src/ui/controller.cpp:1868
+#, kde-format
+msgid "German"
+msgstr "Deutsch"
+
+#: src/ui/controller.cpp:1869
+#, kde-format
+msgid "Polish"
+msgstr "Polnisch"
+
+#: src/ui/controller.cpp:1870
+#, kde-format
+msgid "Hungarian"
+msgstr "Ungarisch"
+
+#: src/ui/controller.cpp:1926
+#, kde-format
+msgid "Permissions rules installed."
+msgstr "Berechtigungs-Regeln installiert."
+
+#: src/ui/controller.cpp:1927
+#, kde-format
+msgid "In some cases, a system restart might be needed."
+msgstr "In manchen Fällen kann ein Neustart nötig sein."
+
+#: src/ui/controller.cpp:1933
+#, kde-format
+msgid ""
+"Error installing permissions rules. Please, try again and make sure you use "
+"the right password for the administrator user."
+msgstr ""
+"Fehler beim Installieren der Berechtigungs-Regeln. Bitte erneut versuchen."
+
+#: src/ui/controller.cpp:2027
+#, kde-format
+msgid "Command error"
+msgstr "Befehlsfehler"
+
+#: src/ui/controller.cpp:2183 src/ui/controller.cpp:2211
+#, kde-format
+msgid "Steering wheel not responding."
+msgstr "Lenkrad reagiert nicht."
+
+#: src/ui/controller.cpp:2250
+#, kde-format
+msgid "New test data imported from CSV file."
+msgstr "Neue Test-Daten aus CSV-Datei importiert."
+
+#: src/ui/controller.cpp:2250
+#, kde-format
+msgid "Test data imported."
+msgstr "Test-Daten importiert"
+
+#: src/ui/controller.cpp:2266
+#, kde-format
+msgid "Current test data has been exported to a CSV file."
+msgstr "Die aktuellen Test-Daten wurden in eine CSV-Datei exportiert."
+
+#: src/ui/controller.cpp:2266
+#, kde-format
+msgid "Test data exported."
+msgstr "Test-Daten exportiert."
+
+#: src/ui/controller.cpp:2287 src/ui/controller.cpp:2292
+#: src/ui/controller.cpp:2302
+#, kde-format
+msgid "Input force"
+msgstr "Eingabekraft"
+
+#: src/ui/controller.cpp:2288
+#, kde-format
+msgid "Output force"
+msgstr "Ausgabekraft"
+
+#: src/ui/controller.cpp:2293
+#, kde-format
+msgid "Angular displacement (raw)"
+msgstr "Winkelabweichung (roh)"
+
+#: src/ui/controller.cpp:2296
+#, kde-format
+msgid "Angular displacement (smoothed)"
+msgstr "Winkelabweichung (geglättet)"
+
+#: src/ui/controller.cpp:2297
+#, kde-format
+msgid "Angular velocity (raw)"
+msgstr "Winkelgeschwindigkeit (roh)"
+
+#: src/ui/controller.cpp:2300
+#, kde-format
+msgid "Angular velocity (smoothed)"
+msgstr "Winkelgeschwindigkeit (geglättet)"
+
+#: src/ui/controller.cpp:2305
+#, kde-format
+msgid "Angular acceleration (raw)"
+msgstr "Winkelbeschleunigung (roh)"
+
+#: src/ui/controller.cpp:2308
+#, kde-format
+msgid "Angular acceleration (smoothed)"
+msgstr "Winkelbeschleunigung (geglättet)"

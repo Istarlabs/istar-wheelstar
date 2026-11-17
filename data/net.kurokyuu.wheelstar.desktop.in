@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Wheelstar
+GenericName=Steering Wheel Manager
+GenericName[de]=Lenkradverwaltung
+Comment=Configure racing wheels: rotation range, force feedback, profiles (a port of Oversteer)
+Comment[de]=Lenkräder einstellen: Drehbereich, Force Feedback, Profile (eine Portierung von Oversteer)
+Exec=@KDE_INSTALL_FULL_BINDIR@/istar-wheelstar
+Icon=net.kurokyuu.wheelstar
+Terminal=false
+StartupNotify=true
+StartupWMClass=istar-wheelstar
+Categories=Qt;KDE;Game;Utility;
+Keywords=game;racing;cars;wheels;force feedback;

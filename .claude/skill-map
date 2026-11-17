@@ -1,0 +1,4 @@
+# Which skill covers which files, for the doorbell hook (load-the-skill.sh in the devscripts checkout).
+# "<glob> <skill>" matches the file's path, first match wins; "~<regex> <skill>" matches what is being written.
+*/po/* i18n
+~i18n[cp]?\( i18n

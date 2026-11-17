@@ -1,0 +1,9 @@
+build/
+build-plugin/
+.commit-msg
+/.idea
+/.cache
+graphify-out/
+cmake-build-*/
+.claude/settings.local.json
+/Data/

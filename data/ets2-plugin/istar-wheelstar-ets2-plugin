@@ -1,0 +1,145 @@
+#!/bin/bash
+# SPDX-FileCopyrightText: 2026 Pascal Klose
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Puts the Wheelstar telemetry plugin into Euro Truck Simulator 2 and American Truck Simulator.
+#
+#   istar-wheelstar-ets2-plugin link      copy the plugin into every copy of the games in your Steam libraries
+#   istar-wheelstar-ets2-plugin unlink    take those copies out again
+#   istar-wheelstar-ets2-plugin status    what each copy of the games has
+#   ... --all-users                    as root: the same for every user, each with their own rights
+#
+# The games load plugins from <game>/bin/win_x64/plugins/ (the Windows build, which Steam runs through Proton).
+# A copy, not a link: Proton runs inside the Steam Linux Runtime container, whose /usr is the runtime's own, so a
+# link to the package's /usr/share/... points nowhere for the game. The package runs `link` on every install and
+# upgrade, which keeps the copies current; a game installed later needs `link` once more. A marker file beside
+# the copy says it is the package's: a file of the same name without it (a build copied there by plugin.py) is
+# left alone.
+
+set -uo pipefail
+
+DLL=${WHEELSTAR_PLUGIN_DLL:-/usr/share/istar-wheelstar-ets2-plugin/wheelstar_telemetry.dll}
+NAME=wheelstar_telemetry.dll
+MARKER=.wheelstar_telemetry.package
+GAMES=("Euro Truck Simulator 2" "American Truck Simulator")
+
+usage() {
+    sed -n '7,10p' "$0" | cut -c3-
+    exit 2
+}
+
+# The Steam libraries of $HOME: the Steam folders themselves and what their libraryfolders.vdf lists, each once.
+libraries() {
+    local root vdf path
+    declare -A seen=()
+    for root in "$HOME/.local/share/Steam" "$HOME/.steam/steam" "$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam"; do
+        [[ -d $root/steamapps ]] || continue
+        vdf=$root/steamapps/libraryfolders.vdf
+        {
+            echo "$root"
+            [[ -f $vdf ]] && grep -oE '"path"[[:space:]]+"[^"]+"' "$vdf" | sed -E 's/.*"([^"]+)"$/\1/'
+        } | while read -r path; do
+            realpath -e "$path" 2>/dev/null
+        done
+    done | while read -r path; do
+        [[ -n ${seen[$path]:-} ]] && continue
+        seen[$path]=1
+        echo "$path"
+    done
+}
+
+# Every bin/win_x64 folder of the games in those libraries.
+game_folders() {
+    local library game
+    while read -r library; do
+        for game in "${GAMES[@]}"; do
+            [[ -d "$library/steamapps/common/$game/bin/win_x64" ]] && echo "$library/steamapps/common/$game/bin/win_x64"
+        done
+    done < <(libraries)
+}
+
+# Whether the plugin in this plugins folder is the package's: a copy with the marker, or a link from before.
+ours() {
+    [[ -L $1/$NAME || -e $1/$MARKER ]]
+}
+
+link() {
+    local folder plugins found=0
+    [[ -f $DLL ]] || { echo "istar-wheelstar-ets2-plugin: $DLL is missing" >&2; return 1; }
+    while read -r folder; do
+        found=1
+        plugins=$folder/plugins
+        if [[ -e $plugins/$NAME ]] && ! ours "$plugins"; then
+            echo "kept     $plugins/$NAME: a copy is there, not the package's; delete it to use the package"
+            continue
+        fi
+        mkdir -p "$plugins" \
+            && cp --remove-destination "$DLL" "$plugins/$NAME" \
+            && touch "$plugins/$MARKER" \
+            && echo "copied   $plugins/$NAME"
+    done < <(game_folders)
+    (( found )) || echo "no Euro Truck Simulator 2 or American Truck Simulator in the Steam libraries of $HOME"
+}
+
+unlink_plugin() {
+    local folder plugins
+    while read -r folder; do
+        plugins=$folder/plugins
+        if ours "$plugins"; then
+            rm -f "$plugins/$NAME" "$plugins/$MARKER" && echo "removed  $plugins/$NAME"
+            rmdir "$plugins" 2>/dev/null  # only when nothing else is in it
+        fi
+    done < <(game_folders)
+}
+
+status() {
+    local folder target found=0
+    while read -r folder; do
+        found=1
+        target=$folder/plugins/$NAME
+        if [[ -L $target ]]; then
+            echo "old link $target: the game cannot follow it inside Proton's container; run link"
+        elif [[ -e $target && -e $folder/plugins/$MARKER ]]; then
+            if cmp -s "$DLL" "$target"; then
+                echo "copied   $target"
+            else
+                echo "outdated $target: differs from $DLL; run link"
+            fi
+        elif [[ -e $target ]]; then
+            echo "copy     $target (not the package's)"
+        else
+            echo "none     ${folder%/bin/win_x64}"
+        fi
+    done < <(game_folders)
+    (( found )) || echo "no Euro Truck Simulator 2 or American Truck Simulator in the Steam libraries of $HOME"
+}
+
+# As root, for every user with a home: the paths come from files the users own, so the work is done with their
+# rights, never root's.
+all_users() {
+    local action=$1 name uid home
+    if (( EUID != 0 )); then
+        echo "istar-wheelstar-ets2-plugin: --all-users needs root" >&2
+        return 1
+    fi
+    while IFS=: read -r name _ uid _ _ home _; do
+        (( uid >= 1000 && uid < 60000 )) || continue
+        [[ -d $home ]] || continue
+        runuser -u "$name" -- env HOME="$home" WHEELSTAR_PLUGIN_DLL="$DLL" "$(realpath "$0")" "$action"
+    done < <(getent passwd)
+}
+
+[[ $# -ge 1 ]] || usage
+action=$1
+case ${2:-} in
+    --all-users) all_users "$action"; exit $? ;;
+    "") ;;
+    *) usage ;;
+esac
+
+case $action in
+    link) link ;;
+    unlink) unlink_plugin ;;
+    status) status ;;
+    *) usage ;;
+esac
