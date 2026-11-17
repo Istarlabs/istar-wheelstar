@@ -4,6 +4,8 @@ A steering wheel manager for Linux with a KDE look: a C++26 / Qt 6 / Kirigami po
 [Oversteer](https://github.com/berarma/oversteer) by Bernat Arlandis. Oversteer is the original and is still
 maintained.
 
+![The wheel page: device, profile, emulation mode, rotation range and the live inputs](docs/images/controls.png)
+
 ## Why a port
 
 Oversteer is a Python/GTK program. Wheelstar was written to fit into a KDE Plasma desktop - Kirigami, Plasma
@@ -44,6 +46,44 @@ New in the port:
   *Driving statistics* below)
 - the jobs and the career from the games' save games, with the names of cities, companies and cargoes in the
   application's language, read from the game's own archives (see *Sources* below)
+
+## Screenshots
+
+The screenshots show the German interface; the application follows the desktop's language or the one chosen in
+its preferences.
+
+<table>
+  <tr>
+    <td width="50%"><a href="docs/images/force-feedback.png"><img src="docs/images/force-feedback.png" alt="Force feedback page"></a><br>
+      <b>Force feedback</b>: overall gain, spring, damper and friction, autocentre</td>
+    <td width="50%"><a href="docs/images/tools.png"><img src="docs/images/tools.png" alt="Tools page"></a><br>
+      <b>Tools</b>: centring, the companion mode, wheel buttons, the range overlay and the FFB meter</td>
+  </tr>
+  <tr>
+    <td><a href="docs/images/jobs.png"><img src="docs/images/jobs.png" alt="Jobs page with the details of one job"></a><br>
+      <b>Jobs</b> from Euro Truck Simulator 2, truck and bus, with the details of each</td>
+    <td><a href="docs/images/routes.png"><img src="docs/images/routes.png" alt="Jobs page grouped by route"></a><br>
+      <b>Routes</b>: the same jobs grouped by route, with distance and revenue</td>
+  </tr>
+  <tr>
+    <td><a href="docs/images/career.png"><img src="docs/images/career.png" alt="Career page"></a><br>
+      <b>Career</b>, read from the save game: experience, money, distances, records</td>
+    <td><a href="docs/images/statistics.png"><img src="docs/images/statistics.png" alt="Statistics page with the summary of one drive"></a><br>
+      <b>Driving statistics</b> from the telemetry plugin: one summary per drive, with steering position and time per gear</td>
+  </tr>
+</table>
+
+<details>
+<summary>Hardware tests, profiles and preferences</summary>
+
+| | |
+|---|---|
+| ![Hardware tests](docs/images/tests.png) | ![Profiles](docs/images/profiles.png) |
+| **Hardware tests**: run, import and export as CSV, open the chart | **Profiles**: create, rename, export, import |
+| ![Preferences](docs/images/settings.png) | |
+| **Preferences**: permission check, language, wheel buttons | |
+
+</details>
 
 ## What is different from Oversteer
 
