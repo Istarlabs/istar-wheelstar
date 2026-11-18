@@ -62,16 +62,40 @@ private Q_SLOTS:
         const Wheelstar::Settings::ButtonLabels first{{0, u"X"_s}, {4, u"Right paddle"_s}};
         const Wheelstar::Settings::ButtonLabels second{{3, u"Horn"_s}};
 
-        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel A"_s, first).has_value());
-        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel B"_s, second).has_value());
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel A"_s, {}, first).has_value());
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel B"_s, {}, second).has_value());
 
         QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel A"_s), first);
         QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel B"_s), second);
         QVERIFY(Wheelstar::Settings::loadButtonNames(path, u"Wheel C"_s).isEmpty());
 
-        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel A"_s, {}).has_value());
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel A"_s, {}, {}).has_value());
         QVERIFY(Wheelstar::Settings::loadButtonNames(path, u"Wheel A"_s).isEmpty());
         QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel B"_s), second);
+    }
+
+    void buttonNamesBelongToTheirProfile()
+    {
+        const QTemporaryDir directory;
+        const QString path = directory.filePath(u"names/button-names.toml"_s);
+        const Wheelstar::Settings::ButtonLabels wheelLevel{{0, u"X"_s}};
+        const Wheelstar::Settings::ButtonLabels formula{{0, u"DRS"_s}, {1, u"Pit limiter"_s}};
+
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel"_s, {}, wheelLevel).has_value());
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel"_s, u"f1"_s, formula).has_value());
+
+        // A profile with names of its own gets them; any other falls back to the wheel's.
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s, u"f1"_s), formula);
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s, u"ets2"_s), wheelLevel);
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s), wheelLevel);
+
+        // Saving the wheel's names keeps the profile's, and the other way round.
+        const Wheelstar::Settings::ButtonLabels changed{{0, u"Y"_s}};
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel"_s, {}, changed).has_value());
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s, u"f1"_s), formula);
+        QVERIFY(Wheelstar::Settings::saveButtonNames(path, u"Wheel"_s, u"f1"_s, {}).has_value());
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s, u"f1"_s), changed);
+        QCOMPARE(Wheelstar::Settings::loadButtonNames(path, u"Wheel"_s), changed);
     }
 
     void readsUpstreamProfiles()
