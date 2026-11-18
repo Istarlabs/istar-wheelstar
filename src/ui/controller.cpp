@@ -1279,8 +1279,10 @@ namespace Wheelstar::Ui
 
     void Controller::reloadButtonNames()
     {
-        m_buttonNames =
-            m_device ? Settings::loadButtonNames(buttonNamesPath(), m_device->name()) : Settings::ButtonLabels();
+        const DeviceState* const current = currentState();
+        m_buttonNames = m_device ? Settings::loadButtonNames(buttonNamesPath(), m_device->name(),
+                                                             current != nullptr ? current->profile : QString())
+                                 : Settings::ButtonLabels();
         Q_EMIT buttonNamesChanged();
     }
 
@@ -1300,7 +1302,9 @@ namespace Wheelstar::Ui
             m_buttonNames.insert(index, trimmed);
         }
 
-        if (const auto saved = Settings::saveButtonNames(buttonNamesPath(), m_device->name(), m_buttonNames); !saved)
+        if (const auto saved =
+                Settings::saveButtonNames(buttonNamesPath(), m_device->name(), state().profile, m_buttonNames);
+            !saved)
         {
             Q_EMIT message(i18n("Error saving button names"), saved.error(), true);
         }
@@ -1675,6 +1679,7 @@ namespace Wheelstar::Ui
         if (name.isEmpty())
         {
             current.profile.clear();
+            reloadButtonNames();
             Q_EMIT settingsChanged();
             return;
         }
@@ -1692,6 +1697,7 @@ namespace Wheelstar::Ui
         current.settings.overrideWith(*loaded);
         current.reference = current.settings;
         current.profile = name;
+        reloadButtonNames();
         applyAll();
     }
 
@@ -1734,6 +1740,7 @@ namespace Wheelstar::Ui
         state().profile = trimmed;
         saveProfile();
         reloadProfiles();
+        reloadButtonNames();
         Q_EMIT settingsChanged();
     }
 
