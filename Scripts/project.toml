@@ -72,3 +72,40 @@ preun = "if [ $1 -eq 0 ]; then /usr/bin/istar-wheelstar-ets2-plugin unlink --all
 [database]
 port = "5432"
 name = "wheelstar"
+
+# Created by `repo.py init` and `repo.py labels`, next to the shared ones.
+
+[[repo.labels]]
+name = "area:device"
+color = "1d76db"
+description = "Wheel devices, force feedback, hardware tests"
+
+[[repo.labels]]
+name = "area:telemetry"
+color = "0e8a16"
+description = "Game telemetry (UDP) and sessions"
+
+[[repo.labels]]
+name = "area:savegame"
+color = "5319e7"
+description = "Save games, istar-truckdata, career"
+
+[[repo.labels]]
+name = "area:statistics"
+color = "fbca04"
+description = "Statistics and the database"
+
+[[repo.labels]]
+name = "area:settings"
+color = "c5def5"
+description = "Profiles, button names, preferences"
+
+[[repo.labels]]
+name = "area:ui"
+color = "d4c5f9"
+description = "QML pages and the controller"
+
+[[repo.labels]]
+name = "i18n"
+color = "bfdadc"
+description = "Translations and localization"
