@@ -3,7 +3,12 @@
 
 #include "savegame/saveimport.h"
 
+#include "truckdata/savegame/siidump.h"
+
 #include <KLocalizedString>
+
+#include <QFile>
+#include <QSaveFile>
 
 #include <algorithm>
 #include <cstdlib>
@@ -47,6 +52,36 @@ namespace Wheelstar::SaveGame
         }
 
         return i18n("This is not a save game of Euro Truck Simulator 2 or American Truck Simulator.");
+    }
+
+    QString exportSaveGame(const QString& saveFile, const QString& target, DumpFormat format)
+    {
+        QFile source(saveFile);
+
+        if (!source.open(QIODevice::ReadOnly))
+        {
+            return i18n("Cannot read \"%1\": %2", saveFile, source.errorString());
+        }
+
+        const auto document = readSiiFile(source.readAll());
+
+        if (!document)
+        {
+            return errorText(document.error());
+        }
+
+        const QByteArray dump = format == DumpFormat::Json ? TruckData::SaveGame::dumpJson(*document)
+                                                           : TruckData::SaveGame::dumpText(*document);
+
+        // Written to a temporary file and renamed, so a full disk does not leave half a dump over an older one.
+        QSaveFile out(target);
+
+        if (!out.open(QIODevice::WriteOnly) || out.write(dump) != dump.size() || !out.commit())
+        {
+            return i18n("Cannot write \"%1\": %2", target, out.errorString());
+        }
+
+        return {};
     }
 
     QList<Statistics::JobRecord> deliveriesFrom(const SiiDocument& document, Telemetry::Game game)

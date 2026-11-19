@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: istar-wheelstar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-17 17:25+0100\n"
+"POT-Creation-Date: 2026-11-18 14:16+0100\n"
 "PO-Revision-Date: 2026-11-07 23:52+0100\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: none\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/core/inifile.cpp:21 src/hardwaretest/testanalysis.cpp:402
-#: src/ui/controller.cpp:883
+#: src/savegame/saveimport.cpp:63 src/ui/controller.cpp:897
 #, kde-format
 msgid "Cannot read \"%1\": %2"
 msgstr ""
@@ -51,7 +51,8 @@ msgid "\"%1\" is not a test report."
 msgstr ""
 
 #: src/hardwaretest/testanalysis.cpp:447 src/hardwaretest/testanalysis.cpp:468
-#: src/settings/buttonnames.cpp:73 src/settings/wheelsettings.cpp:358
+#: src/savegame/saveimport.cpp:81 src/settings/buttonnames.cpp:137
+#: src/settings/wheelsettings.cpp:358
 #, kde-format
 msgid "Cannot write \"%1\": %2"
 msgstr ""
@@ -185,7 +186,7 @@ msgid ""
 "wheel is back."
 msgstr ""
 
-#: src/main.cpp:218 src/ui/controller.cpp:2276
+#: src/main.cpp:218 src/ui/controller.cpp:2313
 #, kde-format
 msgid ""
 "The supplied command failed:\n"
@@ -290,210 +291,246 @@ msgstr "Megtalált eszközök:"
 msgid "This profile doesn't exist."
 msgstr "Ez a profil nem létezik."
 
-#: src/qml/CareerPage.qml:25 src/qml/Main.qml:105
+#: src/qml/CareerPage.qml:26 src/qml/Main.qml:105
 #, kde-format
 msgid "Career"
 msgstr ""
 
-#: src/qml/CareerPage.qml:29
+#: src/qml/CareerPage.qml:30
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import Jobs"
 msgstr "Importálás"
 
-#: src/qml/CareerPage.qml:31
+#: src/qml/CareerPage.qml:32
 #, kde-format
 msgid "Add the deliveries of the save game to the jobs"
 msgstr ""
 
-#: src/qml/CareerPage.qml:36 src/qml/CompanyPage.qml:38
+#: src/qml/CareerPage.qml:37
+#, fuzzy, kde-format
+#| msgid "Export CSV"
+msgid "Export Save Game"
+msgstr "Exportálás CSV-be"
+
+#: src/qml/CareerPage.qml:39
+#, kde-format
+msgid "Write everything in the save game to a file"
+msgstr ""
+
+#: src/qml/CareerPage.qml:43
+#, kde-format
+msgid "As Text"
+msgstr ""
+
+#: src/qml/CareerPage.qml:48
+#, kde-format
+msgid "As JSON"
+msgstr ""
+
+#: src/qml/CareerPage.qml:53 src/qml/CompanyPage.qml:38
 #, kde-format
 msgid "Read Again"
 msgstr ""
 
-#: src/qml/CareerPage.qml:57
+#: src/qml/CareerPage.qml:70
+#, kde-format
+msgid "Export save game to"
+msgstr ""
+
+#: src/qml/CareerPage.qml:73
+#, kde-format
+msgid "JSON (*.json)"
+msgstr ""
+
+#: src/qml/CareerPage.qml:73
+#, kde-format
+msgid "Text (*.txt)"
+msgstr ""
+
+#: src/qml/CareerPage.qml:91
 #, fuzzy, kde-format
 #| msgid "Profile"
 msgid "Profile:"
 msgstr "Profil"
 
-#: src/qml/CareerPage.qml:64
+#: src/qml/CareerPage.qml:98
 #, kde-format
 msgid "%1 (%2)"
 msgstr ""
 
 #. i18n: %1 the profile, %2 the game
-#: src/qml/CareerPage.qml:89
+#: src/qml/CareerPage.qml:123
 #, kde-format
 msgid "%1 in %2"
 msgstr ""
 
-#: src/qml/CareerPage.qml:93
+#: src/qml/CareerPage.qml:127
 #, kde-format
 msgid "Saved:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:98 src/qml/JobDialog.qml:93
+#: src/qml/CareerPage.qml:132 src/qml/JobDialog.qml:93
 #, kde-format
 msgid "Experience:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:99 src/qml/CompanyPage.qml:259
+#: src/qml/CareerPage.qml:133 src/qml/CompanyPage.qml:259
 #: src/qml/JobDialog.qml:94
 #, kde-format
 msgid "%1 XP"
 msgstr ""
 
-#: src/qml/CareerPage.qml:103 src/qml/CompanyPage.qml:311
+#: src/qml/CareerPage.qml:137 src/qml/CompanyPage.qml:311
 #, kde-format
 msgid "Money:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:108
+#: src/qml/CareerPage.qml:142
 #, kde-format
 msgid "Game days:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:114
+#: src/qml/CareerPage.qml:148
 #, kde-format
 msgid "Driving"
 msgstr ""
 
-#: src/qml/CareerPage.qml:118
+#: src/qml/CareerPage.qml:152
 #, kde-format
 msgid "By truck:"
 msgstr ""
 
 #. i18n: %1 kilometres, %2 hours of real time
-#: src/qml/CareerPage.qml:120 src/qml/CareerPage.qml:126
+#: src/qml/CareerPage.qml:154 src/qml/CareerPage.qml:160
 #, kde-format
 msgid "%1 km in %2 h"
 msgstr ""
 
-#: src/qml/CareerPage.qml:125
+#: src/qml/CareerPage.qml:159
 #, kde-format
 msgid "By bus:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:130
+#: src/qml/CareerPage.qml:164
 #, kde-format
 msgid "Deliveries:"
 msgstr ""
 
 #. i18n: %1 jobs delivered, %2 jobs given up
-#: src/qml/CareerPage.qml:132
+#: src/qml/CareerPage.qml:166
 #, kde-format
 msgid "%1 (%2 cancelled)"
 msgstr ""
 
-#: src/qml/CareerPage.qml:136
+#: src/qml/CareerPage.qml:170
 #, kde-format
 msgid "Bus jobs:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:141
+#: src/qml/CareerPage.qml:175
 #, kde-format
 msgid "Cities visited:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:146 src/qml/CompanyPage.qml:340
+#: src/qml/CareerPage.qml:180 src/qml/CompanyPage.qml:340
 #, kde-format
 msgid "Garages:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:151
+#: src/qml/CareerPage.qml:185
 #, kde-format
 msgid "Ferry crossings:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:156
+#: src/qml/CareerPage.qml:190
 #, kde-format
 msgid "Fuel bought:"
 msgstr ""
 
 #. i18n: %1 litres, %2 the money paid for them
-#: src/qml/CareerPage.qml:158
+#: src/qml/CareerPage.qml:192
 #, kde-format
 msgid "%1 l for %2"
 msgstr ""
 
-#: src/qml/CareerPage.qml:162
+#: src/qml/CareerPage.qml:196
 #, kde-format
 msgid "Visits:"
 msgstr ""
 
 #. i18n: %1 stops at fuel stations, %2 at service garages
-#: src/qml/CareerPage.qml:164
+#: src/qml/CareerPage.qml:198
 #, kde-format
 msgid "%1 at fuel stations, %2 at the service"
 msgstr ""
 
-#: src/qml/CareerPage.qml:170
+#: src/qml/CareerPage.qml:204
 #, kde-format
 msgid "Records"
 msgstr ""
 
-#: src/qml/CareerPage.qml:174
+#: src/qml/CareerPage.qml:208
 #, kde-format
 msgid "Without an offence:"
 msgstr ""
 
 #. i18n: %1 the current stretch in km, %2 the longest
-#: src/qml/CareerPage.qml:176 src/qml/CareerPage.qml:182
+#: src/qml/CareerPage.qml:210 src/qml/CareerPage.qml:216
 #, kde-format
 msgid "%1 km now, %2 km at most"
 msgstr ""
 
-#: src/qml/CareerPage.qml:181
+#: src/qml/CareerPage.qml:215
 #, kde-format
 msgid "Without damage:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:187
+#: src/qml/CareerPage.qml:221
 #, kde-format
 msgid "Without cargo damage:"
 msgstr ""
 
-#: src/qml/CareerPage.qml:188
+#: src/qml/CareerPage.qml:222
 #, kde-format
 msgid "%1 km at most"
 msgstr ""
 
-#: src/qml/CareerPage.qml:192
+#: src/qml/CareerPage.qml:226
 #, fuzzy, kde-format
 #| msgid "CSV file to import"
 msgid "Jobs to import:"
 msgstr "Az importálandó CVS-fájl"
 
-#: src/qml/CareerPage.qml:200
+#: src/qml/CareerPage.qml:234
 #, fuzzy, kde-format
 #| msgid "Preferences"
 msgid "Offences"
 msgstr "Beállítások"
 
-#: src/qml/CareerPage.qml:208
+#: src/qml/CareerPage.qml:242
 #, kde-format
 msgid ""
 "The game counts every offence it notices, also with fines turned off; only "
 "some of them were fined."
 msgstr ""
 
-#: src/qml/CareerPage.qml:219
+#: src/qml/CareerPage.qml:253
 #, kde-format
 msgid "Offence"
 msgstr ""
 
-#: src/qml/CareerPage.qml:225
+#: src/qml/CareerPage.qml:259
 #, kde-format
 msgid "Noticed"
 msgstr ""
 
-#: src/qml/CareerPage.qml:231
+#: src/qml/CareerPage.qml:265
 #, kde-format
 msgid "Fined"
 msgstr ""
 
-#: src/qml/CareerPage.qml:237
+#: src/qml/CareerPage.qml:271
 #, kde-format
 msgid "Paid"
 msgstr ""
@@ -1437,8 +1474,8 @@ msgstr "Új"
 msgid "New profile"
 msgstr ""
 
-#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:1026
-#: src/ui/controller.cpp:1030
+#: src/qml/ProfilesPage.qml:24 src/ui/controller.cpp:1040
+#: src/ui/controller.cpp:1044
 #, kde-format
 msgid "Import"
 msgstr "Importálás"
@@ -1823,7 +1860,7 @@ msgstr "Futtatás"
 msgid "Results"
 msgstr ""
 
-#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2491
+#: src/qml/TestsPage.qml:171 src/ui/controller.cpp:2528
 #, kde-format
 msgid "CSV file to import"
 msgstr "Az importálandó CVS-fájl"
@@ -1833,7 +1870,7 @@ msgstr "Az importálandó CVS-fájl"
 msgid "CSV files (*.csv)"
 msgstr ""
 
-#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2510
+#: src/qml/TestsPage.qml:179 src/ui/controller.cpp:2547
 #, kde-format
 msgid "CSV file to export"
 msgstr "Az exportálandó CVS-fájl"
@@ -2038,57 +2075,57 @@ msgstr "Gyorsítás + Váltó"
 msgid "Inputs"
 msgstr ""
 
-#: src/savegame/saveimport.cpp:29
+#: src/savegame/saveimport.cpp:34
 #, kde-format
 msgid "The save game is cut short."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:31
+#: src/savegame/saveimport.cpp:36
 #, kde-format
 msgid "The save game cannot be decrypted."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:33
+#: src/savegame/saveimport.cpp:38
 #, fuzzy, kde-format
 #| msgid "The selected profile can't be loaded."
 msgid "The save game cannot be unpacked."
 msgstr "A kiválasztott profil nem tölthető be."
 
-#: src/savegame/saveimport.cpp:35
+#: src/savegame/saveimport.cpp:40
 #, kde-format
 msgid "The save game is not in the binary format."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:37
+#: src/savegame/saveimport.cpp:42
 #, kde-format
 msgid "The save game refers to a structure it never defined."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:39
+#: src/savegame/saveimport.cpp:44
 #, kde-format
 msgid "The save game ends in the middle of a value."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:41
+#: src/savegame/saveimport.cpp:46
 #, kde-format
 msgid "The save game is not in the text format."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:43
+#: src/savegame/saveimport.cpp:48
 #, kde-format
 msgid ""
 "The save game has a value of a kind this program does not know (0x%1, "
 "\"%2\")."
 msgstr ""
 
-#: src/savegame/saveimport.cpp:49
+#: src/savegame/saveimport.cpp:54
 #, kde-format
 msgid ""
 "This is not a save game of Euro Truck Simulator 2 or American Truck "
 "Simulator."
 msgstr ""
 
-#: src/settings/buttonnames.cpp:52
+#: src/settings/buttonnames.cpp:79
 #, kde-format
 msgid "\"%1\" cannot be read: %2"
 msgstr ""
@@ -2302,18 +2339,29 @@ msgstr ""
 msgid "Driver %1"
 msgstr ""
 
-#: src/ui/controller.cpp:864
+#: src/ui/controller.cpp:737
+#, fuzzy, kde-format
+#| msgid "Test data exported."
+msgid "Save game exported"
+msgstr "Vizsgálati adatok exportálva."
+
+#: src/ui/controller.cpp:741
+#, kde-format
+msgid "Error exporting the save game"
+msgstr ""
+
+#: src/ui/controller.cpp:878
 #, kde-format
 msgid ""
 "No save game of Euro Truck Simulator 2 or American Truck Simulator was found."
 msgstr ""
 
-#: src/ui/controller.cpp:1026
+#: src/ui/controller.cpp:1040
 #, kde-format
 msgid "The jobs could not be written to the database."
 msgstr ""
 
-#: src/ui/controller.cpp:1030
+#: src/ui/controller.cpp:1044
 #, fuzzy, kde-format
 #| msgid "Test data imported."
 msgid "One job imported."
@@ -2321,139 +2369,139 @@ msgid_plural "%1 jobs imported."
 msgstr[0] "A vizsgálati adatok importálva lettek."
 msgstr[1] "A vizsgálati adatok importálva lettek."
 
-#: src/ui/controller.cpp:1305
+#: src/ui/controller.cpp:1339
 #, kde-format
 msgid "Error saving button names"
 msgstr ""
 
-#: src/ui/controller.cpp:1363
+#: src/ui/controller.cpp:1397
 #, kde-format
 msgid "Wheel connected"
 msgstr ""
 
-#: src/ui/controller.cpp:1371
+#: src/ui/controller.cpp:1405
 #, fuzzy, kde-format
 #| msgid "list connected devices"
 msgid "Wheel disconnected"
 msgstr "csatlakoztatott eszközök listája"
 
-#: src/ui/controller.cpp:1686
+#: src/ui/controller.cpp:1721
 #, kde-format
 msgid "Error opening profile"
 msgstr "Hiba lépett fel a profil megnyitása során"
 
-#: src/ui/controller.cpp:1686
+#: src/ui/controller.cpp:1721
 #, kde-format
 msgid "The selected profile can't be loaded."
 msgstr "A kiválasztott profil nem tölthető be."
 
-#: src/ui/controller.cpp:1709 src/ui/controller.cpp:1729
+#: src/ui/controller.cpp:1745 src/ui/controller.cpp:1765
 #, kde-format
 msgid "Error creating profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1729 src/ui/controller.cpp:1747
+#: src/ui/controller.cpp:1765 src/ui/controller.cpp:1784
 #, kde-format
 msgid "\"%1\" cannot be used as a profile name."
 msgstr ""
 
-#: src/ui/controller.cpp:1747
+#: src/ui/controller.cpp:1784
 #, kde-format
 msgid "Error renaming profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1767
+#: src/ui/controller.cpp:1804
 #, kde-format
 msgid "Error deleting profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1790 src/ui/controller.cpp:1796
-#: src/ui/controller.cpp:1806
+#: src/ui/controller.cpp:1827 src/ui/controller.cpp:1833
+#: src/ui/controller.cpp:1843
 #, kde-format
 msgid "Error importing profile"
 msgstr ""
 
-#: src/ui/controller.cpp:1790
+#: src/ui/controller.cpp:1827
 #, kde-format
 msgid "Invalid extension."
 msgstr "Érvénytelen kiegészítő."
 
-#: src/ui/controller.cpp:1796
+#: src/ui/controller.cpp:1833
 #, kde-format
 msgid "A profile with that name already exists."
 msgstr "Egy profil ugyanezzel a névvel már létezik."
 
-#: src/ui/controller.cpp:1822
+#: src/ui/controller.cpp:1859
 #, kde-format
 msgid "Error exporting profile"
 msgstr ""
 
-#: src/ui/controller.cpp:2108
+#: src/ui/controller.cpp:2145
 #, kde-format
 msgid "System default"
 msgstr "Rendszer alapértelmezés"
 
-#: src/ui/controller.cpp:2109
+#: src/ui/controller.cpp:2146
 #, kde-format
 msgid "English"
 msgstr "Angol"
 
-#: src/ui/controller.cpp:2110
+#: src/ui/controller.cpp:2147
 #, kde-format
 msgid "Galician"
 msgstr "Galíciai"
 
-#: src/ui/controller.cpp:2111
+#: src/ui/controller.cpp:2148
 #, kde-format
 msgid "Russian"
 msgstr "Orosz"
 
-#: src/ui/controller.cpp:2112
+#: src/ui/controller.cpp:2149
 #, kde-format
 msgid "Spanish"
 msgstr "Spanyol"
 
-#: src/ui/controller.cpp:2113
+#: src/ui/controller.cpp:2150
 #, kde-format
 msgid "Valencian"
 msgstr "Valenciai"
 
-#: src/ui/controller.cpp:2114
+#: src/ui/controller.cpp:2151
 #, kde-format
 msgid "Finnish"
 msgstr "Finn"
 
-#: src/ui/controller.cpp:2115
+#: src/ui/controller.cpp:2152
 #, kde-format
 msgid "Turkish"
 msgstr "Török"
 
-#: src/ui/controller.cpp:2116
+#: src/ui/controller.cpp:2153
 #, kde-format
 msgid "German"
 msgstr "Német"
 
-#: src/ui/controller.cpp:2117
+#: src/ui/controller.cpp:2154
 #, kde-format
 msgid "Polish"
 msgstr ""
 
-#: src/ui/controller.cpp:2118
+#: src/ui/controller.cpp:2155
 #, kde-format
 msgid "Hungarian"
 msgstr ""
 
-#: src/ui/controller.cpp:2174
+#: src/ui/controller.cpp:2211
 #, kde-format
 msgid "Permissions rules installed."
 msgstr "Engedélyezési szabályok telepítve."
 
-#: src/ui/controller.cpp:2175
+#: src/ui/controller.cpp:2212
 #, kde-format
 msgid "In some cases, a system restart might be needed."
 msgstr "Bizonyos esetekben szükség lehet a rendszer újraindítására."
 
-#: src/ui/controller.cpp:2181
+#: src/ui/controller.cpp:2218
 #, kde-format
 msgid ""
 "Error installing permissions rules. Please, try again and make sure you use "
@@ -2463,73 +2511,73 @@ msgstr ""
 "győződjön meg róla, hogy a megfelelő jelszót használja a rendszergazda "
 "felhasználóhoz."
 
-#: src/ui/controller.cpp:2275
+#: src/ui/controller.cpp:2312
 #, kde-format
 msgid "Command error"
 msgstr "Parancs hiba"
 
-#: src/ui/controller.cpp:2431 src/ui/controller.cpp:2459
+#: src/ui/controller.cpp:2468 src/ui/controller.cpp:2496
 #, kde-format
 msgid "Steering wheel not responding."
 msgstr "A kormánykerék nem reagál."
 
-#: src/ui/controller.cpp:2498
+#: src/ui/controller.cpp:2535
 #, kde-format
 msgid "New test data imported from CSV file."
 msgstr "Új vizsgálati adatok lettek importálva a CSV-fájlból."
 
-#: src/ui/controller.cpp:2498
+#: src/ui/controller.cpp:2535
 #, kde-format
 msgid "Test data imported."
 msgstr "A vizsgálati adatok importálva lettek."
 
-#: src/ui/controller.cpp:2514
+#: src/ui/controller.cpp:2551
 #, kde-format
 msgid "Current test data has been exported to a CSV file."
 msgstr "Az aktuális vizsgálati adatok CSV-fájlba lettek exportálva."
 
-#: src/ui/controller.cpp:2514
+#: src/ui/controller.cpp:2551
 #, kde-format
 msgid "Test data exported."
 msgstr "Vizsgálati adatok exportálva."
 
-#: src/ui/controller.cpp:2535 src/ui/controller.cpp:2540
-#: src/ui/controller.cpp:2550
+#: src/ui/controller.cpp:2572 src/ui/controller.cpp:2577
+#: src/ui/controller.cpp:2587
 #, kde-format
 msgid "Input force"
 msgstr "Bemeneti erő"
 
-#: src/ui/controller.cpp:2536
+#: src/ui/controller.cpp:2573
 #, kde-format
 msgid "Output force"
 msgstr "Kimeneti erő"
 
-#: src/ui/controller.cpp:2541
+#: src/ui/controller.cpp:2578
 #, kde-format
 msgid "Angular displacement (raw)"
 msgstr "Szögeltolódás (nyers)"
 
-#: src/ui/controller.cpp:2544
+#: src/ui/controller.cpp:2581
 #, kde-format
 msgid "Angular displacement (smoothed)"
 msgstr "Szögeltolódás (kiegyenlített)"
 
-#: src/ui/controller.cpp:2545
+#: src/ui/controller.cpp:2582
 #, kde-format
 msgid "Angular velocity (raw)"
 msgstr "Szögsebesség (nyers)"
 
-#: src/ui/controller.cpp:2548
+#: src/ui/controller.cpp:2585
 #, kde-format
 msgid "Angular velocity (smoothed)"
 msgstr "Szögsebesség (kiegyenlített)"
 
-#: src/ui/controller.cpp:2553
+#: src/ui/controller.cpp:2590
 #, kde-format
 msgid "Angular acceleration (raw)"
 msgstr "Szöggyorsulás (nyers)"
 
-#: src/ui/controller.cpp:2556
+#: src/ui/controller.cpp:2593
 #, kde-format
 msgid "Angular acceleration (smoothed)"
 msgstr "Szöggyorsulás (kiegyenlített)"

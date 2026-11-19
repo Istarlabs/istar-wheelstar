@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls as QQC2
+import QtQuick.Dialogs
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import net.kurokyuu.wheelstar
@@ -33,12 +34,45 @@ Kirigami.ScrollablePage {
             onTriggered: Wheelstar.importDeliveries()
         },
         Kirigami.Action {
+            text: i18n("Export Save Game")
+            icon.name: "document-export"
+            tooltip: i18n("Write everything in the save game to a file")
+            enabled: page.loaded && !Wheelstar.careerLoading
+
+            Kirigami.Action {
+                text: i18n("As Text")
+                onTriggered: exportDialog.start("text")
+            }
+
+            Kirigami.Action {
+                text: i18n("As JSON")
+                onTriggered: exportDialog.start("json")
+            }
+        },
+        Kirigami.Action {
             text: i18n("Read Again")
             icon.name: "view-refresh"
             enabled: !Wheelstar.careerLoading
             onTriggered: Wheelstar.loadCareer(profiles.currentIndex)
         }
     ]
+
+    FileDialog {
+        id: exportDialog
+
+        property string format: "text"
+
+        function start(chosen: string): void {
+            format = chosen;
+            open();
+        }
+
+        title: i18n("Export save game to")
+        fileMode: FileDialog.SaveFile
+        defaultSuffix: format === "json" ? "json" : "txt"
+        nameFilters: format === "json" ? [i18n("JSON (*.json)")] : [i18n("Text (*.txt)")]
+        onAccepted: Wheelstar.exportSaveGame(selectedFile, format)
+    }
 
     Component.onCompleted: {
         // The jobs first, so the count of new deliveries is right.

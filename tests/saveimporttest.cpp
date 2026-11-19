@@ -3,6 +3,10 @@
 
 #include "savegame/saveimport.h"
 
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QTemporaryDir>
 #include <QTest>
 
 using namespace Wheelstar;
@@ -126,6 +130,54 @@ delivery_log_entry : _nameless.6 {
             QCOMPARE(bus.deliveryMinutes, 242U);
             QCOMPARE(bus.passengers, 84);
             QCOMPARE(bus.satisfaction, 0.75);
+        }
+
+        void theSaveGameIsWrittenAsTextOrJson()
+        {
+            const QTemporaryDir directory;
+            QVERIFY(directory.isValid());
+            const QString save = directory.filePath(QStringLiteral("game.sii"));
+            QFile file(save);
+            QVERIFY(file.open(QIODevice::WriteOnly));
+            file.write(TextSave);
+            file.close();
+
+            const QString text = directory.filePath(QStringLiteral("dump.txt"));
+            QCOMPARE(SaveGame::exportSaveGame(save, text, SaveGame::DumpFormat::Text), QString());
+            QFile textFile(text);
+            QVERIFY(textFile.open(QIODevice::ReadOnly));
+            QVERIFY(textFile.readAll().contains("bus_job_log_entry : _nameless.8 {\n"));
+
+            const QString json = directory.filePath(QStringLiteral("dump.json"));
+            QCOMPARE(SaveGame::exportSaveGame(save, json, SaveGame::DumpFormat::Json), QString());
+            QFile jsonFile(json);
+            QVERIFY(jsonFile.open(QIODevice::ReadOnly));
+            const QJsonDocument parsed = QJsonDocument::fromJson(jsonFile.readAll());
+            QVERIFY(parsed.isArray());
+            // economy, bus_job_log, bus_job_log_entry, delivery_log, two delivery_log_entry
+            QCOMPARE(parsed.array().size(), 6);
+        }
+
+        void aSaveThatCannotBeReadOrAWrongTargetIsReported()
+        {
+            const QTemporaryDir directory;
+            QVERIFY(directory.isValid());
+
+            const QString missing =
+                SaveGame::exportSaveGame(directory.filePath(QStringLiteral("none.sii")),
+                                         directory.filePath(QStringLiteral("out.txt")), SaveGame::DumpFormat::Text);
+            QVERIFY(!missing.isEmpty());
+            QVERIFY(!QFile::exists(directory.filePath(QStringLiteral("out.txt"))));
+
+            const QString save = directory.filePath(QStringLiteral("game.sii"));
+            QFile file(save);
+            QVERIFY(file.open(QIODevice::WriteOnly));
+            file.write(TextSave);
+            file.close();
+
+            // A folder that does not exist: nothing is written, and the reason is given.
+            const QString target = directory.filePath(QStringLiteral("no/such/folder/out.txt"));
+            QVERIFY(!SaveGame::exportSaveGame(save, target, SaveGame::DumpFormat::Text).isEmpty());
         }
 
         void aDeliveryTheTelemetrySawIsNotNew()
