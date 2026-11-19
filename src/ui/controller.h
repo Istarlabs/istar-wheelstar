@@ -271,6 +271,9 @@ namespace Wheelstar::Ui
         Q_INVOKABLE void loadCareer(int profile = 0);
         /// Writes the deliveries of the save loadCareer() read that the database does not know yet.
         Q_INVOKABLE void importDeliveries();
+        /// Writes everything in the save game loadCareer() read to this file, in the background; message() says how
+        /// it went. `format` is "json" for JSON, anything else is the text dump.
+        Q_INVOKABLE void exportSaveGame(const QUrl& file, const QString& format);
 
         Q_INVOKABLE void startTest();
         Q_INVOKABLE void runTest();
@@ -419,6 +422,9 @@ namespace Wheelstar::Ui
         QList<SaveGame::SaveGameProfile> m_saveGameProfiles;
         QFutureWatcher<LoadedCareer> m_careerWatcher;
         std::optional<LoadedCareer> m_career;
+        /// The export of the save game running in the background: empty when it wrote, else why not.
+        QFutureWatcher<QString> m_exportWatcher;
+        QString m_exportTarget;
         QVariantMap m_careerMap;
         QVariantMap m_companyMap;
         QString m_careerError;

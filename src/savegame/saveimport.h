@@ -39,8 +39,20 @@ namespace Wheelstar
         using TruckData::SaveGame::steamRoots;
         using TruckData::SaveGame::Truck;
 
+        /// How a save game is written out by exportSaveGame().
+        enum class DumpFormat
+        {
+            /// One readable block per unit of the save game.
+            Text,
+            Json,
+        };
+
         /// The library's game as the telemetry's: the same numbers, which both store.
         Telemetry::Game telemetryGame(TruckData::Game game);
+
+        /// Reads the save game file and writes everything in it to `target` as a dump. Empty when it is written,
+        /// otherwise why not, in the application's language; a target that cannot be written is left as it was.
+        QString exportSaveGame(const QString& saveFile, const QString& target, DumpFormat format);
 
         /// Why a save game cannot be read, in the application's language.
         QString errorText(const SiiError& error);

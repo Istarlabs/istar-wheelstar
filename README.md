@@ -46,6 +46,7 @@ New in the port:
   *Driving statistics* below)
 - the jobs and the career from the games' save games, with the names of cities, companies and cargoes in the
   application's language, read from the game's own archives (see *Sources* below)
+- an export of the whole save game as a readable text dump or as JSON, from the career page
 
 ## Screenshots
 

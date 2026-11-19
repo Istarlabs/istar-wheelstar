@@ -727,6 +727,20 @@ namespace Wheelstar::Ui
         connect(&m_recorder, &Statistics::SessionRecorder::sessionFinished, this, &Controller::storeSession);
         connect(&m_telemetry, &Telemetry::TelemetryReceiver::eventReceived, this, &Controller::onGameEvent);
         connect(&m_careerWatcher, &QFutureWatcher<LoadedCareer>::finished, this, &Controller::onCareerLoaded);
+        connect(&m_exportWatcher, &QFutureWatcher<QString>::finished, this,
+                [this]
+                {
+                    const QString error = m_exportWatcher.result();
+
+                    if (error.isEmpty())
+                    {
+                        Q_EMIT message(i18n("Save game exported"), m_exportTarget, false);
+                    }
+                    else
+                    {
+                        Q_EMIT message(i18n("Error exporting the save game"), error, true);
+                    }
+                });
         connect(&m_sessionsWatcher, &QFutureWatcher<LoadedSessions>::finished, this, &Controller::onSessionsLoaded);
         connect(&m_gameNamesWatcher, &QFutureWatcher<bool>::finished, this,
                 [this]
@@ -1029,6 +1043,22 @@ namespace Wheelstar::Ui
 
         Q_EMIT message(i18n("Import"), i18np("One job imported.", "%1 jobs imported.", written), false);
         refreshSessions();
+    }
+
+    void Controller::exportSaveGame(const QUrl& file, const QString& format)
+    {
+        // The dump is of the save the career shows, and one export at a time.
+        if (!m_career || m_exportWatcher.isRunning())
+        {
+            return;
+        }
+
+        m_exportTarget = file.toLocalFile();
+        const auto dumpFormat =
+            format == QLatin1String("json") ? SaveGame::DumpFormat::Json : SaveGame::DumpFormat::Text;
+        // The file dialog has already asked whether to overwrite the target.
+        m_exportWatcher.setFuture(
+            QtConcurrent::run(SaveGame::exportSaveGame, m_career->profile.newestSave, m_exportTarget, dumpFormat));
     }
 
     bool Controller::sessionsLoading() const
