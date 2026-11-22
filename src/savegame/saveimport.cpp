@@ -44,6 +44,8 @@ namespace Wheelstar::SaveGame
                 return i18n("The save game ends in the middle of a value.");
             case SiiError::Kind::NotText:
                 return i18n("The save game is not in the text format.");
+            case SiiError::Kind::TooLarge:
+                return i18n("The save game is too large.");
             case SiiError::Kind::UnknownValueType:
                 return i18n("The save game has a value of a kind this program does not know (0x%1, \"%2\").",
                             QString::number(error.valueType, 16), error.field);
@@ -63,7 +65,8 @@ namespace Wheelstar::SaveGame
             return i18n("Cannot read \"%1\": %2", saveFile, source.errorString());
         }
 
-        const auto document = readSiiFile(source.readAll());
+        // Not readAll(): a file over the library's limit is refused before it is read.
+        const auto document = readSiiFile(source);
 
         if (!document)
         {

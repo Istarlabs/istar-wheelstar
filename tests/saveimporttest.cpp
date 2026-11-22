@@ -180,6 +180,27 @@ delivery_log_entry : _nameless.6 {
             QVERIFY(!SaveGame::exportSaveGame(save, target, SaveGame::DumpFormat::Text).isEmpty());
         }
 
+        void aSaveOverTheLimitIsRefusedBeforeItIsRead()
+        {
+            const QTemporaryDir directory;
+            QVERIFY(directory.isValid());
+            const QString save = directory.filePath(QStringLiteral("game.sii"));
+            QFile file(save);
+            QVERIFY(file.open(QIODevice::WriteOnly));
+            // Sparse: it takes no space on disk, and it is not read once its size is known.
+            QVERIFY(file.resize(TruckData::SaveGame::MaxFileSize + 1));
+            file.close();
+
+            const QString target = directory.filePath(QStringLiteral("out.txt"));
+            const QString message = SaveGame::exportSaveGame(save, target, SaveGame::DumpFormat::Text);
+
+            QVERIFY(!message.isEmpty());
+            QVERIFY(!QFile::exists(target));
+            QCOMPARE(message, SaveGame::errorText(SaveGame::SiiError{.kind = SaveGame::SiiError::Kind::TooLarge}));
+            // And it has a text of its own, not the one of "not a save game" that an unknown kind falls back to.
+            QVERIFY(message != SaveGame::errorText(SaveGame::SiiError{.kind = SaveGame::SiiError::Kind::NotASaveGame}));
+        }
+
         void aDeliveryTheTelemetrySawIsNotNew()
         {
             const auto document = SaveGame::readSiiFile(TextSave);
