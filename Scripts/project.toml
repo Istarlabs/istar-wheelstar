@@ -7,6 +7,8 @@ binary = "istar-wheelstar"
 build_dir = "build"
 build_type = "RelWithDebInfo"
 install_root = "~/.local"
+# It reads save games and telemetry from outside: `verify` also runs the tests under ASan, UBSan and LeakSanitizer.
+sanitize = true
 
 # A KDE program translates through gettext; the English text is the i18n() argument itself. The
 # translations were carried over from the Python Oversteer's po/ directory.

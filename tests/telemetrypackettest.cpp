@@ -67,7 +67,10 @@ private Q_SLOTS:
 
         QVERIFY(received.has_value());
         QCOMPARE(received->kind, EventKind::Fined);
-        QCOMPARE(received->amount, 1200);
+        // Copied first: the struct is packed (the wire format), so its 64-bit amount is not 8-byte aligned, and
+        // QCOMPARE takes a reference, which UBSan reports as a misaligned one.
+        const std::int64_t amount = received->amount;
+        QCOMPARE(amount, 1200);
         QCOMPARE(eventText(received->detail), QStringLiteral("red_signal"));
         QVERIFY(!parsePacket(bytesOf(sent)).has_value());
 
