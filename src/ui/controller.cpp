@@ -898,7 +898,8 @@ namespace Wheelstar::Ui
                     return loaded;
                 }
 
-                const auto document = SaveGame::readSiiFile(file.readAll());
+                // Not readAll(): a file over the library's limit is refused before it is read.
+                const auto document = SaveGame::readSiiFile(file);
 
                 if (!document)
                 {
